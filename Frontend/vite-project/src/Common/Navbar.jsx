@@ -4,16 +4,16 @@ import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
-    <header
-      className={`d-flex flex-wrap justify-content-center align-item-center py-2 ${styles.header}`}
-    >
+    <nav class={`navbar navbar-expand-md  fixed-top ${styles.header}`}>
       <Link
         to="/"
         className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"
       >
         <span className="fs-4 ">Doctor Appointment System</span>
       </Link>
-      <ul className={`nav nav-pills d-flex justify-content-center align-item-center${styles.ul}`}>
+      <ul
+        className={`nav nav-pills d-flex justify-content-center align-item-center${styles.ul}`}
+      >
         <li className="nav-item">
           <Link to="/" className={`nav-link ${styles.li}`}>
             Home
@@ -45,7 +45,7 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
-    </header>
+    </nav>
   );
 };
 
