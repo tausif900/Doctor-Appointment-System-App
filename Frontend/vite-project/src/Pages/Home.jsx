@@ -293,40 +293,52 @@ const Home = () => {
           </button>
         </div>
 
-        {/* 🔥 Marketing Section */}
+        {/* Marketing Section */}
         <br />
         <div div className="container marketing">
           <div className="row">
             <div className="col-lg-4 text-center">
-              <svg className="rounded-circle" width="140" height="140">
-                <rect width="100%" height="100%" fill="gray"></rect>
-              </svg>
-              <h2>Heading</h2>
-              <p>Some representative placeholder content.</p>
+              <img
+                src="/Images/Online appointment booking icon.png"
+                class="rounded-circle"
+                width="200"
+                height="200"
+                style={{ objectFit: "cover" }}
+              ></img>
+              <h2>Easy Appointment Booking</h2>
+              <p>Book your doctor appointments quickly with a simple and user-friendly process.</p>
               <p>
-                <a className="btn btn-secondary">View details</a>
+                <Link className="btn btn-primary">Book Now</Link>
               </p>
             </div>
 
             <div className="col-lg-4 text-center">
-              <svg className="rounded-circle" width="140" height="140">
-                <rect width="100%" height="100%" fill="gray"></rect>
-              </svg>
-              <h2>Heading</h2>
-              <p>Another bit of placeholder content.</p>
+              <img
+                src="/Images/Confident team of medical professionals.png"
+                class="rounded-circle"
+                width="200"
+                height="200"
+                style={{ objectFit: "cover" }}
+              ></img>
+              <h2>Consult Expert Doctors</h2>
+              <p>Connect with experienced and trusted doctors for the best medical care.</p>
               <p>
-                <a className="btn btn-secondary">View details</a>
+                <Link className="btn btn-primary">View Doctors</Link>
               </p>
             </div>
 
             <div className="col-lg-4 text-center">
-              <svg className="rounded-circle" width="140" height="140">
-                <rect width="100%" height="100%" fill="gray"></rect>
-              </svg>
-              <h2>Heading</h2>
-              <p>Third column content.</p>
+              <img
+                src="/Images/Time management essentials icon.png"
+                class="rounded-circle"
+                width="200"
+                height="200"
+                style={{ objectFit: "cover" }}
+              ></img>
+              <h2>Save Your Valuable Time</h2>
+              <p>Avoid long waiting queues and manage your appointments efficiently.</p>
               <p>
-                <a className="btn btn-secondary">View details</a>
+                <Link className="btn btn-primary">Get Started</Link>
               </p>
             </div>
           </div>
