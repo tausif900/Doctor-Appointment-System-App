@@ -1,0 +1,21 @@
+.header {
+  background-color: whitesmoke;
+  box-shadow: 0px 0px 6px 0px #212529;
+}
+
+.li {
+  color: black;
+  font-size: 20px;
+}
+
+.li:hover{
+  color: rgb(23, 194, 194);
+}
+
+.ul {
+  padding: 5px;
+}
+
+span {
+  color: black;
+}

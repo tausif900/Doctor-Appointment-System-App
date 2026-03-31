@@ -1,52 +1,51 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
-    <div>
-      <div className="container-fluid">
-        <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-          <Link
-            to='/'
-            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-          >
-            <span className="fs-4">Doctor Appointment System</span>
+    <header
+      className={`d-flex flex-wrap justify-content-center align-item-center py-2 ${styles.header}`}
+    >
+      <Link
+        to="/"
+        className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"
+      >
+        <span className="fs-4 ">Doctor Appointment System</span>
+      </Link>
+      <ul className={`nav nav-pills d-flex justify-content-center align-item-center${styles.ul}`}>
+        <li className="nav-item">
+          <Link to="/" className={`nav-link ${styles.li}`}>
+            Home
           </Link>
-          <ul className="nav nav-pills">
-            <li className="nav-item">
-              <Link to="/" className="nav-link ">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#" className="nav-link">
-                Features
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#" className="nav-link">
-                About Us
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#" className="nav-link">
-                Contact Us
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to='/login' className="nav-link">
-                Login
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to='/registration' className="nav-link">
-                Registration
-              </Link>
-            </li>
-          </ul>
-        </header>
-      </div>
-    </div>
+        </li>
+        <li className="nav-item">
+          <Link to="/features" className={`nav-link ${styles.li}`}>
+            Features
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/about" className={`nav-link ${styles.li}`}>
+            About Us
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/contact" className={`nav-link ${styles.li}`}>
+            Contact Us
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/login" className={`nav-link ${styles.li}`}>
+            Login
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/registration" className={`nav-link ${styles.li}`}>
+            Registration
+          </Link>
+        </li>
+      </ul>
+    </header>
   );
 };
 
