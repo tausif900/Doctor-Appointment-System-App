@@ -61,6 +61,7 @@ const benefits = [
 
 const Home = () => {
   return (
+    // Home Page starts here
     <main className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroContent}>
