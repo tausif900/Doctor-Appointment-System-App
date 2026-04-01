@@ -1,0 +1,86 @@
+.footer {
+  color: #e2e8f0;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(45, 212, 191, 0.2),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #0f172a 0%, #0f766e 55%, #115e59 100%);
+}
+
+.brandCard {
+  padding: 1.75rem;
+  height: 100%;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 22px 40px rgba(15, 23, 42, 0.18);
+}
+
+.badge {
+  padding: 0.6rem 0.95rem;
+  color: #ccfbf1;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.infoChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footerLink {
+  color: #dbeafe;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footerLink:hover {
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.input {
+  min-height: 48px;
+  color: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: none;
+}
+
+.input:focus {
+  border-color: #99f6e4;
+  box-shadow: 0 0 0 0.2rem rgba(153, 246, 228, 0.2);
+}
+
+.subscribeButton {
+  min-height: 48px;
+  font-weight: 700;
+  color: #0f172a;
+  background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+  border: none;
+}
+
+.subscribeButton:hover {
+  color: #0f172a;
+  background: linear-gradient(135deg, #99f6e4 0%, #5eead4 100%);
+}
+
+.bottomBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 767px) {
+  .brandCard {
+    padding: 1.4rem;
+  }
+}

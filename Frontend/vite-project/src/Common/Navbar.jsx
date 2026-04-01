@@ -14,7 +14,7 @@ const Navbar = () => {
     <header className={styles.header}>
       <nav className={styles.navbar}>
         <NavLink to="/" className={styles.brand}>
-          <span className={styles.logoMark}>+</span>
+          <img className={styles.logoMark} src="Images/Doctor appointment system logo.png"/>
           <div className={styles.brandText}>
             <strong>Doctor Appointment</strong>
             <span>Fast and trusted care booking</span>
@@ -23,9 +23,9 @@ const Navbar = () => {
 
         <div className={styles.navLinks}>
           {navItems.map((item) => (
-            <Link key={item.label} href={item.to} className={styles.navLink}>
+            <a key={item.label} href={item.to} className={styles.navLink}>
               {item.label}
-            </Link>
+            </a>
           ))}
         </div>
 

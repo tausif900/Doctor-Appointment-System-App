@@ -28,17 +28,16 @@
 }
 
 .logoMark {
-  width: 44px;
-  height: 44px;
+  width: 100px;
+  height: 100px;
   display: inline-flex;
+  border-radius: 50%;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  background: linear-gradient(135deg, #95fff6 0%, #e7efee 100%);
   color: #ffffff;
   font-size: 1.5rem;
   font-weight: 800;
-  box-shadow: 0 12px 24px rgba(15, 118, 110, 0.24);
 }
 
 .brandText {
