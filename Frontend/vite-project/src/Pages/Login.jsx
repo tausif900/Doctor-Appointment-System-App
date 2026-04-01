@@ -3,105 +3,47 @@ import styles from "./Login.module.css";
 
 const Login = () => {
   return (
-    <section
-      className={`container-fluid ${styles.loginSection} d-flex align-items-center justify-content-center py-5`}
-    >
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
-            <div className={`card border-0 shadow-lg ${styles.loginCard}`}>
-              <div className="card-body p-4 p-md-5">
-                <div className="text-center mb-4">
-                  <span
-                    className={`badge rounded-pill px-3 py-2 mb-3 ${styles.loginBadge}`}
-                  >
-                    Secure Patient Portal
-                  </span>
-                  <h1 className="fw-bold mb-2">Welcome Back</h1>
-                  <p className="text-muted mb-0">
-                    Sign in to manage your appointments, doctors, and care
-                    updates.
-                  </p>
-                </div>
-
-                <form className={styles.formContainer}>
-                  <div className="mb-3">
-                    <label htmlFor="emailId" className="form-label fw-semibold">
-                      Email address
-                    </label>
-                    <input
-                      type="email"
-                      className={`form-control form-control-sm ${styles.formControl}`}
-                      id="emailId"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-
-                  <div className="mb-2">
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                      <label
-                        htmlFor="password"
-                        className="form-label fw-semibold mb-0"
-                      >
-                        Password
-                      </label>
-                      <a
-                        href="/"
-                        className={`small text-decoration-none ${styles.helperLink}`}
-                      >
-                        Forgot password?
-                      </a>
-                    </div>
-                    <input
-                      type="password"
-                      className={`form-control form-control-sm ${styles.formControl}`}
-                      id="password"
-                      placeholder="Enter your password"
-                    />
-                  </div>
-
-                  <div className="d-flex justify-content-between align-items-center my-3">
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="rememberMe"
-                      />
-                      <label
-                        className="form-check-label text-muted"
-                        htmlFor="rememberMe"
-                      >
-                        Remember me
-                      </label>
-                    </div>
-                    <span className="small text-muted">
-                      Fast and secure login
-                    </span>
-                  </div>
-
-                  <button
-                    type="button"
-                    className={`btn btn-primary btn-lg w-100 mt-2 ${styles.loginButton}`}
-                  >
-                    Sign In
-                  </button>
-
-                  <p className="text-center text-muted mt-4 mb-0">
-                    New here?{" "}
-                    <a
-                      href="/registration"
-                      className={`fw-semibold text-decoration-none ${styles.helperLink}`}
-                    >
-                      Create an account
-                    </a>
-                  </p>
-                </form>
-              </div>
-            </div>
+    <>
+      <div className="container d-flex justify-content-center align-items-center vh-100">
+        <form className="border p-4 rounded shadow" style={{ width: "350px" }}>
+          <h1 className="text-center">Login</h1>
+          <h6 className="text-center text-muted mb-3">
+            Welcome back! Please login to your account
+          </h6>
+          <div className="form-floating mb-3 mt-3">
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter email"
+            />
+            <label htmlFor="email">Email:</label>
           </div>
-        </div>
+          <div className=" form-floating mb-3">
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter password"
+            />
+            <label htmlFor="password">Password:</label>
+          </div>
+          <div className="form-check mb-3">
+            <label className="form-check-label">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="remember"
+              />{" "}
+              Remember me
+            </label>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
       </div>
-    </section>
+    </>
   );
 };
 
