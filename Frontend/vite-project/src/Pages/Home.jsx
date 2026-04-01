@@ -2,411 +2,255 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 
+const highlights = [
+  { value: "50+", label: "Specialist doctors available" },
+  { value: "24/7", label: "Appointment support and guidance" },
+  { value: "10k+", label: "Patients served with care" },
+];
+
+const specialties = [
+  {
+    title: "General Medicine",
+    description:
+      "Quick consultations for fever, fatigue, infections, and regular health concerns.",
+  },
+  {
+    title: "Cardiology",
+    description:
+      "Heart care with experienced specialists for early diagnosis and ongoing treatment.",
+  },
+  {
+    title: "Pediatrics",
+    description:
+      "Child-friendly care for routine checkups, vaccinations, and illness management.",
+  },
+  {
+    title: "Dermatology",
+    description:
+      "Skin, hair, and allergy consultations with personalized treatment plans.",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Create your profile",
+    description:
+      "Register once and save your basic details for faster future bookings.",
+  },
+  {
+    number: "02",
+    title: "Choose a doctor",
+    description:
+      "Browse specialties and connect with the right doctor for your needs.",
+  },
+  {
+    number: "03",
+    title: "Book your slot",
+    description:
+      "Select a convenient time and manage appointments without waiting in queues.",
+  },
+];
+
+const benefits = [
+  "Simple booking experience for patients of all ages",
+  "Verified doctors and trusted medical support",
+  "Faster appointments with better schedule management",
+  "One place for consultation planning and follow-ups",
+];
+
 const Home = () => {
   return (
-    <>
-      <main className={styles.container}>
-        {/*Carousel*/}
-        <div
-          id="myCarousel"
-          className="carousel slide mb-6"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="3"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="4"
-            ></button>
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <span className={styles.badge}>
+            Smart healthcare, simpler appointments
+          </span>
+          <h1 className={styles.heroTitle}>
+            Book trusted doctors in minutes and care for your family with
+            confidence.
+          </h1>
+          <p className={styles.heroText}>
+            Your Doctor Appointment System helps patients discover specialists,
+            reserve consultation slots, and avoid long waiting lines with a
+            smoother digital experience.
+          </p>
+
+          <div className={styles.heroActions}>
+            <Link to="/registration" className={styles.primaryButton}>
+              Book Appointment
+            </Link>
+            <Link to="/login" className={styles.secondaryButton}>
+              Login
+            </Link>
           </div>
 
-          <div className="carousel-inner">
-            {/* Slide 1 */}
-            <div className="carousel-item active">
-              <div className={styles.corouselSlides}>
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: "url('/Images/doctor1.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    filter: "blur(8px)",
-                    zIndex: 1,
-                  }}
-                ></div>
-                <img
-                  src="/Images/doctor1.jpg"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    height: "400px",
-                    objectFit: "contain",
-                    zIndex: 2,
-                  }}
-                />
-                <div
-                  className="carousel-caption"
-                  style={{
-                    zIndex: 3,
-                    background: "rgba(0,0,0,0.5)",
-                    padding: "10px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <h1>Book Appointments Easily</h1>
-                  <p>Find the best doctors near you</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Slide 2 */}
-            <div className="carousel-item active">
-              <div style={{ position: "relative", height: "500px" }}>
-                {/* Blurred Background */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: "url('/Images/doctor2.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    filter: "blur(8px)",
-                    zIndex: 1,
-                  }}
-                ></div>
-
-                {/* Center Image */}
-                <img
-                  src="/Images/doctor2.jpg"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    height: "400px",
-                    objectFit: "contain",
-                    zIndex: 2,
-                  }}
-                />
-
-                {/* Text */}
-                <div
-                  className="carousel-caption"
-                  style={{
-                    zIndex: 3,
-                    background: "rgba(0,0,0,0.5)",
-                    padding: "10px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <h1>Advanced Medical Infrastructure</h1>
-                  <p>
-                    Our partnered hospitals provide state-of-the-art facilities
-                    for better treatment.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* Slide 3 */}
-            <div className="carousel-item active">
-              <div style={{ position: "relative", height: "500px" }}>
-                {/* Blurred Background */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: "url('/Images/doctor3.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    filter: "blur(8px)",
-                    zIndex: 1,
-                  }}
-                ></div>
-
-                {/* Center Image */}
-                <img
-                  src="/Images/doctor3.jpg"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    height: "400px",
-                    objectFit: "contain",
-                    zIndex: 2,
-                  }}
-                />
-
-                {/* Text */}
-                <div
-                  className="carousel-caption"
-                  style={{
-                    zIndex: 3,
-                    background: "rgba(0,0,0,0.5)",
-                    padding: "10px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <h1>Consult Experts Doctors</h1>
-                  <p>
-                    Connect with experienced and trusted doctors for the best
-                    medical advice.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* Slide 4 */}
-            <div className="carousel-item active">
-              <div style={{ position: "relative", height: "500px" }}>
-                {/* Blurred Background */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: "url('/Images/doctor4.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    filter: "blur(8px)",
-                    zIndex: 1,
-                  }}
-                ></div>
-
-                {/* Center Image */}
-                <img
-                  src="/Images/doctor4.jpg"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    height: "400px",
-                    objectFit: "contain",
-                    zIndex: 2,
-                  }}
-                />
-
-                {/* Text */}
-                <div
-                  className="carousel-caption"
-                  style={{
-                    zIndex: 3,
-                    background: "rgba(0,0,0,0.5)",
-                    padding: "10px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <h1>Meet Our Specialists</h1>
-                  <p>Highly qualified doctors ready to assist you anytime.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Slide 5 */}
-            <div className="carousel-item active">
-              <div style={{ position: "relative", height: "500px" }}>
-                {/* Blurred Background */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: "url('/Images/doctor5.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    filter: "blur(8px)",
-                    zIndex: 1,
-                  }}
-                ></div>
-
-                {/* Center Image */}
-                <img
-                  src="/Images/doctor5.jpg"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    height: "400px",
-                    objectFit: "contain",
-                    zIndex: 2,
-                  }}
-                />
-
-                {/* Text */}
-                <div
-                  className="carousel-caption"
-                  style={{
-                    zIndex: 3,
-                    background: "rgba(0,0,0,0.5)",
-                    padding: "10px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <h1>Hassle-Free Consultation</h1>
-                  <p>Get expert guidance from trusted doctors anytime.</p>
-                </div>
-              </div>
-            </div>
+          <div className={styles.statsGrid}>
+            {highlights.map((item) => (
+              <article key={item.label} className={styles.statCard}>
+                <h2>{item.value}</h2>
+                <p>{item.label}</p>
+              </article>
+            ))}
           </div>
-
-          {/* Controls */}
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide="prev"
-          >
-            <span className="carousel-control-prev-icon"></span>
-          </button>
-
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide="next"
-          >
-            <span className="carousel-control-next-icon"></span>
-          </button>
         </div>
 
-        {/* Marketing Section */}
-        <br />
-        <div div className="container marketing">
-          <div className="row">
-            <div className="col-lg-4 text-center">
-              <img
-                src="/Images/Online appointment booking icon.png"
-                class="rounded-circle"
-                width="200"
-                height="200"
-                style={{ objectFit: "cover" }}
-              ></img>
-              <h2>Easy Appointment Booking</h2>
-              <p>Book your doctor appointments quickly with a simple and user-friendly process.</p>
+        <div className={styles.heroVisual}>
+          <div className={styles.heroImageCard}>
+            <img
+              src="/Images/doctor3.jpg"
+              alt="Doctor consulting with patient"
+              className={styles.heroImage}
+            />
+
+            <div className={styles.floatingCardTop}>
+              <span>Available today</span>
+              <strong>12 consultation slots open</strong>
+            </div>
+
+            <div className={styles.floatingCardBottom}>
+              <strong>Patient-first booking</strong>
               <p>
-                <Link className="btn btn-primary">Book Now</Link>
-              </p>
-            </div>
-
-            <div className="col-lg-4 text-center">
-              <img
-                src="/Images/Confident team of medical professionals.png"
-                class="rounded-circle"
-                width="200"
-                height="200"
-                style={{ objectFit: "cover" }}
-              ></img>
-              <h2>Consult Expert Doctors</h2>
-              <p>Connect with experienced and trusted doctors for the best medical care.</p>
-              <p>
-                <Link className="btn btn-primary">View Doctors</Link>
-              </p>
-            </div>
-
-            <div className="col-lg-4 text-center">
-              <img
-                src="/Images/Time management essentials icon.png"
-                class="rounded-circle"
-                width="200"
-                height="200"
-                style={{ objectFit: "cover" }}
-              ></img>
-              <h2>Save Your Valuable Time</h2>
-              <p>Avoid long waiting queues and manage your appointments efficiently.</p>
-              <p>
-                <Link className="btn btn-primary">Get Started</Link>
+                Fast access to specialists with a calm, reliable experience.
               </p>
             </div>
           </div>
-
-          <hr />
-
-          {/* Featurette 1 */}
-          <div className="row featurette">
-            <div className="col-md-7">
-              <h2>
-                First featurette heading{" "}
-                <span className="text-muted">It’ll blow your mind.</span>
-              </h2>
-              <p className="lead">
-                Some great placeholder content for the first featurette.
-              </p>
-            </div>
-
-            <div className="col-md-5">
-              <svg width="500" height="500">
-                <rect width="100%" height="100%" fill="gray"></rect>
-              </svg>
-            </div>
-          </div>
-
-          <hr />
-
-          {/* Featurette 2 */}
-          <div className="row featurette">
-            <div className="col-md-7 order-md-2">
-              <h2>
-                Oh yeah, it’s that good{" "}
-                <span className="text-muted">See for yourself.</span>
-              </h2>
-              <p className="lead">
-                Another featurette with placeholder content.
-              </p>
-            </div>
-
-            <div className="col-md-5 order-md-1">
-              <svg width="500" height="500">
-                <rect width="100%" height="100%" fill="gray"></rect>
-              </svg>
-            </div>
-          </div>
-
-          <hr />
-
-          {/* Featurette 3 */}
-          <div className="row featurette">
-            <div className="col-md-7">
-              <h2>
-                And lastly <span className="text-muted">Checkmate.</span>
-              </h2>
-              <p className="lead">Final placeholder content section.</p>
-            </div>
-
-            <div className="col-md-5">
-              <svg width="500" height="500">
-                <rect width="100%" height="100%" fill="gray"></rect>
-              </svg>
-            </div>
-          </div>
-
-          <hr />
         </div>
-      </main>
-    </>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeading}>
+          <span className={styles.sectionTag}>Why choose us</span>
+          <h2>Designed to make healthcare access easier</h2>
+          <p>
+            From first-time registration to confirmed appointments, every step
+            is built to reduce stress and save time.
+          </p>
+        </div>
+
+        <div className={styles.featureGrid}>
+          <article className={styles.featureCard}>
+            <img
+              src="/Images/Online appointment booking icon.png"
+              alt="Online booking"
+              className={styles.featureImage}
+            />
+            <h3>Easy online booking</h3>
+            <p>
+              Schedule appointments quickly with a simple and guided booking
+              process.
+            </p>
+          </article>
+
+          <article className={styles.featureCard}>
+            <img
+              src="/Images/Confident team of medical professionals.png"
+              alt="Expert doctors"
+              className={styles.featureImage}
+            />
+            <h3>Expert medical support</h3>
+            <p>
+              Find qualified doctors across important specialties for better
+              care decisions.
+            </p>
+          </article>
+
+          <article className={styles.featureCard}>
+            <img
+              src="/Images/Time management essentials icon.png"
+              alt="Time saving"
+              className={styles.featureImage}
+            />
+            <h3>Save valuable time</h3>
+            <p>
+              Avoid crowded waiting rooms and manage consultations around your
+              daily schedule.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="specialties"
+        className={`${styles.section} ${styles.specialtySection}`}
+      >
+        <div className={styles.sectionHeading}>
+          <span className={styles.sectionTag}>Specialties</span>
+          <h2>Connect with the right doctor for every need</h2>
+          <p>
+            Explore a platform built to support both routine care and specialist
+            consultations.
+          </p>
+        </div>
+
+        <div className={styles.specialtyGrid}>
+          {specialties.map((specialty) => (
+            <article key={specialty.title} className={styles.specialtyCard}>
+              <h3>{specialty.title}</h3>
+              <p>{specialty.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="process" className={`${styles.section} ${styles.processSection}`}>
+        <div className={styles.processVisual}>
+          <img
+            src="/Images/doctor5.jpg"
+            alt="Doctor smiling in clinic"
+            className={styles.processImage}
+          />
+        </div>
+
+        <div className={styles.processContent}>
+          <span className={styles.sectionTag}>How it works</span>
+          <h2>Get your appointment confirmed in three clear steps</h2>
+          <div className={styles.stepsList}>
+            {steps.map((step) => (
+              <article key={step.number} className={styles.stepCard}>
+                <span className={styles.stepNumber}>{step.number}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.trustSection}`}>
+        <div className={styles.trustContent}>
+          <span className={styles.sectionTag}>Patient trust</span>
+          <h2>Built for convenience, backed by care</h2>
+          <p>
+            The homepage experience is focused on clarity, trust, and action so
+            patients can move from searching to booking without confusion.
+          </p>
+
+          <div className={styles.benefitList}>
+            {benefits.map((benefit) => (
+              <div key={benefit} className={styles.benefitItem}>
+                <span className={styles.benefitIcon}>+</span>
+                <p>{benefit}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.infoPanel}>
+          <h3>Care you can organize</h3>
+          <p>
+            Keep doctor discovery, patient onboarding, and appointment planning
+            in one place with a more welcoming digital front door.
+          </p>
+          <Link to="/registration" className={styles.panelButton}>
+            Create Account
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 };
 
