@@ -154,7 +154,7 @@ const Registration = () => {
             className={`form-control ${styles.inputField}`}
             id="password"
             placeholder="Confirm password"
-            {...register("password", {
+            {...register("confirmPassword", {
               required: "Enter the Confirm Password",
               validate: (value) =>
                 value === password ||
@@ -162,8 +162,8 @@ const Registration = () => {
             })}
           />
           <label htmlFor="password">Confirm Password:</label>
-          {errors.password && (
-            <p className="text-primary">{errors.password.message}</p>
+          {errors.confirmPassword && (
+            <p className="text-primary">{errors.confirmPassword.message}</p>
           )}
         </div>
         {/* BUTTONS */}
