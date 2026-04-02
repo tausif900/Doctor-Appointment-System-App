@@ -17,7 +17,7 @@ const supportLinks = [
 
 const Footer = () => {
   return (
-    <footer className={`${styles.footer} mt-5`}>
+    <footer className={styles.footer}>
       <div className="container py-5">
         <div className="row g-4 pb-4">
           <div className="col-12 col-lg-4">
