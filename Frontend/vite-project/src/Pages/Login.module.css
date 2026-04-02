@@ -19,7 +19,11 @@
   height: 320px;
   top: 8%;
   left: 6%;
-  background: radial-gradient(circle, rgba(45, 212, 191, 0.2) 0%, rgba(45, 212, 191, 0) 72%);
+  background: radial-gradient(
+    circle,
+    rgba(45, 212, 191, 0.2) 0%,
+    rgba(45, 212, 191, 0) 72%
+  );
 }
 
 .pageShell::after {
@@ -27,7 +31,11 @@
   height: 360px;
   right: 4%;
   bottom: 8%;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.16) 0%, rgba(14, 165, 233, 0) 72%);
+  background: radial-gradient(
+    circle,
+    rgba(14, 165, 233, 0.16) 0%,
+    rgba(14, 165, 233, 0) 72%
+  );
 }
 
 .formContainer {
@@ -37,8 +45,11 @@
   padding: 2.4rem !important;
   border: 1px solid rgba(15, 118, 110, 0.16) !important;
   border-radius: 28px !important;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(240, 253, 250, 0.92));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(240, 253, 250, 0.92)
+  );
   box-shadow:
     0 28px 60px rgba(15, 118, 110, 0.16),
     0 12px 28px rgba(15, 23, 42, 0.08);
@@ -51,7 +62,12 @@
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(45, 212, 191, 0.6), rgba(14, 165, 233, 0.2), rgba(255, 255, 255, 0.7));
+  background: linear-gradient(
+    135deg,
+    rgba(45, 212, 191, 0.6),
+    rgba(14, 165, 233, 0.2),
+    rgba(255, 255, 255, 0.7)
+  );
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;

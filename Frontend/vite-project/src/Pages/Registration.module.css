@@ -1,0 +1,156 @@
+.pageShell {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  padding: 2rem 1rem;
+}
+
+.pageShell::before,
+.pageShell::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pageShell::before {
+  width: 320px;
+  height: 320px;
+  top: 8%;
+  left: 6%;
+  background: radial-gradient(
+    circle,
+    rgba(45, 212, 191, 0.2) 0%,
+    rgba(45, 212, 191, 0) 72%
+  );
+}
+
+.pageShell::after {
+  width: 360px;
+  height: 360px;
+  right: 4%;
+  bottom: 8%;
+  background: radial-gradient(
+    circle,
+    rgba(14, 165, 233, 0.16) 0%,
+    rgba(14, 165, 233, 0) 72%
+  );
+}
+
+.formContainer {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 520px);
+  padding: 2.4rem !important;
+  border: 1px solid rgba(15, 118, 110, 0.16) !important;
+  border-radius: 28px !important;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(240, 253, 250, 0.92)
+  );
+  box-shadow:
+    0 28px 60px rgba(15, 118, 110, 0.16),
+    0 12px 28px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.formContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(45, 212, 191, 0.6),
+    rgba(14, 165, 233, 0.2),
+    rgba(255, 255, 255, 0.7)
+  );
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.heading {
+  margin-bottom: 0.45rem;
+  color: #0f172a;
+  font-size: clamp(2rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.subheading {
+  margin-bottom: 1.75rem !important;
+  color: #5b6b7d;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.inputField {
+  min-height: 58px;
+  border: 1px solid rgba(148, 163, 184, 0.34);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.inputField:focus {
+  border-color: rgba(15, 118, 110, 0.72);
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.14);
+  transform: translateY(-1px);
+}
+
+.inputField::placeholder {
+  color: #94a3b8;
+}
+
+.checkInput {
+  accent-color: rgba(15, 118, 110, 0.72);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.checkInput:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.checkInput:checked {
+  transform: scale(1.3);
+  background-color: #318f87;
+  border-color: #4aa69e;
+}
+
+.registerButton {
+  width: 100%;
+  min-height: 52px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 55%, #0ea5e9 100%);
+  box-shadow: 0 20px 32px rgba(15, 118, 110, 0.22);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.registerButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 36px rgba(15, 118, 110, 0.26);
+  filter: saturate(1.05);
+}
+
+.registerButton:active {
+  transform: translateY(0);
+}
