@@ -6,6 +6,7 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "Specialties", to: "/#specialties" },
   { label: "How It Works", to: "/#process" },
+  { label: "Appointment", to: "/book_appointment" },
   { label: "Login", to: "/login" },
 ];
 
@@ -14,7 +15,10 @@ const Navbar = () => {
     <header className={styles.header}>
       <nav className={styles.navbar}>
         <NavLink to="/" className={styles.brand}>
-          <img className={styles.logoMark} src="Images/Doctor appointment system logo.png"/>
+          <img
+            className={styles.logoMark}
+            src="Images/Doctor appointment system logo.png"
+          />
           <div className={styles.brandText}>
             <strong>Doctor Appointment</strong>
             <span>Fast and trusted care booking</span>
