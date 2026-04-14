@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Registration from "./Pages/Registration";
 import BookingAppointment from "./Pages/BookingAppointment";
+import BlankLayout from "./Common/BlankLayout";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+    ],
+  },
+  {
+    element: <BlankLayout />,
+    children: [
       {
         path: "/login",
         element: <Login />,

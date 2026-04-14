@@ -14,9 +14,7 @@ const Registration = () => {
     console.log(data);
   };
   return (
-    <div
-      className={`container d-flex justify-content-center align-items-center ${styles.pageShell}`}
-    >
+    <div className="flex justify-center mt-4">
       <form
         className={`border p-4 rounded  ${styles.formContainer}`}
         onSubmit={handleSubmit(submitHandler)}
