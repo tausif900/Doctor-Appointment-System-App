@@ -4,7 +4,7 @@ import Layout from "./Common/Layout";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Registration from "./Pages/Registration";
-import BookingAppointment from "./Pages/BookingAppointment";
+import BookingAppointment from "./Pages/BookingAppointment/BookingAppointment";
 import BlankLayout from "./Common/BlankLayout";
 
 const router = createBrowserRouter([
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/book_appointment",
-        element: <BookingAppointment />,
+        element: <BookingAppointment/>
       },
     ],
   },

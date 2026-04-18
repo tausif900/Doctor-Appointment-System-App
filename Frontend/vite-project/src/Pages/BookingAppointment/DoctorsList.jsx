@@ -1,6 +1,6 @@
 import React from "react";
 
-const LeftOfBA = ({ name, specialization, experience, image }) => {
+const LeftOfBA = ({ name, specialization, experience, image, onSelect }) => {
   return (
     <div className="h-full w-full">
       <div className="group w-full rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
@@ -27,7 +27,10 @@ const LeftOfBA = ({ name, specialization, experience, image }) => {
         </div>
 
         <div className="flex items-center px-2 pb-3 sm:px-3">
-          <button className="btn btn-success w-full transition-all duration-200 hover:scale-[1.02] active:scale-95">
+          <button
+            onClick={onSelect}
+            className="btn btn-success w-full transition-all duration-200 hover:scale-[1.02] active:scale-95"
+          >
             Select Doctor
           </button>
         </div>
