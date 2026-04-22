@@ -1,11 +1,12 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./Common/Layout";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Registration from "./Pages/Registration";
-import BookingAppointment from "./Pages/BookingAppointment/BookingAppointment";
-import BlankLayout from "./Common/BlankLayout";
+import Layout from "./Components/Common/Layout";
+import Home from "./Pages/Patient/Home";
+import Login from "./Pages/Auth/Login";
+import Registration from "./Pages/Auth/Registration";
+import PatientLayout from "./Layouts/PatientLayout";
+import BookingPanel from "./Pages/Patient/BookingAppointment/Components/BookingPanel";
+import AuthLayout from "./Layouts/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    element: <BlankLayout />,
+    element: <AuthLayout />,
     children: [
       {
         path: "/login",
@@ -29,9 +30,14 @@ const router = createBrowserRouter([
         path: "/registration",
         element: <Registration />,
       },
+    ],
+  },
+  {
+    element: <PatientLayout />,
+    children: [
       {
         path: "/book_appointment",
-        element: <BookingAppointment/>
+        element: <BookingPanel />,
       },
     ],
   },
