@@ -1,10 +1,10 @@
 import React from "react";
-import BookingPanel from "../Pages/Patient/BookingAppointment/Components/BookingPanel";
+import BookingAppointment from "../Pages/Patient/BookingAppointment/BookingAppointment";
 
 const PatientLayout = () => {
   return (
-    <div>
-      <BookingPanel/>
+    <div className="h-screen w-full">
+      <BookingAppointment/>
     </div>
   );
 };
