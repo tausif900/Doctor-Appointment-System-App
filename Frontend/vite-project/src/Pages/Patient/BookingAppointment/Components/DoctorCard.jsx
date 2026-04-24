@@ -4,10 +4,7 @@ const DoctorCard = () => {
   return (
     <div className="px-2">
       <div>
-        <h1 className="!text-2xl !font-semibold !font-mono !text-black !px-3 !text-center">
-          Doctors List
-        </h1>
-        <div className="p-2 rounded-2xl bg-green-200 border-gray-500 shadow-2xl drop-shadow-xl text-shadow-2xs">
+        <div className="p-2 mb-3 rounded-2xl bg-green-200 border-gray-500 shadow-2xl drop-shadow-xl text-shadow-2xs hover:shadow-lg hover:scale-[1.01] transition">
           <div className="flex justify-center items-center gap-3 border-b-2">
             <div className="h-30 w-30 rounded-full overflow-hidden">
               <img
