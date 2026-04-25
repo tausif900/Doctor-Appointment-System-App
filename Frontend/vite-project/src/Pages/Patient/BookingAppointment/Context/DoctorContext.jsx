@@ -11,7 +11,8 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Raj Mehta",
       specialization: "Psychologist",
       experience: 12,
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      image:
+        "https://images.unsplash.com/photo-1637059824899-a441006a6875?q=80&w=752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.6,
       totalReviews: 120,
 
@@ -63,7 +64,8 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Neha Sharma",
       specialization: "Dermatologist",
       experience: 8,
-      image: "https://randomuser.me/api/portraits/women/65.jpg",
+      image:
+        "https://media.istockphoto.com/id/1761650255/photo/photo-of-doctor-lady-smile-looking-at-camera-wear-stethoscope-white-uniform-isolate-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=bfz8WP_F9INHeeAhySgKhCXXx23Aq7YEeN0cne5kgcA=",
       rating: 4.3,
       totalReviews: 90,
 
@@ -96,7 +98,8 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Arjun Patel",
       specialization: "Orthopedic",
       experience: 14,
-      image: "https://randomuser.me/api/portraits/men/75.jpg",
+      image:
+        "https://images.unsplash.com/photo-1612636321938-2a60d4febfae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.5,
       totalReviews: 110,
 
@@ -128,7 +131,8 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Priya Nair",
       specialization: "Gynecologist",
       experience: 11,
-      image: "https://randomuser.me/api/portraits/women/50.jpg",
+      image:
+        "https://plus.unsplash.com/premium_photo-1682089874677-3eee554feb19?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.7,
       totalReviews: 140,
 
@@ -160,7 +164,7 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Rohit Verma",
       specialization: "Neurologist",
       experience: 15,
-      image: "https://randomuser.me/api/portraits/men/40.jpg",
+      image: "https://images.unsplash.com/photo-1622253694242-abeb37a33e97?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.4,
       totalReviews: 100,
 
@@ -192,7 +196,7 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Sneha Kapoor",
       specialization: "Dentist",
       experience: 7,
-      image: "https://randomuser.me/api/portraits/women/30.jpg",
+      image: "https://plus.unsplash.com/premium_photo-1677165653237-145cb5db3339?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.2,
       totalReviews: 80,
 
@@ -224,7 +228,7 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Vikram Singh",
       specialization: "General Physician",
       experience: 10,
-      image: "https://randomuser.me/api/portraits/men/60.jpg",
+      image: "https://plus.unsplash.com/premium_photo-1661745973618-9f7c418a9edc?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.3,
       totalReviews: 95,
 
@@ -256,7 +260,7 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Anjali Gupta",
       specialization: "Pediatrician",
       experience: 12,
-      image: "https://randomuser.me/api/portraits/women/45.jpg",
+      image: "https://images.unsplash.com/photo-1757125736482-328a3cdd9743?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.6,
       totalReviews: 130,
 
@@ -288,7 +292,7 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Karan Malhotra",
       specialization: "Psychiatrist",
       experience: 13,
-      image: "https://randomuser.me/api/portraits/men/55.jpg",
+      image: "https://plus.unsplash.com/premium_photo-1658506671316-0b293df7c72b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.5,
       totalReviews: 115,
 
@@ -320,7 +324,7 @@ const DoctorProvider = ({ children }) => {
       name: "Dr. Pooja Reddy",
       specialization: "ENT Specialist",
       experience: 9,
-      image: "https://randomuser.me/api/portraits/women/68.jpg",
+      image: "https://plus.unsplash.com/premium_photo-1661580574627-9211124e5c3f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       rating: 4.4,
       totalReviews: 85,
 
