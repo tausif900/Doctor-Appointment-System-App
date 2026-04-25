@@ -9,3 +9,7 @@
     radial-gradient(circle at right center, rgba(245, 158, 11, 0.15), transparent 24%),
     linear-gradient(180deg, #ecfeff 0%, #f8fafc 38%, #ffffff 100%);
 }
+
+.custom-btn:hover{
+  transform: translateY(-2px);
+}
