@@ -10,6 +10,10 @@
     linear-gradient(180deg, #ecfeff 0%, #f8fafc 38%, #ffffff 100%);
 }
 
-.custom-btn:hover{
+.custom-btn:hover {
   transform: translateY(-2px);
+}
+
+#review-scroll::-webkit-scrollbar {
+  display: none;
 }
