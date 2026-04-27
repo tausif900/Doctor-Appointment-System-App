@@ -22,6 +22,7 @@ const DoctorList = () => {
           specialization={doc.specialization}
           experience={doc.experience}
           image={doc.image}
+          onClick={() => setSelectedDoctor(doc)}
         />
       ))}
     </div>
