@@ -11,35 +11,35 @@ const DoctorDetails = () => {
     );
   }
   return (
-    <div className="h-full w-full bg-amber-400 flex flex-col overflow-y-auto">
-      <h1 className="!text-xl text-center">Doctor Details</h1>
+    <div className="h-full w-full flex flex-col overflow-y-auto">
+      <h1 className="!text-2xl !font-semibold !font-mono !text-gray-700 !px-3 !text-center">Doctor Details</h1>
       {/* Name with speciality */}
-      <div className="flex bg-amber-100 h-[25%] mx-2 p-2">
-        <div className="bg-red-300 h-full w-1/3 rounded-full overflow-hidden">
+      <div className="flex h-[25%] mx-2 p-2">
+        <div className="h-full w-1/3 rounded-full overflow-hidden">
           <img
             className="h-full w-full object-cover"
             src={selectedDoctor.image}
           />
         </div>
-        <div className="bg-yellow-300 w-100 mx-3 px-5">
+        <div className="w-100 mx-3 px-5">
           <h1>{selectedDoctor.name}</h1>
           <p>specialist | {selectedDoctor.experience} years experience</p>
           <p>{selectedDoctor.specialization}</p>
         </div>
       </div>
       {/* Education & Certificate */}
-      <div className="flex justify-between w-full bg-red-400 !px-2">
-        <div className="bg-blue-300 w-1/2">
+      <div className="flex justify-between w-full !px-2">
+        <div className="w-1/2">
           <p>Education</p>
           <h6>{selectedDoctor.education}</h6>
         </div>
-        <div className="bg-blue-300 w-1/2">
+        <div className="w-1/2">
           <p>Certificate</p>
           <h6>{selectedDoctor.certificate}</h6>
         </div>
       </div>
       {/* Availability */}
-      <div className="bg-yellow-600">
+      <div>
         <p className="!px-2">Availability</p>
         <div className="flex justify-around">
           {selectedDoctor.availability.modes.map((mode, i) => {
@@ -57,7 +57,7 @@ const DoctorDetails = () => {
         </div>
       </div>
       {/* Symptons */}
-      <div className="px-2 bg-purple-400">
+      <div className="px-2">
         <p>Symptons</p>
         <h5>{selectedDoctor.symptoms.join(" , ")}</h5>
       </div>
