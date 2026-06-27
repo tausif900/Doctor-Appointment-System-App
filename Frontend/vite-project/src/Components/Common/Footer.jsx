@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Footer.module.css";
 
 const quickLinks = [
   { label: "Home", to: "/" },
@@ -16,13 +15,39 @@ const supportLinks = [
 ];
 
 const Footer = () => {
+  const footerLinkClass =
+    "link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover";
+
+  const tealButton = {
+    color: "#ffffff",
+    background: "linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)",
+    border: "none",
+    boxShadow: "0 16px 28px rgba(15, 118, 110, 0.22)",
+  };
+
   return (
-    <footer className={styles.footer}>
+    <footer
+      className="text-light"
+      style={{
+        background:
+          "radial-gradient(circle at top left, rgba(45, 212, 191, 0.2), transparent 30%), linear-gradient(135deg, #0f172a 0%, #0f766e 55%, #115e59 100%)",
+      }}
+    >
       <div className="container py-5">
         <div className="row g-4 pb-4">
           <div className="col-12 col-lg-4">
-            <div className={styles.brandCard}>
-              <span className={`badge rounded-pill ${styles.badge}`}>
+            <div
+              className="h-100 p-4 rounded-4 border border-light border-opacity-10 shadow"
+              style={{ background: "rgba(255, 255, 255, 0.08)" }}
+            >
+              <span
+                className="badge rounded-pill px-3 py-2"
+                style={{
+                  color: "#ccfbf1",
+                  background: "rgba(255, 255, 255, 0.12)",
+                  border: "1px solid rgba(255, 255, 255, 0.16)",
+                }}
+              >
                 Trusted Healthcare Access
               </span>
               <h2 className="h4 fw-bold mt-3 mb-3">Doctor Appointment</h2>
@@ -31,9 +56,15 @@ const Footer = () => {
                 that feels simple, safe, and fast.
               </p>
               <div className="d-flex flex-wrap gap-2">
-                <span className={styles.infoChip}>24/7 Booking</span>
-                <span className={styles.infoChip}>Verified Doctors</span>
-                <span className={styles.infoChip}>Quick Support</span>
+                <span className="badge rounded-pill text-bg-dark bg-opacity-25 border border-light border-opacity-10 px-3 py-2">
+                  24/7 Booking
+                </span>
+                <span className="badge rounded-pill text-bg-dark bg-opacity-25 border border-light border-opacity-10 px-3 py-2">
+                  Verified Doctors
+                </span>
+                <span className="badge rounded-pill text-bg-dark bg-opacity-25 border border-light border-opacity-10 px-3 py-2">
+                  Quick Support
+                </span>
               </div>
             </div>
           </div>
@@ -43,7 +74,7 @@ const Footer = () => {
             <ul className="list-unstyled mb-0">
               {quickLinks.map((link) => (
                 <li key={link.label} className="mb-2">
-                  <a href={link.to} className={styles.footerLink}>
+                  <a href={link.to} className={footerLinkClass}>
                     {link.label}
                   </a>
                 </li>
@@ -56,7 +87,7 @@ const Footer = () => {
             <ul className="list-unstyled mb-0">
               {supportLinks.map((link) => (
                 <li key={link.label} className="mb-2">
-                  <Link to={link.to} className={styles.footerLink}>
+                  <Link to={link.to} className={footerLinkClass}>
                     {link.label}
                   </Link>
                 </li>
@@ -66,7 +97,7 @@ const Footer = () => {
               <p className="mb-1 fw-semibold">Email</p>
               <a
                 href="mailto:care@doctorappointment.com"
-                className={styles.footerLink}
+                className={footerLinkClass}
               >
                 care@doctorappointment.com
               </a>
@@ -82,18 +113,22 @@ const Footer = () => {
             <form className="d-flex flex-column gap-2">
               <input
                 type="email"
-                className={`form-control ${styles.input}`}
+                className="form-control"
                 placeholder="Enter your email"
                 aria-label="Email address"
               />
-              <button type="button" className={`btn ${styles.subscribeButton}`}>
+              <button
+                type="button"
+                className="btn btn-success fw-bold"
+                style={tealButton}
+              >
                 Subscribe
               </button>
             </form>
           </div>
         </div>
 
-        <div className={`row g-3 pt-4 ${styles.bottomBar}`}>
+        <div className="row g-3 pt-4 border-top border-light border-opacity-10">
           <div className="col-md-6 text-center text-md-start">
             <p className="mb-0">
               {"\u00A9"} 2026 Doctor Appointment. Seamless care for every
@@ -102,13 +137,13 @@ const Footer = () => {
           </div>
           <div className="col-md-6">
             <div className="d-flex justify-content-center justify-content-md-end gap-3 flex-wrap">
-              <a href="/" className={styles.footerLink}>
+              <a href="/" className={footerLinkClass}>
                 Privacy
               </a>
-              <a href="/" className={styles.footerLink}>
+              <a href="/" className={footerLinkClass}>
                 Terms
               </a>
-              <a href="/" className={styles.footerLink}>
+              <a href="/" className={footerLinkClass}>
                 Contact
               </a>
             </div>

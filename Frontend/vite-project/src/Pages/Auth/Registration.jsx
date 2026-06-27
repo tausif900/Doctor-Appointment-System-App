@@ -103,11 +103,8 @@ const Registration = () => {
                     />
                     <label htmlFor="email">Email Address</label>
                   </div>
-                  <p>
-                    {" "}
-                    <p className="text-danger">
-                      {errors.email && errors.email.message}
-                    </p>
+                  <p className="text-danger">
+                    {errors.email && errors.email.message}
                   </p>
                 </div>
 
