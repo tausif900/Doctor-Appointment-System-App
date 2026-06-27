@@ -22,6 +22,17 @@ const Registration = () => {
     }
   };
 
+  const checkEmail = async (value) => {
+    let exist;
+    try {
+      const response = await api.get(`/users/check-email?email=${value}`);
+      exist = response.data;
+      return exist ? "email already exist" : true;
+    } catch (error) {
+      alert("Oops! something went wrong");
+    }
+  };
+
   const password = watch("password");
 
   return (
@@ -107,6 +118,7 @@ const Registration = () => {
                             /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/,
                           message: "Please enter a valid email address",
                         },
+                        validate: { checkEmail },
                       })}
                     />
                     <label htmlFor="email">Email Address</label>
