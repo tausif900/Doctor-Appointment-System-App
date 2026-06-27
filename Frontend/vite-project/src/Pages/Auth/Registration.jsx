@@ -1,6 +1,8 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { api } from "../../api";
 
 const Registration = () => {
   const {
@@ -10,8 +12,14 @@ const Registration = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await api.post("/users/register", data);
+      alert("Registration done successfully");
+    } catch (error) {
+      alert("Oops! something went wrong...");
+      console.log("Error", error);
+    }
   };
 
   const password = watch("password");
@@ -65,9 +73,9 @@ const Registration = () => {
                       type="text"
                       className="form-control"
                       id="name"
-                      placeholder="Full Name"
-                      {...register("fullName", {
-                        required: "full name is required",
+                      placeholder="name"
+                      {...register("name", {
+                        required: "name is required",
                         minLength: {
                           value: 2,
                           message: "full name must be at least 2 character",
@@ -81,7 +89,7 @@ const Registration = () => {
                     <label htmlFor="name">Full Name</label>
                   </div>
                   <p className="text-danger">
-                    {errors.fullName && errors.fullName.message}
+                    {errors.name && errors.name.message}
                   </p>
                 </div>
 
@@ -163,7 +171,7 @@ const Registration = () => {
                       className="form-control"
                       id="phoneNumber"
                       placeholder="Phone Number"
-                      {...register("phoneNumber", {
+                      {...register("phNo", {
                         required: "provide a phone number",
                         minLength: {
                           value: 10,
@@ -178,9 +186,29 @@ const Registration = () => {
                     <label htmlFor="phoneNumber">Phone Number</label>
                   </div>
                   <p className="text-danger">
-                    {errors.phoneNumber && errors.phoneNumber.message}
+                    {errors.phNo && errors.phNo.message}
                   </p>
                 </div>
+              </div>
+
+              <div className="col-12">
+                <div className="form-floating">
+                  <select
+                    className="form-select"
+                    id="role"
+                    {...register("role", {
+                      required: "Please select your role",
+                    })}
+                  >
+                    <option value="">Select Role</option>
+                    <option value="Role_Patient">Patient</option>
+                    <option value="Role_Doctor">Doctor</option>
+                  </select>
+                  <label htmlFor="role">Role</label>
+                </div>
+                <p className="text-danger">
+                  {errors.role && errors.role.message}
+                </p>
               </div>
 
               <button
@@ -192,7 +220,7 @@ const Registration = () => {
               </button>
 
               <p className="text-center text-secondary mt-4 mb-0">
-                Already have an account?{" "}
+                Already have an account?
                 <Link
                   to="/login"
                   className="fw-semibold text-decoration-none"
