@@ -7,6 +7,7 @@ import Registration from "./Pages/Auth/Registration";
 import PatientLayout from "./Layouts/PatientLayout";
 import BookingPanel from "./Pages/Patient/BookingAppointment/Components/BookingPanel";
 import AuthLayout from "./Layouts/AuthLayout";
+import PatientProfile from "./Pages/Patient/PatientProfile";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration />,
+      },
+      {
+        path: "/patient-profile/:userId",
+        element: <PatientProfile />,
       },
     ],
   },

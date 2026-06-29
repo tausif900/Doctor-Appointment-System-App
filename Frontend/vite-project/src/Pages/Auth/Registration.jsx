@@ -1,10 +1,12 @@
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../api";
 
 const Registration = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -16,6 +18,8 @@ const Registration = () => {
     try {
       const response = await api.post("/users/register", data);
       alert("Registration done successfully");
+      const userId = response.data.id;
+      navigate(`/patient-profile/${userId}`);
     } catch (error) {
       alert("Oops! something went wrong...");
       console.log("Error", error);
