@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../api";
+import { toast } from "react-toastify";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -17,12 +18,11 @@ const Registration = () => {
   const onSubmit = async (data) => {
     try {
       const response = await api.post("/users/register", data);
-      alert("Registration done successfully");
+      toast.success("Registration done successfully");
       const userId = response.data.id;
       navigate(`/patient-profile/${userId}`);
     } catch (error) {
-      alert("Oops! something went wrong...");
-      console.log("Error", error);
+      toast.error("Oops! something went wrong...");
     }
   };
 

@@ -8,6 +8,7 @@ import PatientLayout from "./Layouts/PatientLayout";
 import BookingPanel from "./Pages/Patient/BookingAppointment/Components/BookingPanel";
 import AuthLayout from "./Layouts/AuthLayout";
 import PatientProfile from "./Pages/Patient/PatientProfile";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,11 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        theme="colored"
+      />
     </>
   );
 }

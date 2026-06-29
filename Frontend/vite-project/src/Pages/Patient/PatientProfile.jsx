@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../../api";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const PatientProfile = () => {
   const { userId } = useParams();
@@ -15,10 +16,9 @@ const PatientProfile = () => {
   const onSubmit = async (data) => {
     try {
       const response = await api.post(`/patient/register/${userId}`, data);
-      alert("Congrates!, Your Profile is completed.");
+      toast.success("Congrates!, Your Profile is completed.");
     } catch (error) {
-      alert("Oops!, Something went wrong");
-      console.log(error);
+      toast.error("Oops!, Something went wrong");
     }
   };
 
