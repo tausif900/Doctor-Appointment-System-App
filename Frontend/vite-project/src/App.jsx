@@ -9,6 +9,7 @@ import BookingPanel from "./Pages/Patient/BookingAppointment/Components/BookingP
 import AuthLayout from "./Layouts/AuthLayout";
 import PatientProfile from "./Pages/Patient/PatientProfile";
 import { ToastContainer } from "react-toastify";
+import DoctorProfile from "./Pages/Doctor/DoctorProfile";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: "/patient-profile/:userId",
         element: <PatientProfile />,
       },
+      {
+        path: "/doctor-profile/:userId",
+        element: <DoctorProfile />,
+      },
     ],
   },
   {
@@ -53,11 +58,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        theme="colored"
-      />
+      <ToastContainer position="top-center" autoClose={3000} theme="colored" />
     </>
   );
 }

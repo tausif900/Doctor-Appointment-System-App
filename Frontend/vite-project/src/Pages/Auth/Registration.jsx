@@ -19,8 +19,14 @@ const Registration = () => {
     try {
       const response = await api.post("/users/register", data);
       toast.success("Registration done successfully");
+      
       const userId = response.data.id;
-      navigate(`/patient-profile/${userId}`);
+      if (data.role === "Role_Patient") {
+        navigate(`/patient-profile/${userId}`);
+      }
+      if (data.role === "Role_Doctor") {
+        navigate(`/doctor-profile/${userId}`);
+      }
     } catch (error) {
       toast.error("Oops! something went wrong...");
     }
