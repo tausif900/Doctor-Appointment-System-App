@@ -5,7 +5,6 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "Specialties", to: "/#specialties" },
   { label: "How It Works", to: "/#process" },
-  { label: "Appointment", to: "/book_appointment" },
   { label: "Login", to: "/login" },
 ];
 

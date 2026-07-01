@@ -1,10 +1,10 @@
 import React from "react";
-import BookingAppointment from "../Pages/Patient/BookingAppointment/BookingAppointment";
+import BookingAppointment from "../Pages/Appointment/BookingAppointment";
 
 const PatientLayout = () => {
   return (
     <div className="h-screen w-full">
-      <BookingAppointment/>
+      <BookingAppointment />
     </div>
   );
 };

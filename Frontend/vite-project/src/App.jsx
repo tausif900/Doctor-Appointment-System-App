@@ -1,15 +1,16 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Components/Common/Layout";
-import Home from "./Pages/Patient/Home";
 import Login from "./Pages/Auth/Login";
 import Registration from "./Pages/Auth/Registration";
 import PatientLayout from "./Layouts/PatientLayout";
-import BookingPanel from "./Pages/Patient/BookingAppointment/Components/BookingPanel";
 import AuthLayout from "./Layouts/AuthLayout";
 import PatientProfile from "./Pages/Patient/PatientProfile";
 import { ToastContainer } from "react-toastify";
 import DoctorProfile from "./Pages/Doctor/DoctorProfile";
+import Home from "./Components/Home";
+import PatientDashboard from "./Pages/Patient/PatientDashboard";
+import DoctorDashboard from "./Pages/Doctor/DoctorDashboard";
 
 const router = createBrowserRouter([
   {
@@ -41,14 +42,13 @@ const router = createBrowserRouter([
         path: "/doctor-profile/:userId",
         element: <DoctorProfile />,
       },
-    ],
-  },
-  {
-    element: <PatientLayout />,
-    children: [
       {
-        path: "/book_appointment",
-        element: <BookingPanel />,
+        path: "/patient-dashboard",
+        element: <PatientDashboard />,
+      },
+      {
+        path: "/doctor-dashboard",
+        element: <DoctorDashboard />,
       },
     ],
   },
