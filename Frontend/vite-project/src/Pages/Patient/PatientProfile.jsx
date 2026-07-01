@@ -1,11 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../../api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const PatientProfile = () => {
   const { userId } = useParams();
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -17,6 +19,7 @@ const PatientProfile = () => {
     try {
       const response = await api.post(`/patient/register/${userId}`, data);
       toast.success("Congrates!, Your Profile is completed.");
+      navigate("/patient-dashboard");
     } catch (error) {
       toast.error("Oops!, Something went wrong");
     }
