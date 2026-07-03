@@ -11,6 +11,7 @@ import DoctorProfile from "./Pages/Doctor/DoctorProfile";
 import Home from "./Components/Home";
 import PatientDashboard from "./Pages/Patient/PatientDashboard";
 import DoctorDashboard from "./Pages/Doctor/DoctorDashboard";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/doctor-dashboard",
         element: <DoctorDashboard />,
+      },
+      {
+        path: "/admin-dashboard",
+        element: <AdminDashboard />,
       },
     ],
   },
