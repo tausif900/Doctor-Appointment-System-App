@@ -2,235 +2,450 @@ import React from "react";
 
 const AdminDashboard = () => {
   return (
-    <main className="bg-light min-vh-100 p-3">
-        {/* Welcome Banner */}
+    <main
+      className="min-vh-100 py-4"
+      style={{
+        background:
+          "linear-gradient(135deg,#f8fafc 0%,#eef2ff 50%,#e0f2fe 100%)",
+      }}
+    >
+      <div className="container-fluid">
+        {/* Admin Welcome Banner */}
+
         <div
-          className="rounded-4 shadow text-white p-4 p-md-5 mb-4"
+          className="rounded-4 shadow-lg p-4 p-md-5 mb-4 text-white"
           style={{
             background: "linear-gradient(135deg,#0f766e,#14b8a6)",
           }}
         >
-          <h2 className="fw-bold">Welcome, Admin 👋</h2>
-          <p className="mb-0 fs-5">
-            Manage doctors, patients and appointments from one place.
-          </p>
+          <div className="row align-items-center">
+            <div className="col-lg-8">
+              <h2 className="fw-bold mb-3">Admin Control Panel 🛠️</h2>
+
+              <p className="fs-5 opacity-75 mb-4">
+                Manage doctors, patients, appointments and system analytics from
+                one place.
+              </p>
+
+              <button className="btn btn-light fw-semibold px-4">
+                <i className="bi bi-speedometer2 me-2"></i>
+                System Overview
+              </button>
+            </div>
+
+            <div className="col-lg-4 text-center mt-4 mt-lg-0">
+              <i
+                className="bi bi-shield-lock-fill"
+                style={{
+                  fontSize: "120px",
+                  opacity: ".9",
+                }}
+              ></i>
+            </div>
+          </div>
         </div>
-
-        {/* Quick Actions */}
-
         <div className="row g-4 mb-4">
-
-          <div className="col-12 col-md-6 col-lg-3">
-            <div className="card border-0 shadow-sm h-100">
-              <div className="card-body text-center p-4">
-                <div className="display-4">👨‍⚕️</div>
-
-                <h5 className="fw-bold mt-3">
-                  Doctors
-                </h5>
-
-                <p className="text-secondary">
-                  View and manage doctors.
-                </p>
-
-                <button
-                  className="btn text-white"
-                  style={{ backgroundColor: "#0f766e" }}
+          {/* Doctors */}
+          <div className="col-lg-3 col-md-6">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body d-flex align-items-center">
+                <div
+                  className="rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    background: "#e6fffa",
+                  }}
                 >
-                  Manage
-                </button>
+                  <i
+                    className="bi bi-person-badge-fill"
+                    style={{ fontSize: "30px", color: "#0f766e" }}
+                  ></i>
+                </div>
 
+                <div>
+                  <h3 className="fw-bold mb-0">24</h3>
+                  <small className="text-muted">Total Doctors</small>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="col-12 col-md-6 col-lg-3">
-            <div className="card border-0 shadow-sm h-100">
-              <div className="card-body text-center p-4">
-                <div className="display-4">🧑</div>
-
-                <h5 className="fw-bold mt-3">
-                  Patients
-                </h5>
-
-                <p className="text-secondary">
-                  View registered patients.
-                </p>
-
-                <button
-                  className="btn text-white"
-                  style={{ backgroundColor: "#0f766e" }}
+          {/* Patients */}
+          <div className="col-lg-3 col-md-6">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body d-flex align-items-center">
+                <div
+                  className="rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    background: "#eef2ff",
+                  }}
                 >
-                  Manage
-                </button>
+                  <i
+                    className="bi bi-people-fill"
+                    style={{ fontSize: "30px", color: "#4338ca" }}
+                  ></i>
+                </div>
 
+                <div>
+                  <h3 className="fw-bold mb-0">189</h3>
+                  <small className="text-muted">Total Patients</small>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="col-12 col-md-6 col-lg-3">
-            <div className="card border-0 shadow-sm h-100">
-              <div className="card-body text-center p-4">
-                <div className="display-4">📅</div>
-
-                <h5 className="fw-bold mt-3">
-                  Appointments
-                </h5>
-
-                <p className="text-secondary">
-                  View all appointments.
-                </p>
-
-                <button
-                  className="btn text-white"
-                  style={{ backgroundColor: "#0f766e" }}
+          {/* Appointments */}
+          <div className="col-lg-3 col-md-6">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body d-flex align-items-center">
+                <div
+                  className="rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    background: "#fff7ed",
+                  }}
                 >
-                  View
-                </button>
+                  <i
+                    className="bi bi-calendar-check-fill"
+                    style={{ fontSize: "30px", color: "#ea580c" }}
+                  ></i>
+                </div>
 
+                <div>
+                  <h3 className="fw-bold mb-0">312</h3>
+                  <small className="text-muted">Appointments</small>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="col-12 col-md-6 col-lg-3">
-            <div className="card border-0 shadow-sm h-100">
-              <div className="card-body text-center p-4">
-                <div className="display-4">⚙️</div>
-
-                <h5 className="fw-bold mt-3">
-                  Settings
-                </h5>
-
-                <p className="text-secondary">
-                  Configure system settings.
-                </p>
-
-                <button
-                  className="btn text-white"
-                  style={{ backgroundColor: "#0f766e" }}
+          {/* Revenue */}
+          <div className="col-lg-3 col-md-6">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body d-flex align-items-center">
+                <div
+                  className="rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    background: "#ecfdf5",
+                  }}
                 >
-                  Open
-                </button>
+                  <i
+                    className="bi bi-currency-rupee"
+                    style={{ fontSize: "30px", color: "#16a34a" }}
+                  ></i>
+                </div>
 
+                <div>
+                  <h3 className="fw-bold mb-0">₹1.2L</h3>
+                  <small className="text-muted">Revenue</small>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
-
-        {/* Statistics */}
-
         <div className="row g-4 mb-4">
+          {/* Doctors Table */}
+          <div className="col-lg-8">
+            <div className="card border-0 shadow rounded-4">
+              <div className="card-header bg-white border-0 py-3">
+                <h4 className="fw-bold mb-0">
+                  <i className="bi bi-person-badge-fill text-success me-2"></i>
+                  Doctors Management
+                </h4>
+              </div>
 
-          <div className="col-12 col-md-6 col-lg-3">
-            <div className="card shadow-sm border-0 text-center">
               <div className="card-body">
-                <h2 className="fw-bold text-primary">12</h2>
-                <p className="mb-0">Doctors</p>
+                <div className="table-responsive">
+                  <table className="table table-hover align-middle">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Specialization</th>
+                        <th>Experience</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>Dr. John Doe</td>
+                        <td>Cardiologist</td>
+                        <td>8 Years</td>
+                        <td>
+                          <span className="badge bg-success">Active</span>
+                        </td>
+                        <td>
+                          <button className="btn btn-sm btn-outline-primary me-2">
+                            <i className="bi bi-eye"></i>
+                          </button>
+                          <button className="btn btn-sm btn-outline-danger">
+                            <i className="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Dr. Smith</td>
+                        <td>Neurologist</td>
+                        <td>5 Years</td>
+                        <td>
+                          <span className="badge bg-warning text-dark">
+                            Pending
+                          </span>
+                        </td>
+                        <td>
+                          <button className="btn btn-sm btn-outline-primary me-2">
+                            <i className="bi bi-eye"></i>
+                          </button>
+                          <button className="btn btn-sm btn-outline-danger">
+                            <i className="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
+          {/* Patients Panel */}
 
-          <div className="col-12 col-md-6 col-lg-3">
-            <div className="card shadow-sm border-0 text-center">
+          <div className="col-lg-4">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-header bg-white border-0 py-3">
+                <h4 className="fw-bold mb-0">
+                  <i className="bi bi-people-fill text-primary me-2"></i>
+                  Patients Overview
+                </h4>
+              </div>
+
               <div className="card-body">
-                <h2 className="fw-bold text-success">148</h2>
-                <p className="mb-0">Patients</p>
+                <div className="d-flex justify-content-between mb-3">
+                  <span>Total Patients</span>
+                  <span className="fw-bold">189</span>
+                </div>
+
+                <div className="d-flex justify-content-between mb-3">
+                  <span>New Today</span>
+                  <span className="badge bg-success">12</span>
+                </div>
+
+                <div className="d-flex justify-content-between mb-3">
+                  <span>Active</span>
+                  <span className="badge bg-primary">140</span>
+                </div>
+
+                <div className="d-flex justify-content-between mb-3">
+                  <span>Inactive</span>
+                  <span className="badge bg-secondary">49</span>
+                </div>
+
+                <hr />
+
+                <button className="btn btn-outline-primary w-100">
+                  <i className="bi bi-arrow-right-circle me-2"></i>
+                  View All Patients
+                </button>
               </div>
             </div>
           </div>
-
-          <div className="col-12 col-md-6 col-lg-3">
-            <div className="card shadow-sm border-0 text-center">
-              <div className="card-body">
-                <h2 className="fw-bold text-warning">26</h2>
-                <p className="mb-0">Today's Appointments</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-md-6 col-lg-3">
-            <div className="card shadow-sm border-0 text-center">
-              <div className="card-body">
-                <h2 className="fw-bold text-danger">04</h2>
-                <p className="mb-0">Pending Requests</p>
-              </div>
-            </div>
-          </div>
-
         </div>
+        <div className="row g-4">
+          {/* Appointments Table */}
+          <div className="col-lg-8">
+            <div className="card border-0 shadow rounded-4">
+              <div className="card-header bg-white border-0 py-3">
+                <h4 className="fw-bold mb-0">
+                  <i className="bi bi-calendar-week-fill text-warning me-2"></i>
+                  All Appointments
+                </h4>
+              </div>
 
-        {/* Recent Appointments */}
+              <div className="card-body">
+                <div className="table-responsive">
+                  <table className="table table-hover align-middle">
+                    <thead>
+                      <tr>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
 
-        <div className="card shadow-sm border-0">
+                    <tbody>
+                      <tr>
+                        <td>Rahul Sharma</td>
+                        <td>Dr. John</td>
+                        <td>12 Jul 2026</td>
+                        <td>
+                          <span className="badge bg-success">Completed</span>
+                        </td>
+                      </tr>
 
-          <div className="card-header bg-white">
-            <h4 className="fw-bold mb-0">
-              Recent Appointments
-            </h4>
+                      <tr>
+                        <td>Priya Patel</td>
+                        <td>Dr. Smith</td>
+                        <td>13 Jul 2026</td>
+                        <td>
+                          <span className="badge bg-warning text-dark">
+                            Pending
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="card-body">
+          {/* System Activity */}
+          <div className="col-lg-4">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-header bg-white border-0 py-3">
+                <h4 className="fw-bold mb-0">
+                  <i className="bi bi-activity text-danger me-2"></i>
+                  System Activity
+                </h4>
+              </div>
 
-            <div className="table-responsive">
+              <div className="card-body">
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">🆕 New doctor registered</li>
 
-              <table className="table table-hover align-middle">
+                  <li className="list-group-item">
+                    📅 Appointment rescheduled
+                  </li>
 
-                <thead>
+                  <li className="list-group-item">❌ Patient deleted record</li>
 
-                  <tr>
-                    <th>Patient</th>
-                    <th>Doctor</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                  </tr>
+                  <li className="list-group-item">
+                    💰 Payment received ₹2,500
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row g-4 mt-4">
+          {/* Notifications */}
+          <div className="col-lg-4">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-header bg-white border-0 py-3">
+                <h5 className="fw-bold mb-0">
+                  <i className="bi bi-bell-fill text-warning me-2"></i>
+                  Notifications
+                </h5>
+              </div>
 
-                </thead>
+              <div className="card-body">
+                <div className="mb-3">
+                  <div className="fw-semibold">New Doctor Request</div>
+                  <small className="text-muted">Dr. Alex wants approval</small>
+                </div>
 
-                <tbody>
+                <div className="mb-3">
+                  <div className="fw-semibold">System Alert</div>
+                  <small className="text-muted">Server load is normal</small>
+                </div>
 
-                  <tr>
-                    <td>Rahul Sharma</td>
-                    <td>Dr. Mehta</td>
-                    <td>03 Jul 2026</td>
-                    <td>
-                      <span className="badge bg-success">
-                        Completed
-                      </span>
-                    </td>
-                  </tr>
+                <div>
+                  <div className="fw-semibold">New Appointment Spike</div>
+                  <small className="text-muted">+25% increase today</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Messages */}
+          <div className="col-lg-4">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-header bg-white border-0 py-3">
+                <h5 className="fw-bold mb-0">
+                  <i className="bi bi-chat-dots-fill text-primary me-2"></i>
+                  Messages
+                </h5>
+              </div>
 
-                  <tr>
-                    <td>Priya Patel</td>
-                    <td>Dr. Shah</td>
-                    <td>03 Jul 2026</td>
-                    <td>
-                      <span className="badge bg-warning text-dark">
-                        Upcoming
-                      </span>
-                    </td>
-                  </tr>
+              <div className="card-body">
+                <div className="mb-3 border-bottom pb-2">
+                  <strong>Reception Team</strong>
+                  <p className="mb-0 small text-muted">
+                    Please verify today's schedule
+                  </p>
+                </div>
 
-                  <tr>
-                    <td>Aman Khan</td>
-                    <td>Dr. Khan</td>
-                    <td>04 Jul 2026</td>
-                    <td>
-                      <span className="badge bg-danger">
-                        Cancelled
-                      </span>
-                    </td>
-                  </tr>
+                <div className="mb-3 border-bottom pb-2">
+                  <strong>Dr. Smith</strong>
+                  <p className="mb-0 small text-muted">
+                    Need leave approval tomorrow
+                  </p>
+                </div>
 
-                </tbody>
+                <div>
+                  <strong>System Bot</strong>
+                  <p className="mb-0 small text-muted">
+                    Backup completed successfully
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Reviews */}
+          <div className="col-lg-4">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-header bg-white border-0 py-3">
+                <h5 className="fw-bold mb-0">
+                  <i className="bi bi-star-fill text-warning me-2"></i>
+                  Feedback
+                </h5>
+              </div>
 
-              </table>
+              <div className="card-body">
+                <p className="mb-2">⭐⭐⭐⭐⭐</p>
+                <p className="small text-muted">
+                  Excellent hospital management system.
+                </p>
 
+                <hr />
+
+                <p className="mb-2">⭐⭐⭐⭐</p>
+                <p className="small text-muted">
+                  Doctors are very responsive and helpful.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="card border-0 shadow rounded-4 mt-4">
+          <div className="card-body d-flex flex-wrap justify-content-between align-items-center">
+            <div>
+              <h5 className="fw-bold mb-1">System Health</h5>
+              <small className="text-muted">
+                All services running normally
+              </small>
             </div>
 
+            <div className="d-flex gap-3 flex-wrap">
+              <span className="badge bg-success fs-6">Uptime: 99.9%</span>
+              <span className="badge bg-primary fs-6">Active Users: 320</span>
+              <span className="badge bg-warning text-dark fs-6">
+                Load: Normal
+              </span>
+            </div>
           </div>
-
         </div>
+        {/* Notifications + Messages + Feedback */}
+        {/* (Adm4 section ends here above) */}
+      </div>
+      {/* container-fluid ends */}
     </main>
   );
 };
