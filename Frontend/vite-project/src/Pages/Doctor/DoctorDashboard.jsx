@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { api } from "../../api";
+import { useParams } from "react-router-dom";
 
 const DoctorDashboard = () => {
+  const [doctor, setDoctor] = useState({});
+  const { docId } = useParams();
+
+  const fetchDoctors = async () => {
+    try {
+      const response = await api.get(`/doctors/${docId}`);
+      setDoctor(response.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
+
   return (
     <main
       className="min-vh-100 py-4"
@@ -37,13 +53,32 @@ const DoctorDashboard = () => {
             </div>
 
             <div className="col-lg-4 text-center mt-4 mt-lg-0">
-              <i
-                className="bi bi-person-badge-fill"
+              <img
+                src={`http://localhost:8080/doctors/get-image/${docId}`}
+                alt="Doctor"
+                className="rounded-circle border border-4"
                 style={{
-                  fontSize: "120px",
-                  opacity: ".9",
+                  width: "170px",
+                  height: "170px",
+                  objectFit: "cover",
+                  borderColor: "#0f766e",
                 }}
-              ></i>
+              />
+
+              <label
+                htmlFor="doctorImage"
+                className="position-absolute bottom-0 end-0 rounded-circle d-flex justify-content-center align-items-center"
+                style={{
+                  width: "45px",
+                  height: "45px",
+                  background: "#0f766e",
+                  cursor: "pointer",
+                  color: "#fff",
+                  border: "3px solid white",
+                }}
+              >
+                <i className="bi bi-camera-fill"></i>
+              </label>
             </div>
           </div>
         </div>

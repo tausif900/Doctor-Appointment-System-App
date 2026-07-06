@@ -1,83 +1,121 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const navItems = [
-  { label: "Home", to: "/" },
-  { label: "Specialties", to: "/#specialties" },
-  { label: "How It Works", to: "/#process" },
-  { label: "Login", to: "/login" },
-];
-
 const Navbar = () => {
   const tealButton = {
-    color: "#ffffff",
+    color: "#fff",
     background: "linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)",
     border: "none",
-    boxShadow: "0 16px 28px rgba(15, 118, 110, 0.22)",
+    boxShadow: "0 16px 28px rgba(15,118,110,.22)",
   };
 
   return (
-    <header
-      className="navbar navbar-expand-lg fixed-top border-bottom shadow-sm py-3"
+    <nav
+      className="navbar navbar-expand-lg fixed-top shadow-sm border-bottom"
       style={{
-        background: "rgba(248, 250, 252, 0.72)",
+        background: "rgba(248,250,252,.82)",
         backdropFilter: "blur(18px)",
-        borderColor: "rgba(15, 118, 110, 0.12)",
+        borderColor: "rgba(15,118,110,.12)",
       }}
     >
-      <nav className="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <div className="container">
+        {/* Logo */}
+
         <NavLink
           to="/"
           className="navbar-brand d-flex align-items-center gap-3 m-0"
         >
           <img
-            className="rounded-circle object-fit-contain"
             src="Images/Doctor appointment system logo.png"
-            alt="Doctor Appointment logo"
-            width="72"
-            height="72"
+            alt="Doctor Appointment"
+            width="65"
+            height="65"
+            className="rounded-circle object-fit-contain"
             style={{
-              background: "linear-gradient(135deg, #95fff6 0%, #e7efee 100%)",
+              background: "linear-gradient(135deg,#95fff6 0%,#e7efee 100%)",
             }}
           />
-          <div className="d-flex flex-column lh-sm">
-            <strong className="text-dark fs-6">Doctor Appointment</strong>
-            <span className="text-secondary small">
+
+          <div className="d-none d-sm-block">
+            <h5 className="fw-bold mb-0 text-dark">Doctor Appointment</h5>
+
+            <small className="text-secondary">
               Fast and trusted care booking
-            </span>
+            </small>
           </div>
         </NavLink>
 
-        <div
-          className="nav nav-pills justify-content-center gap-1 p-2 border rounded-pill"
-          style={{
-            background: "rgba(255, 255, 255, 0.88)",
-            borderColor: "rgba(15, 118, 110, 0.12)",
-          }}
-        >
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.to}
-              className="nav-link fw-semibold px-3"
-              style={{ color: "#334155" }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
+        {/* Toggle */}
 
-        <div className="d-flex align-items-center">
-          <NavLink
-            to="/registration"
-            className="btn fw-bold px-4 py-2 rounded-4"
-            style={tealButton}
-          >
-            Register
-          </NavLink>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Menu */}
+
+        <div className="collapse navbar-collapse" id="mainNavbar">
+          <ul className="navbar-nav mx-auto text-center">
+            <li className="nav-item">
+              <NavLink
+                to="/"
+                className="nav-link fw-semibold"
+                style={{ color: "#334155" }}
+              >
+                Home
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <a
+                href="#specialties"
+                className="nav-link fw-semibold"
+                style={{ color: "#334155" }}
+              >
+                Specialties
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a
+                href="#process"
+                className="nav-link fw-semibold"
+                style={{ color: "#334155" }}
+              >
+                How It Works
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <NavLink
+                to="/login"
+                className="nav-link fw-semibold"
+                style={{ color: "#334155" }}
+              >
+                Login
+              </NavLink>
+            </li>
+          </ul>
+
+          <div className="mt-3 mt-lg-0 d-grid d-lg-block">
+            <NavLink
+              to="/registration"
+              className="btn px-4 py-2 rounded-4 fw-bold"
+              style={tealButton}
+            >
+              Register
+            </NavLink>
+          </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
   );
 };
 

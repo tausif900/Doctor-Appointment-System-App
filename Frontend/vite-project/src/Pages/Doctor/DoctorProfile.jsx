@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../api";
@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 const DoctorProfile = () => {
   const { userId } = useParams();
-
   const navigate = useNavigate();
 
   const {
@@ -19,9 +18,21 @@ const DoctorProfile = () => {
     try {
       const response = await api.post(`/doctors/register/${userId}`, data);
 
-      toast.success("Congrates!, Your Profile is completed.");
+      const formData = new FormData();
+      formData.append("doctorImage", data.doctorImage[0]);
 
-      navigate("/doctor-dashboard");
+      const responseImage = await api.post(
+        `/doctors/upload-image/${response.data.docId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+
+      toast.success("Congrates!, Your Profile is completed.");
+      navigate(`/doctor-dashboard/${response.data.docId}`);
     } catch (error) {
       toast.error("Oops!, Something went wrong");
     }
@@ -105,7 +116,6 @@ const DoctorProfile = () => {
                 </div>
 
                 {/* RIGHT PANEL */}
-
                 <div className="col-lg-8 bg-white">
                   <div className="p-4 p-md-5">
                     <div className="mb-5">
@@ -117,8 +127,8 @@ const DoctorProfile = () => {
                     </div>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="row g-4">
-                        {/* Specialization */}
+                      {/* Specialization */}
+                      <div className="row g-4 mt-2">
                         <div className="col-md-6">
                           <label className="form-label fw-semibold">
                             Specialization
@@ -207,6 +217,7 @@ const DoctorProfile = () => {
                             </small>
                           )}
                         </div>
+
                         {/* Consultation Fee */}
                         <div className="col-md-6">
                           <label className="form-label fw-semibold">
@@ -235,6 +246,20 @@ const DoctorProfile = () => {
                               {errors.consultationFee.message}
                             </small>
                           )}
+                        </div>
+
+                        {/* Upload Image Code */}
+
+                        <div className="col-md-6">
+                          <label className="form-label fw-semibold">
+                            Upload a professional photo.
+                          </label>
+                          <input
+                            className="form-control fs-6"
+                            type="file"
+                            id="formFile"
+                            {...register("doctorImage")}
+                          />
                         </div>
                       </div>
 
