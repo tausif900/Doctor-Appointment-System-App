@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Components/Common/Layout";
 import Login from "./Pages/Auth/Login";
 import Registration from "./Pages/Auth/Registration";
-import PatientLayout from "./Layouts/PatientLayout";
 import AuthLayout from "./Layouts/AuthLayout";
 import PatientProfile from "./Pages/Patient/PatientProfile";
 import { ToastContainer } from "react-toastify";
@@ -12,6 +11,7 @@ import Home from "./Components/Home";
 import PatientDashboard from "./Pages/Patient/PatientDashboard";
 import DoctorDashboard from "./Pages/Doctor/DoctorDashboard";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import DoctorList from "./Pages/Doctor/DoctorList";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>
+        element: <Home />,
       },
     ],
   },
@@ -54,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard",
         element: <AdminDashboard />,
+      },
+      {
+        path: "/doctors",
+        element: <DoctorList />,
       },
     ],
   },

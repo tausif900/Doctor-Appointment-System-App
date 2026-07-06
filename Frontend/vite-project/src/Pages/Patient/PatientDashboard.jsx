@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const PatientDashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <main
       className="min-vh-100 py-4"
@@ -30,7 +33,12 @@ const PatientDashboard = () => {
                 trusted doctors from one place.
               </p>
 
-              <button className="btn btn-light fw-semibold px-4">
+              <button
+                className="btn btn-light fw-semibold px-4"
+                onClick={() => {
+                  navigate("/doctors");
+                }}
+              >
                 <i className="bi bi-calendar2-plus-fill me-2"></i>
                 Book Appointment
               </button>
@@ -202,6 +210,7 @@ const PatientDashboard = () => {
                   style={{
                     background: "#0f766e",
                   }}
+                  onClick={() => navigate("/doctors")}
                 >
                   <i className="bi bi-calendar2-plus-fill me-2"></i>
                   Book Now
@@ -269,7 +278,9 @@ const PatientDashboard = () => {
                   Update your personal details and manage your account.
                 </p>
 
-                <button className="btn btn-warning text-white px-4">
+                <button
+                  className="btn btn-warning text-white px-4"
+                >
                   <i className="bi bi-pencil-square me-2"></i>
                   Edit Profile
                 </button>
