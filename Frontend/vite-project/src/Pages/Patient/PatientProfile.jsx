@@ -18,10 +18,9 @@ const PatientProfile = () => {
   const onSubmit = async (data) => {
     try {
       const response = await api.post(`/patient/register/${userId}`, data);
-
+      const patientId = response.data.patientId;
       toast.success("Congrates!, Your Profile is completed.");
-
-      navigate("/patient-dashboard");
+      navigate(`/patient-dashboard/${patientId}`);
     } catch (error) {
       toast.error("Oops!, Something went wrong");
     }

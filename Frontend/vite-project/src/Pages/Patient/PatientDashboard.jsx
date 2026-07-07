@@ -1,8 +1,21 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { api } from "../../api";
+import { toast } from "react-toastify";
 
 const PatientDashboard = () => {
   const navigate = useNavigate();
+  const [patientName, setPatientName] = useState();
+  const { patientId } = useParams();
+
+  const fetchPatientName = async () => {
+    const response = await api.get(`/patient/${patientId}`);
+    setPatientName(response.data.patientName);
+  };
+
+  useEffect(() => {
+    fetchPatientName();
+  }, []);
 
   return (
     <main
@@ -25,7 +38,7 @@ const PatientDashboard = () => {
             <div className="col-lg-8">
               <h2 className="fw-bold mb-3">
                 Welcome Back,
-                <span className="text-warning"> Tausif 👋</span>
+                <span className="text-warning"> {patientName} 👋</span>
               </h2>
 
               <p className="fs-5 opacity-75 mb-4">
@@ -278,9 +291,7 @@ const PatientDashboard = () => {
                   Update your personal details and manage your account.
                 </p>
 
-                <button
-                  className="btn btn-warning text-white px-4"
-                >
+                <button className="btn btn-warning text-white px-4">
                   <i className="bi bi-pencil-square me-2"></i>
                   Edit Profile
                 </button>

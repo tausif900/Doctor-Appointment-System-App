@@ -7,7 +7,6 @@ const DoctorList = () => {
   const fetchDoctors = async () => {
     try {
       const response = await api.get("/doctors");
-      console.log(response.data);
       setDoctors(response.data);
     } catch (error) {}
   };
@@ -94,20 +93,21 @@ const DoctorList = () => {
                     {/* Avatar */}
 
                     <div
-                      className="rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+                      className="rounded-2 mx-auto mb-4 overflow-hidden"
                       style={{
-                        width: "100px",
-                        height: "100px",
+                        width: "150px",
+                        height: "150px",
                         background: "#eefaf8",
                       }}
                     >
-                      <i
-                        className="bi bi-person-circle"
+                      <img
+                        src={`http://localhost:8080/doctors/get-image/${doctor.docId}`}
+                        alt={doctor.doctorName}
+                        className="w-100 h-100"
                         style={{
-                          fontSize: "70px",
-                          color: "#0f766e",
+                          objectFit: "cover",
                         }}
-                      ></i>
+                      />
                     </div>
 
                     <h4 className="fw-bold mb-2">{doctor.doctorName}</h4>

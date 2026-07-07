@@ -9,7 +9,6 @@ const DoctorDashboard = () => {
   const fetchDoctor = async () => {
     try {
       const response = await api.get(`/doctors/${docId}`);
-      console.log(response.data);
       setDoctor(response.data);
     } catch (error) {}
   };

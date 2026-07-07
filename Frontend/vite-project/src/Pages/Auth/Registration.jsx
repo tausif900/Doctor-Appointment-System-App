@@ -44,7 +44,6 @@ const Registration = () => {
 
       return exist ? "Email already exists" : true;
     } catch (error) {
-      alert("Oops! Something went wrong");
     }
   };
 
