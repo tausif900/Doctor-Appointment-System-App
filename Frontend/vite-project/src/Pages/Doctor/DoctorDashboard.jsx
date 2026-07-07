@@ -6,15 +6,16 @@ const DoctorDashboard = () => {
   const [doctor, setDoctor] = useState({});
   const { docId } = useParams();
 
-  const fetchDoctors = async () => {
+  const fetchDoctor = async () => {
     try {
       const response = await api.get(`/doctors/${docId}`);
+      console.log(response.data);
       setDoctor(response.data);
     } catch (error) {}
   };
 
   useEffect(() => {
-    fetchDoctors();
+    fetchDoctor();
   }, []);
 
   return (
@@ -38,7 +39,7 @@ const DoctorDashboard = () => {
             <div className="col-lg-8">
               <h2 className="fw-bold mb-3">
                 Welcome Back,
-                <span className="text-warning"> Doctor 👨‍⚕️</span>
+                <span className="text-warning"> {doctor.doctorName} 👨‍⚕️</span>
               </h2>
 
               <p className="fs-5 opacity-75 mb-4">

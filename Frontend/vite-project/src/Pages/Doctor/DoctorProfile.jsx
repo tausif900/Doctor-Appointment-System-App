@@ -17,6 +17,7 @@ const DoctorProfile = () => {
   const onSubmit = async (data) => {
     try {
       const response = await api.post(`/doctors/register/${userId}`, data);
+      console.log(response.data);
 
       const formData = new FormData();
       formData.append("doctorImage", data.doctorImage[0]);
@@ -30,6 +31,7 @@ const DoctorProfile = () => {
           },
         },
       );
+      console.log(responseImage);
 
       toast.success("Congrates!, Your Profile is completed.");
       navigate(`/doctor-dashboard/${response.data.docId}`);
