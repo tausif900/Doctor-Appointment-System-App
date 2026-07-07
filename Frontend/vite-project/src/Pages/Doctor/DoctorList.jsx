@@ -3,17 +3,52 @@ import { api } from "../../api";
 
 const DoctorList = () => {
   const [doctors, setDoctors] = useState(null);
+  const [specializations, setSpecializations] = useState(null);
+  const [selectedSpecialization, setSelectedSpecialization] = useState("");
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
+  const [isSearched, setIsSearched] = useState(false);
 
   const fetchDoctors = async () => {
     try {
       const response = await api.get("/doctors");
       setDoctors(response.data);
+      // remove specialization from obj
+      const special = response.data.map((s) => s.specialization);
+
+      // removed duplicates using Set object, it not allows duplicate.
+      const uniqueSet = new Set(special);
+
+      // convert again in an array
+      const uniqueSpecializations = [...uniqueSet];
+
+      // set the value of specialization
+      setSpecializations(uniqueSpecializations);
     } catch (error) {}
+  };
+
+  let doctorsToShow;
+
+  const handleSearch = () => {
+    if (selectedSpecialization === "All") {
+      setFilteredDoctors(doctors);
+    } else {
+      const filteredDoctors = doctors.filter(
+        (doctor) => doctor.specialization === selectedSpecialization,
+      );
+      setFilteredDoctors(filteredDoctors);
+    }
+    setIsSearched(true);
   };
 
   useEffect(() => {
     fetchDoctors();
   }, []);
+
+  if (isSearched) {
+    doctorsToShow = filteredDoctors;
+  } else {
+    doctorsToShow = doctors;
+  }
 
   return (
     <main
@@ -47,15 +82,20 @@ const DoctorList = () => {
           <div className="card-body p-4">
             <div className="row g-3 align-items-center">
               <div className="col-lg-9">
-                <select className="form-select form-select-lg fs-6">
-                  <option>All Specializations</option>
-                  <option>Cardiologist</option>
-                  <option>Dermatologist</option>
-                  <option>Orthopedic</option>
-                  <option>Neurologist</option>
-                  <option>Pediatrician</option>
-                  <option>Gynecologist</option>
-                  <option>ENT Specialist</option>
+                <select
+                  className="form-select form-select-lg fs-6"
+                  value={selectedSpecialization}
+                  onChange={(e) => setSelectedSpecialization(e.target.value)}
+                >
+                  <option value="All">All Specializations</option>
+                  {specializations &&
+                    specializations.map((specialization) => {
+                      return (
+                        <option key={specialization} value={specialization}>
+                          {specialization}
+                        </option>
+                      );
+                    })}
                 </select>
               </div>
 
@@ -65,6 +105,7 @@ const DoctorList = () => {
                   style={{
                     background: "#0f766e",
                   }}
+                  onClick={handleSearch}
                 >
                   <i className="bi bi-search me-2"></i>
                   Search
@@ -76,12 +117,12 @@ const DoctorList = () => {
 
         {/* Doctors */}
 
-        {doctors ? (
+        {doctorsToShow ? (
           <div className="row g-4">
-            {doctors.map((doctor) => (
+            {doctorsToShow.map((doctor) => (
               <div
                 className="col-xl-3 col-lg-3 col-md-6 col-sm-12"
-                key={doctor.id}
+                key={doctor.docId}
               >
                 <div
                   className="card border-0 shadow rounded-4 h-100"

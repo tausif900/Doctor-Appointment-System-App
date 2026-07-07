@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { api } from "../../api";
 
 const AdminDashboard = () => {
+  const [doctors, setDoctors] = useState(null);
+  const [patients, setPatients] = useState(null);
+
+  const totalDoctors = async () => {
+    try {
+      const response = await api.get("/doctors");
+      console.log(response.data);
+      setDoctors(response.data);
+    } catch (error) {}
+  };
+
+  const totalPatients = async () => {
+    try {
+      const response = await api.get("/patient");
+      console.log(response.data);
+      setPatients(response.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    totalDoctors();
+    totalPatients();
+  }, []);
+
   return (
     <main
       className="min-vh-100 py-4"
@@ -9,9 +34,8 @@ const AdminDashboard = () => {
           "linear-gradient(135deg,#f8fafc 0%,#eef2ff 50%,#e0f2fe 100%)",
       }}
     >
+      {/* Admin Welcome Banner */}
       <div className="container-fluid">
-        {/* Admin Welcome Banner */}
-
         <div
           className="rounded-4 shadow-lg p-4 p-md-5 mb-4 text-white"
           style={{
@@ -64,7 +88,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">24</h3>
+                  <h3 className="fw-bold mb-0">{doctors && doctors.length}</h3>
                   <small className="text-muted">Total Doctors</small>
                 </div>
               </div>
@@ -90,7 +114,9 @@ const AdminDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">189</h3>
+                  <h3 className="fw-bold mb-0">
+                    {patients && patients.length}
+                  </h3>
                   <small className="text-muted">Total Patients</small>
                 </div>
               </div>
@@ -161,9 +187,20 @@ const AdminDashboard = () => {
               </div>
 
               <div className="card-body">
-                <div className="table-responsive">
+                <div
+                  className="table-responsive overflow-auto"
+                  style={{
+                    maxHeight: "450px",
+                  }}
+                >
                   <table className="table table-hover align-middle">
-                    <thead>
+                    <thead
+                      className="sticky-top"
+                      style={{
+                        backgroundColor: "#ffffff",
+                        zIndex: "1",
+                      }}
+                    >
                       <tr>
                         <th>Name</th>
                         <th>Specialization</th>
@@ -174,47 +211,56 @@ const AdminDashboard = () => {
                     </thead>
 
                     <tbody>
-                      <tr>
-                        <td>Dr. John Doe</td>
-                        <td>Cardiologist</td>
-                        <td>8 Years</td>
-                        <td>
-                          <span className="badge bg-success">Active</span>
-                        </td>
-                        <td>
-                          <button className="btn btn-sm btn-outline-primary me-2">
-                            <i className="bi bi-eye"></i>
-                          </button>
-                          <button className="btn btn-sm btn-outline-danger">
-                            <i className="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>Dr. Smith</td>
-                        <td>Neurologist</td>
-                        <td>5 Years</td>
-                        <td>
-                          <span className="badge bg-warning text-dark">
-                            Pending
-                          </span>
-                        </td>
-                        <td>
-                          <button className="btn btn-sm btn-outline-primary me-2">
-                            <i className="bi bi-eye"></i>
-                          </button>
-                          <button className="btn btn-sm btn-outline-danger">
-                            <i className="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
+                      {doctors ? (
+                        doctors.map((doctor) => {
+                          return (
+                            <tr key={doctor.docId}>
+                              <td>{doctor.doctorName}</td>
+                              <td>{doctor.specialization}</td>
+                              <td>{doctor.experience} Years</td>
+                              <td>
+                                <span className="bg-success p-1 rounded">
+                                  Active
+                                </span>
+                              </td>
+                              <td>
+                                <button className="btn btn-sm btn-outline-primary me-2">
+                                  <i className="bi bi-eye"></i>
+                                </button>
+                                <button className="btn btn-sm btn-outline-danger">
+                                  <i className="bi bi-trash"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })
+                      ) : (
+                        <div
+                          className="d-flex justify-content-center align-items-center"
+                          style={{
+                            minHeight: "20vh",
+                          }}
+                        >
+                          <div
+                            className="spinner-border"
+                            role="status"
+                            style={{
+                              width: "4rem",
+                              height: "4rem",
+                              color: "#0f766e",
+                            }}
+                          >
+                            <span className="visually-hidden">Loading...</span>
+                          </div>
+                        </div>
+                      )}
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
+
           {/* Patients Panel */}
 
           <div className="col-lg-4">
@@ -229,7 +275,7 @@ const AdminDashboard = () => {
               <div className="card-body">
                 <div className="d-flex justify-content-between mb-3">
                   <span>Total Patients</span>
-                  <span className="fw-bold">189</span>
+                  <span className="fw-bold">{patients && patients.length}</span>
                 </div>
 
                 <div className="d-flex justify-content-between mb-3">
