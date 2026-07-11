@@ -56,16 +56,6 @@ const PatientDashboard = () => {
                 Book Appointment
               </button>
             </div>
-
-            <div className="col-lg-4 text-center mt-4 mt-lg-0">
-              <i
-                className="bi bi-person-circle"
-                style={{
-                  fontSize: "120px",
-                  opacity: ".9",
-                }}
-              ></i>
-            </div>
           </div>
         </div>
 
