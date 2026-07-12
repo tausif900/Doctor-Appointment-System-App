@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DoctorList = () => {
   const [doctors, setDoctors] = useState(null);
@@ -7,6 +8,8 @@ const DoctorList = () => {
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [isSearched, setIsSearched] = useState(false);
+  const navigate = useNavigate();
+  const { patientId } = useParams();
 
   const fetchDoctors = async () => {
     try {
@@ -201,6 +204,11 @@ const DoctorList = () => {
                         style={{
                           background: "#0f766e",
                         }}
+                        onClick={() =>
+                          navigate(
+                            `/patient/book-appointment/${patientId}/${doctor.docId}`,
+                          )
+                        }
                       >
                         Book
                       </button>

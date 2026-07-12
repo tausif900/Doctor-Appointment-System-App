@@ -12,6 +12,7 @@ import PatientDashboard from "./Pages/Patient/PatientDashboard";
 import DoctorDashboard from "./Pages/Doctor/DoctorDashboard";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import DoctorList from "./Pages/Doctor/DoctorList";
+import BookAppointment from "./Pages/Patient/BookAppointment";
 
 const router = createBrowserRouter([
   {
@@ -56,8 +57,12 @@ const router = createBrowserRouter([
         element: <AdminDashboard />,
       },
       {
-        path: "/doctors",
+        path: "/patient/doctors/:patientId",
         element: <DoctorList />,
+      },
+      {
+        path: "/patient/book-appointment/:patientId/:docId",
+        element: <BookAppointment />,
       },
     ],
   },

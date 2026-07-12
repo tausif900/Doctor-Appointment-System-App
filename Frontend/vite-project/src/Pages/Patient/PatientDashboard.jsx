@@ -49,7 +49,7 @@ const PatientDashboard = () => {
               <button
                 className="btn btn-light fw-semibold px-4"
                 onClick={() => {
-                  navigate("/doctors");
+                  navigate(`/patient/doctors/${patientId}`);
                 }}
               >
                 <i className="bi bi-calendar2-plus-fill me-2"></i>
@@ -213,7 +213,7 @@ const PatientDashboard = () => {
                   style={{
                     background: "#0f766e",
                   }}
-                  onClick={() => navigate("/doctors")}
+                  onClick={() => navigate(`/patient/doctors/${patientId}`)}
                 >
                   <i className="bi bi-calendar2-plus-fill me-2"></i>
                   Book Now
