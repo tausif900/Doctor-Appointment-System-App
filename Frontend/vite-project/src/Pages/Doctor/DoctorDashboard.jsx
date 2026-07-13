@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DoctorDashboard = () => {
   const [doctor, setDoctor] = useState({});
   const { docId } = useParams();
+  const navigate = useNavigate();
 
   const fetchDoctor = async () => {
     try {
@@ -54,7 +55,7 @@ const DoctorDashboard = () => {
 
             <div className="col-lg-4 text-center mt-4 mt-lg-0">
               <img
-                src={`http://localhost:8080/doctors/get-image/${docId}`}
+                src={`http://localhost:8080/doctors/get-image/${doctor.docId}`}
                 alt="Doctor"
                 className="rounded-circle border border-4"
                 style={{
@@ -64,21 +65,6 @@ const DoctorDashboard = () => {
                   borderColor: "#0f766e",
                 }}
               />
-
-              <label
-                htmlFor="doctorImage"
-                className="position-absolute bottom-0 end-0 rounded-circle d-flex justify-content-center align-items-center"
-                style={{
-                  width: "45px",
-                  height: "45px",
-                  background: "#0f766e",
-                  cursor: "pointer",
-                  color: "#fff",
-                  border: "3px solid white",
-                }}
-              >
-                <i className="bi bi-camera-fill"></i>
-              </label>
             </div>
           </div>
         </div>
@@ -215,34 +201,34 @@ const DoctorDashboard = () => {
         </div>
 
         {/* Quick Actions */}
+        <div className="row g-4">
+          {/* Today's Schedule */}
 
-        <div className="row g-4 mb-4">
-          {/* Today's Appointments */}
-
-          <div className="col-lg-4">
+          <div className="col-lg-3 col-md-6">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-body text-center p-4">
                 <div
-                  className="rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+                  className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
                   style={{
-                    width: "90px",
-                    height: "90px",
-                    background: "#e6fffa",
+                    width: "80px",
+                    height: "80px",
+                    background: "#dff7f3",
                   }}
                 >
                   <i
-                    className="bi bi-calendar2-check-fill"
+                    className="bi bi-calendar-check-fill"
                     style={{
-                      fontSize: "40px",
+                      fontSize: "2rem",
                       color: "#0f766e",
                     }}
                   ></i>
                 </div>
 
-                <h4 className="fw-bold">Today's Appointments</h4>
+                <h3 className="fw-bold mb-3">Today's Schedule</h3>
 
-                <p className="text-muted">
-                  View and manage today's patient appointments.
+                <p className="text-muted mb-4">
+                  View today's accepted appointments and manage your daily
+                  schedule.
                 </p>
 
                 <button
@@ -252,7 +238,49 @@ const DoctorDashboard = () => {
                   }}
                 >
                   <i className="bi bi-eye-fill me-2"></i>
-                  View
+                  View Schedule
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Patient Appointments */}
+
+          <div className="col-lg-3 col-md-6">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body text-center p-4">
+                <div
+                  className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background: "#e8ebff",
+                  }}
+                >
+                  <i
+                    className="bi bi-people-fill"
+                    style={{
+                      fontSize: "2rem",
+                      color: "#4f46e5",
+                    }}
+                  ></i>
+                </div>
+
+                <h3 className="fw-bold mb-3">Patient Appointments</h3>
+
+                <p className="text-muted mb-4">
+                  Review appointment requests and manage patient consultations.
+                </p>
+
+                <button
+                  className="btn text-white px-4"
+                  style={{
+                    background: "#4f46e5",
+                  }}
+                  onClick={() => navigate(`/doctor/my-appointments/${docId}`)}
+                >
+                  <i className="bi bi-list-check me-2"></i>
+                  Manage
                 </button>
               </div>
             </div>
@@ -260,30 +288,30 @@ const DoctorDashboard = () => {
 
           {/* My Profile */}
 
-          <div className="col-lg-4">
+          <div className="col-lg-3 col-md-6">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-body text-center p-4">
                 <div
-                  className="rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+                  className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
                   style={{
-                    width: "90px",
-                    height: "90px",
+                    width: "80px",
+                    height: "80px",
                     background: "#eef2ff",
                   }}
                 >
                   <i
                     className="bi bi-person-vcard-fill"
                     style={{
-                      fontSize: "40px",
-                      color: "#4338ca",
+                      fontSize: "2rem",
+                      color: "#2563eb",
                     }}
                   ></i>
                 </div>
 
-                <h4 className="fw-bold">My Profile</h4>
+                <h3 className="fw-bold mb-3">My Profile</h3>
 
-                <p className="text-muted">
-                  Update your professional profile and availability.
+                <p className="text-muted mb-4">
+                  Update your professional profile and availability information.
                 </p>
 
                 <button className="btn btn-primary px-4">
@@ -293,36 +321,42 @@ const DoctorDashboard = () => {
               </div>
             </div>
           </div>
+
           {/* Appointment History */}
 
-          <div className="col-lg-4">
+          <div className="col-lg-3 col-md-6">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-body text-center p-4">
                 <div
-                  className="rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+                  className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
                   style={{
-                    width: "90px",
-                    height: "90px",
-                    background: "#fff7ed",
+                    width: "80px",
+                    height: "80px",
+                    background: "#fff3e8",
                   }}
                 >
                   <i
                     className="bi bi-clock-history"
                     style={{
-                      fontSize: "40px",
-                      color: "#ea580c",
+                      fontSize: "2rem",
+                      color: "#f97316",
                     }}
                   ></i>
                 </div>
 
-                <h4 className="fw-bold">Appointment History</h4>
+                <h3 className="fw-bold mb-3">Appointment History</h3>
 
-                <p className="text-muted">
-                  Review all completed and cancelled consultations.
+                <p className="text-muted mb-4">
+                  View completed and cancelled consultation records.
                 </p>
 
-                <button className="btn btn-warning text-white px-4">
-                  <i className="bi bi-journal-medical me-2"></i>
+                <button
+                  className="btn text-white px-4"
+                  style={{
+                    background: "#f59e0b",
+                  }}
+                >
+                  <i className="bi bi-clock-history me-2"></i>
                   History
                 </button>
               </div>
@@ -332,7 +366,7 @@ const DoctorDashboard = () => {
 
         {/* Today's Appointments & Earnings */}
 
-        <div className="row g-4 mb-4">
+        <div className="row g-4 mb-4 mt-2">
           {/* Today's Appointments */}
 
           <div className="col-lg-8">
