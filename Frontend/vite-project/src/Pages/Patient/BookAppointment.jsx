@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { data, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { api } from "../../api";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const BookAppointment = () => {
   const [doctor, setDoctor] = useState({});
   const { docId, patientId } = useParams();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,19 +23,25 @@ const BookAppointment = () => {
     }
   };
 
-  const appointmentData = {
-    ...data,
-    patientId,
-    docId,
-  };
-  console.log(appointmentData);
-
   const submitHandler = async (data) => {
+    console.log(data);
+
+    const appointmentData = {
+      ...data,
+      patientId,
+      docId,
+    };
+    console.log(appointmentData.patientId);
+    console.log(appointmentData.docId);
+    console.log(appointmentData);
+
     try {
       const response = await api.post(`/appointments`, appointmentData);
       console.log(response);
+      toast.success("Appointment added! 👍");
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong 😓");
     }
   };
 
@@ -46,23 +54,34 @@ const BookAppointment = () => {
       className="min-vh-100 py-5"
       style={{
         background:
-          "linear-gradient(135deg,#f8fafc 0%,#eef2ff 50%,#e0f2fe 100%)",
+          "linear-gradient(135deg,#f8fafc 0%, #eef2ff 50%, #e0f2fe 100%)",
       }}
     >
       <div className="container">
-        <h2 className="fw-bold text-center mb-5" style={{ color: "#0f766e" }}>
-          Book Appointment
-        </h2>
+        <div className="text-center mb-5">
+          <h2
+            className="fw-bold"
+            style={{
+              color: "#0f766e",
+            }}
+          >
+            Book Appointment
+          </h2>
+
+          <p className="text-muted fs-5">
+            Select your preferred appointment date and time.
+          </p>
+        </div>
 
         <div className="card border-0 shadow-lg rounded-4">
-          <div className="card-body p-5">
-            <div className="row">
+          <div className="card-body p-4 p-lg-5">
+            <div className="row g-5 align-items-center">
               {/* Doctor Details */}
 
-              <div className="col-lg-4 border-end">
+              <div className="col-lg-5">
                 <div className="text-center">
                   <div
-                    className="rounded-3 overflow-hidden mx-auto mb-4"
+                    className="mx-auto rounded-4 overflow-hidden shadow"
                     style={{
                       width: "220px",
                       height: "220px",
@@ -79,41 +98,68 @@ const BookAppointment = () => {
                     />
                   </div>
 
-                  <h3 className="fw-bold">{doctor.doctorName}</h3>
+                  <h3
+                    className="fw-bold mt-4 mb-2"
+                    style={{
+                      color: "#0f766e",
+                    }}
+                  >
+                    {doctor.doctorName}
+                  </h3>
 
-                  <span className="badge bg-info fs-6 mb-4">
+                  <span className="badge bg-info fs-6 px-3 py-2">
                     {doctor.specialization}
                   </span>
                 </div>
 
-                <hr />
+                <hr className="my-4" />
 
-                <p className="fs-5">
-                  <strong>Qualification :</strong>
-                  <br />
-                  {doctor.qualification}
-                </p>
+                <div className="fs-5">
+                  <p>
+                    <i
+                      className="bi bi-mortarboard-fill me-2"
+                      style={{ color: "#0f766e" }}
+                    ></i>
+                    <strong>Qualification :</strong>
+                    <br />
+                    {doctor.qualification}
+                  </p>
 
-                <p className="fs-5">
-                  <strong>Experience :</strong>
-                  <br />
-                  {doctor.experience} Years
-                </p>
+                  <p>
+                    <i
+                      className="bi bi-briefcase-fill me-2"
+                      style={{ color: "#0f766e" }}
+                    ></i>
+                    <strong>Experience :</strong>
+                    <br />
+                    {doctor.experience} Years
+                  </p>
 
-                <p className="fs-5">
-                  <strong>Consultation Fee :</strong>
-                  <br />₹{doctor.consultationFee}
-                </p>
+                  <p>
+                    <i
+                      className="bi bi-cash-stack me-2"
+                      style={{ color: "#0f766e" }}
+                    ></i>
+                    <strong>Consultation Fee :</strong>
+                    <br />₹{doctor.consultationFee}
+                  </p>
+                </div>
               </div>
 
               {/* Appointment Form */}
+
               <form
-                className="col-lg-8"
+                className="col-lg-7"
                 action=""
                 onSubmit={handleSubmit(submitHandler)}
               >
                 <div>
-                  <h4 className="fw-bold mb-4" style={{ color: "#0f766e" }}>
+                  <h4
+                    className="fw-bold mb-4"
+                    style={{
+                      color: "#0f766e",
+                    }}
+                  >
                     Appointment Details
                   </h4>
 
@@ -126,7 +172,7 @@ const BookAppointment = () => {
                       type="date"
                       className="form-control form-control-lg"
                       {...register("appointmentDate", {
-                        required: "please select appointment date",
+                        required: "please select Date",
                       })}
                     />
                   </div>
@@ -136,7 +182,7 @@ const BookAppointment = () => {
                     </p>
                   )}
 
-                  <div className="mb-4">
+                  <div className="mb-5">
                     <label className="form-label fw-semibold">
                       Appointment Time
                     </label>
@@ -145,7 +191,7 @@ const BookAppointment = () => {
                       type="time"
                       className="form-control form-control-lg"
                       {...register("appointmentTime", {
-                        required: "please select appointment time",
+                        required: "please select time",
                       })}
                     />
                   </div>
@@ -155,25 +201,44 @@ const BookAppointment = () => {
                     </p>
                   )}
 
-                  <div className="mb-4">
-                    <label className="form-label fw-semibold">
-                      Symptoms (Optional)
-                    </label>
+                  <div
+                    className="rounded-3 p-4 mb-5"
+                    style={{
+                      background: "#f8fafc",
+                      border: "1px solid #dbeafe",
+                    }}
+                  >
+                    <h5
+                      className="fw-bold mb-3"
+                      style={{
+                        color: "#0f766e",
+                      }}
+                    >
+                      Consultation Summary
+                    </h5>
 
-                    <textarea
-                      rows="5"
-                      className="form-control"
-                      placeholder="Describe your symptoms..."
-                    ></textarea>
+                    <div className="d-flex justify-content-between mb-2">
+                      <span>Consultation Fee</span>
+                      <strong>₹{doctor.consultationFee}</strong>
+                    </div>
+
+                    <div className="d-flex justify-content-between">
+                      <span>Status</span>
+
+                      <span className="badge bg-success">Available</span>
+                    </div>
                   </div>
 
-                  <div className="d-grid mt-5">
+                  <div className="d-grid">
                     <button
                       type="submit"
                       className="btn btn-lg text-white fw-semibold"
                       style={{
                         background: "#0f766e",
                       }}
+                      onClick={() =>
+                        navigate(`/patient/my-appointments/${patientId}`)
+                      }
                     >
                       <i className="bi bi-calendar2-check-fill me-2"></i>
                       Confirm Appointment
