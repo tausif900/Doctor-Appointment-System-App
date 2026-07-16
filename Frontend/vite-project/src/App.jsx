@@ -67,11 +67,11 @@ const router = createBrowserRouter([
         element: <BookAppointment />,
       },
       {
-        path: "/patient/my-appointments/:patientId/",
+        path: "/patient/my-appointments/:patientId",
         element: <MyAllAppointments />,
       },
       {
-        path: "/doctor/my-appointments/:docId/",
+        path: "/doctor/my-appointments/:docId",
         element: <DoctorAllAppointments />,
       },
     ],

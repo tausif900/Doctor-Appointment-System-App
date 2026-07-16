@@ -248,7 +248,12 @@ const PatientDashboard = () => {
                   View upcoming, completed and cancelled appointments.
                 </p>
 
-                <button className="btn btn-primary px-4">
+                <button
+                  className="btn btn-primary px-4"
+                  onClick={() =>
+                    navigate(`/patient/my-appointments/${patientId}`)
+                  }
+                >
                   <i className="bi bi-eye-fill me-2"></i>
                   View
                 </button>
