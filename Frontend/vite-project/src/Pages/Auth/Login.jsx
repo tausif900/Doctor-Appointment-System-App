@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { LogicContext } from "../../Context/LoginContext";
+import { LoginContext } from "../../Context/LoginContext";
 import { api } from "../../api";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const { login } = useContext(LogicContext);
+  const { login } = useContext(LoginContext);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -14,12 +14,10 @@ const Login = () => {
       const response = await api.post("/auth/login", data);
       console.log(response);
       const role = response.data.userDto.role;
-      const patientId = response.data.userDto.id;
-      const doctorId = response.data.userDto.id;
       if (role == "Role_Patient") {
         navigate(`/patient-dashboard`);
       } else if (role == "Role_Doctor") {
-        navigate(`/doctor-dashboard/${doctorId}`);
+        navigate(`/doctor-dashboard`);
       }
       login(response.data.token, response.data.userDto);
     } catch (error) {

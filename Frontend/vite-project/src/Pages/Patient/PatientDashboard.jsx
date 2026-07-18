@@ -2,16 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../api";
 import { toast } from "react-toastify";
-import { LogicContext } from "../../Context/LoginContext";
+import { LoginContext } from "../../Context/LoginContext";
 
 const PatientDashboard = () => {
   const navigate = useNavigate();
   const [patientName, setPatientName] = useState();
-  const { patientId } = useParams();
-  const {user}=useContext(LogicContext);
+  const {user}=useContext(LoginContext);
 
   const fetchPatientName = async () => {
-    const response = await api.get(`/patient/${patientId}`);
+    const response = await api.get(`/patient/${user?.data.userDto.id}`);
     setPatientName(response.data.patientName);
   };
 
@@ -51,7 +50,7 @@ const PatientDashboard = () => {
               <button
                 className="btn btn-light fw-semibold px-4"
                 onClick={() => {
-                  navigate(`/patient/doctors/${patientId}`);
+                  navigate(`/patient/doctors`);
                 }}
               >
                 <i className="bi bi-calendar2-plus-fill me-2"></i>

@@ -1,17 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { api } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
-import { LogicContext } from "../../Context/LoginContext";
+import { LoginContext } from "../../Context/LoginContext";
 
 const DoctorDashboard = () => {
   const [doctor, setDoctor] = useState({});
-  const { doctorId } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(LogicContext);
+  const { user } = useContext(LoginContext);
 
   const fetchDoctor = async () => {
     try {
-      const response = await api.get(`/doctors/${doctorId}`);
+      const response = await api.get(`/doctors/${user?.doctor.id}`);
       setDoctor(response.data);
     } catch (error) {}
   };
@@ -57,7 +56,7 @@ const DoctorDashboard = () => {
 
             <div className="col-lg-4 text-center mt-4 mt-lg-0">
               <img
-                src={`http://localhost:8080/doctors/get-image/${doctor.docId}`}
+                src={`http://localhost:8080/doctors/get-image/${user?.doctor.docId}`}
                 alt="Doctor"
                 className="rounded-circle border border-4"
                 style={{

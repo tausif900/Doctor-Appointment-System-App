@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../api";
 import { toast } from "react-toastify";
+import { LoginContext } from "../../Context/LoginContext";
 
 const DoctorProfile = () => {
-  const { userId } = useParams();
+  const { user } = useContext(LoginContext);
   const navigate = useNavigate();
 
   const {
@@ -16,7 +17,7 @@ const DoctorProfile = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await api.post(`/doctors/register/${userId}`, data);
+      const response = await api.put(`/doctors/${user?.doctor.docId}`, data);
       console.log(response.data);
 
       const formData = new FormData();
@@ -34,7 +35,7 @@ const DoctorProfile = () => {
       console.log(responseImage);
 
       toast.success("Congrates!, Your Profile is completed.");
-      navigate(`/doctor-dashboard/${response.data.docId}`);
+      navigate(`/doctor-dashboard`);
     } catch (error) {
       toast.error("Oops!, Something went wrong");
     }

@@ -1,12 +1,14 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../api";
 import { toast } from "react-toastify";
+import { LoginContext } from "../../Context/LoginContext";
 
 const Registration = () => {
   const navigate = useNavigate();
+  const { user } = useContext(LoginContext);
 
   const {
     register,
@@ -31,7 +33,7 @@ const Registration = () => {
           const response = await api.post(`/doctors/register/${userId}`);
           console.log(response);
         } catch (error) {}
-        navigate(`/doctor-profile/${userId}`);
+        navigate(`/doctor-profile`);
       }
     } catch (error) {
       toast.error("Oops! Something went wrong...");

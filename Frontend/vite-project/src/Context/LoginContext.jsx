@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-export const LogicContext = createContext();
+export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -14,7 +14,6 @@ export const LoginProvider = ({ children }) => {
     if (storedUser && storedToken) {
       setUser(storedUser);
       console.log(storedUser);
-      
       setToken(storedToken);
       setIsAuthenticated(true);
     }
@@ -35,10 +34,10 @@ export const LoginProvider = ({ children }) => {
   };
 
   return (
-    <LogicContext.Provider
+    <LoginContext.Provider
       value={{ login, logout, user, token, isAuthenticated }}
     >
       {children}
-    </LogicContext.Provider>
+    </LoginContext.Provider>
   );
 };

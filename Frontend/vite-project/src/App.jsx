@@ -40,11 +40,11 @@ const router = createBrowserRouter([
         element: <Registration />,
       },
       {
-        path: "/patient-profile/:userId",
+        path: "/patient-profile",
         element: <PatientProfile />,
       },
       {
-        path: "/doctor-profile/:userId",
+        path: "/doctor-profile",
         element: <DoctorProfile />,
       },
       {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         element: <PatientDashboard />,
       },
       {
-        path: "/doctor-dashboard/:docId",
+        path: "/doctor-dashboard",
         element: <DoctorDashboard />,
       },
       {
