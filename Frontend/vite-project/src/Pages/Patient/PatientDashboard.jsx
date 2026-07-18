@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../api";
 import { toast } from "react-toastify";
+import { LogicContext } from "../../Context/LoginContext";
 
 const PatientDashboard = () => {
   const navigate = useNavigate();
   const [patientName, setPatientName] = useState();
   const { patientId } = useParams();
+  const {user}=useContext(LogicContext);
 
   const fetchPatientName = async () => {
     const response = await api.get(`/patient/${patientId}`);
@@ -38,7 +40,7 @@ const PatientDashboard = () => {
             <div className="col-lg-8">
               <h2 className="fw-bold mb-3">
                 Welcome Back,
-                <span className="text-warning"> {patientName} 👋</span>
+                <span className="text-warning"> {user?.name} 👋</span>
               </h2>
 
               <p className="fs-5 opacity-75 mb-4">
@@ -213,7 +215,7 @@ const PatientDashboard = () => {
                   style={{
                     background: "#0f766e",
                   }}
-                  onClick={() => navigate(`/patient/doctors/${patientId}`)}
+                  onClick={() => navigate("/patient/doctors")}
                 >
                   <i className="bi bi-calendar2-plus-fill me-2"></i>
                   Book Now

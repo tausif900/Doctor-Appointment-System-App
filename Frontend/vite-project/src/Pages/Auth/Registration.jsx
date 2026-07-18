@@ -27,6 +27,10 @@ const Registration = () => {
       }
 
       if (data.role === "Role_Doctor") {
+        try {
+          const response = await api.post(`/doctors/register/${userId}`);
+          console.log(response);
+        } catch (error) {}
         navigate(`/doctor-profile/${userId}`);
       }
     } catch (error) {
@@ -43,8 +47,7 @@ const Registration = () => {
       exist = response.data;
 
       return exist ? "Email already exists" : true;
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const password = watch("password");

@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { api } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
+import { LogicContext } from "../../Context/LoginContext";
 
 const DoctorDashboard = () => {
   const [doctor, setDoctor] = useState({});
-  const { docId } = useParams();
+  const { doctorId } = useParams();
   const navigate = useNavigate();
+  const { user } = useContext(LogicContext);
 
   const fetchDoctor = async () => {
     try {
-      const response = await api.get(`/doctors/${docId}`);
+      const response = await api.get(`/doctors/${doctorId}`);
       setDoctor(response.data);
     } catch (error) {}
   };
@@ -39,7 +41,7 @@ const DoctorDashboard = () => {
             <div className="col-lg-8">
               <h2 className="fw-bold mb-3">
                 Welcome Back,
-                <span className="text-warning"> {doctor.doctorName} 👨‍⚕️</span>
+                <span className="text-warning"> {user?.name} 👨‍⚕️</span>
               </h2>
 
               <p className="fs-5 opacity-75 mb-4">

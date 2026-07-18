@@ -15,6 +15,7 @@ import DoctorList from "./Pages/Doctor/DoctorList";
 import BookAppointment from "./Pages/Patient/BookAppointment";
 import MyAllAppointments from "./Pages/Patient/MyAllAppointments";
 import DoctorAllAppointments from "./Pages/Doctor/DoctorAllAppointments";
+import { LoginProvider } from "./Context/LoginContext";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
         element: <DoctorProfile />,
       },
       {
-        path: "/patient-dashboard/:patientId",
+        path: "/patient-dashboard",
         element: <PatientDashboard />,
       },
       {
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
         element: <AdminDashboard />,
       },
       {
-        path: "/patient/doctors/:patientId",
+        path: "/patient/doctors",
         element: <DoctorList />,
       },
       {
@@ -81,8 +82,14 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
-      <ToastContainer position="top-center" autoClose={3000} theme="colored" />
+      <LoginProvider>
+        <RouterProvider router={router} />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          theme="colored"
+        />
+      </LoginProvider>
     </>
   );
 }

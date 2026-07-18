@@ -1,7 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { LogicContext } from "../../Context/LoginContext";
+import { api } from "../../api";
 
 const Login = () => {
+  const { register, handleSubmit } = useForm();
+  const { login } = useContext(LogicContext);
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await api.post("/auth/login", data);
+      console.log(response);
+      const role = response.data.userDto.role;
+      const patientId = response.data.userDto.id;
+      const doctorId = response.data.userDto.id;
+      if (role == "Role_Patient") {
+        navigate(`/patient-dashboard`);
+      } else if (role == "Role_Doctor") {
+        navigate(`/doctor-dashboard/${doctorId}`);
+      }
+      login(response.data.token, response.data.userDto);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <main
       className="min-vh-100 d-flex align-items-center py-5"
@@ -104,7 +129,7 @@ const Login = () => {
                       </p>
                     </div>
 
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                       {/* Email */}
                       <div className="mb-4">
                         <label
@@ -123,6 +148,7 @@ const Login = () => {
                             type="email"
                             className="form-control"
                             placeholder="Enter your email"
+                            {...register("email")}
                           />
                         </div>
                       </div>
@@ -145,6 +171,7 @@ const Login = () => {
                             type="password"
                             className="form-control"
                             placeholder="Enter your password"
+                            {...register("password")}
                           />
                         </div>
                       </div>
@@ -177,7 +204,7 @@ const Login = () => {
 
                       {/* Button */}
                       <button
-                        type="button"
+                        type="submit"
                         className="btn btn-lg w-100 text-white fw-bold shadow"
                         style={{
                           background: "#0f766e",
