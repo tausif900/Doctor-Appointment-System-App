@@ -20,20 +20,18 @@ const Registration = () => {
   const onSubmit = async (data) => {
     try {
       const response = await api.post("/users/register", data);
+      console.log(response.data);
+
       toast.success("Registration done successfully");
 
       const userId = response.data.id;
 
-      if (data.role === "Role_Patient") {
+      if (data.role === "ROLE_Patient") {
         navigate(`/patient-profile/${userId}`);
       }
 
-      if (data.role === "Role_Doctor") {
-        try {
-          const response = await api.post(`/doctors/register/${userId}`);
-          console.log(response);
-        } catch (error) {}
-        navigate(`/doctor-profile`);
+      if (data.role === "ROLE_Doctor") {
+        navigate(`/doctor-profile/${userId}`);
       }
     } catch (error) {
       toast.error("Oops! Something went wrong...");
@@ -350,8 +348,8 @@ const Registration = () => {
                               })}
                             >
                               <option value="">Choose your role</option>
-                              <option value="Role_Patient">Patient</option>
-                              <option value="Role_Doctor">Doctor</option>
+                              <option value="ROLE_Patient">Patient</option>
+                              <option value="ROLE_Doctor">Doctor</option>
                             </select>
                           </div>
 

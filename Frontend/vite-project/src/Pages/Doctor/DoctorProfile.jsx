@@ -7,6 +7,7 @@ import { LoginContext } from "../../Context/LoginContext";
 
 const DoctorProfile = () => {
   const { user } = useContext(LoginContext);
+  const { userId } = useParams();
   const navigate = useNavigate();
 
   const {
@@ -17,8 +18,11 @@ const DoctorProfile = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await api.put(`/doctors/${user?.doctor.docId}`, data);
-      console.log(response.data);
+      // const response = await api.put(`/doctors/${user?.doctor.docId}`, data);
+      // console.log(response.data);
+
+      const response = await api.post(`/doctors/register/${userId}`, data);
+      console.log(response);
 
       const formData = new FormData();
       formData.append("doctorImage", data.doctorImage[0]);
@@ -37,6 +41,7 @@ const DoctorProfile = () => {
       toast.success("Congrates!, Your Profile is completed.");
       navigate(`/doctor-dashboard`);
     } catch (error) {
+      console.log(userId);
       toast.error("Oops!, Something went wrong");
     }
   };

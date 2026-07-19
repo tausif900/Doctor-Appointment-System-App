@@ -14,9 +14,9 @@ const Login = () => {
       const response = await api.post("/auth/login", data);
       console.log(response);
       const role = response.data.userDto.role;
-      if (role == "Role_Patient") {
+      if (role == "ROLE_Patient") {
         navigate(`/patient-dashboard`);
-      } else if (role == "Role_Doctor") {
+      } else if (role == "ROLE_Doctor") {
         navigate(`/doctor-dashboard`);
       }
       login(response.data.token, response.data.userDto);

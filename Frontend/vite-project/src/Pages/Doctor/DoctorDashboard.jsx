@@ -315,7 +315,10 @@ const DoctorDashboard = () => {
                   Update your professional profile and availability information.
                 </p>
 
-                <button className="btn btn-primary px-4">
+                <button
+                  className="btn btn-primary px-4"
+                  onClick={() => navigate("/doctor/update-profile")}
+                >
                   <i className="bi bi-pencil-square me-2"></i>
                   Edit
                 </button>
