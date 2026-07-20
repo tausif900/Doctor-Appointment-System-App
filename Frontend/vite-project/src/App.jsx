@@ -17,6 +17,7 @@ import MyAllAppointments from "./Pages/Patient/MyAllAppointments";
 import DoctorAllAppointments from "./Pages/Doctor/DoctorAllAppointments";
 import { LoginProvider } from "./Context/LoginContext";
 import UpdateDoctor from "./Pages/Doctor/UpdateDoctor";
+import ManageSlots from "./Pages/Doctor/ManageSlots";
 
 const router = createBrowserRouter([
   {
@@ -76,9 +77,13 @@ const router = createBrowserRouter([
         path: "/doctor/my-appointments/:docId",
         element: <DoctorAllAppointments />,
       },
-       {
+      {
         path: "/doctor/update-profile",
-        element: <UpdateDoctor/>
+        element: <UpdateDoctor />,
+      },
+      {
+        path: "/doctor/manage-slots",
+        element: <ManageSlots />,
       },
     ],
   },

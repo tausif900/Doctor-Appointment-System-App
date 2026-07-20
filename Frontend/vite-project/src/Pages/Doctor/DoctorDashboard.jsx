@@ -203,6 +203,48 @@ const DoctorDashboard = () => {
 
         {/* Quick Actions */}
         <div className="row g-4">
+          {/* Manage Slots */}
+
+          <div className="col-lg-3 col-md-6">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body text-center p-4">
+                <div
+                  className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background: "#ecfdf5",
+                  }}
+                >
+                  <i
+                    className="bi bi-calendar-plus-fill"
+                    style={{
+                      fontSize: "2rem",
+                      color: "#16a34a",
+                    }}
+                  ></i>
+                </div>
+
+                <h3 className="fw-bold mb-3">Manage Slots</h3>
+
+                <p className="text-muted mb-4">
+                  Create, update and manage your available appointment slots for
+                  patients.
+                </p>
+
+                <button
+                  className="btn text-white px-4"
+                  style={{
+                    background: "#16a34a",
+                  }}
+                  onClick={() => navigate("/doctor/manage-slots")}
+                >
+                  <i className="bi bi-calendar-plus me-2"></i>
+                  Manage
+                </button>
+              </div>
+            </div>
+          </div>
           {/* Today's Schedule */}
 
           <div className="col-lg-3 col-md-6">
