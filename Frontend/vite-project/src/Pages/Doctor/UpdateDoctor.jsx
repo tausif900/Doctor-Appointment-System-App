@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { LoginContext } from "../../Context/LoginContext";
 import { api } from "../../api";
@@ -6,6 +6,10 @@ import { toast } from "react-toastify";
 
 const UpdateDoctor = () => {
   const { user } = useContext(LoginContext);
+  const [preview, setPreview] = useState(
+    `http://localhost:8080/doctors/get-image/${user?.doctor.docId}`,
+  );
+  const [image, setImage] = useState(null);
 
   const {
     register,
@@ -34,9 +38,10 @@ const UpdateDoctor = () => {
     console.log(data);
     try {
       const response = await api.put(`/doctors/${user?.doctor.docId}`, data);
-      if (data.doctorImage && data.doctorImage.length > 0) {
+      console.log(response.data.docId);
+      if (image) {
         const formData = new FormData();
-        formData.append("doctorImage", data.doctorImage[0]);
+        formData.append("doctorImage", image);
 
         const responseImage = await api.post(
           `/doctors/upload-image/${response.data.docId}`,
@@ -48,12 +53,21 @@ const UpdateDoctor = () => {
           },
         );
       }
-      console.log(response.data);
       toast.success("Profile updated Successfully");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     }
+  };
+
+  // Changing the image
+  const changeImage = (e) => {
+    console.log(e.target.files[0]);
+    const file = e.target.files[0];
+    setPreview(URL.createObjectURL(file));
+    setImage(file);
+    console.log(file);
+    console.log(URL.createObjectURL(file));
   };
 
   useEffect(() => {
@@ -83,6 +97,47 @@ const UpdateDoctor = () => {
 
             <div className="card-body p-4">
               <form onSubmit={handleSubmit(updateDoctor)}>
+                {/* Doctor Image */}
+
+                <div className="mb-4 text-center">
+                  <label className="form-label fw-bold d-block mb-3">
+                    Profile Photo
+                  </label>
+
+                  <img
+                    src={preview}
+                    alt="Doctor"
+                    className="rounded-circle shadow"
+                    style={{
+                      width: "170px",
+                      height: "170px",
+                      objectFit: "cover",
+                      border: "4px solid #0f766e",
+                    }}
+                  />
+
+                  <div className="mt-3">
+                    <label
+                      htmlFor="doctorImage"
+                      className="btn btn-outline-success"
+                      style={{
+                        borderRadius: "25px",
+                        padding: "8px 20px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <i className="bi bi-camera-fill me-2"></i>
+                      Change Image
+                    </label>
+
+                    <input
+                      type="file"
+                      id="doctorImage"
+                      className="d-none"
+                      onChange={changeImage}
+                    />
+                  </div>
+                </div>
                 {/* Name */}
 
                 <div className="mb-3">
@@ -145,20 +200,6 @@ const UpdateDoctor = () => {
                     className="form-control"
                     placeholder="Enter Consultation Fee"
                     {...register("consultationFee")}
-                  />
-                </div>
-
-                {/* Doctor Image */}
-
-                <div className="mb-4">
-                  <label className="form-label fw-bold">
-                    Change Profile Photo
-                  </label>
-
-                  <input
-                    type="file"
-                    className="form-control"
-                    {...register("doctorImage")}
                   />
                 </div>
 
