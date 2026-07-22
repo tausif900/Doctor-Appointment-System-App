@@ -4,7 +4,16 @@ import { api } from "../../api";
 import { toast } from "react-toastify";
 
 const ManageSlots = () => {
+  // add slot form
   const { register, handleSubmit, reset } = useForm();
+
+  // update slot form.
+  const {
+    register: updateRegister,
+    handleSubmit: handleUpdateSubmit,
+    reset: updateReset,
+  } = useForm();
+
   const [slots, setSlots] = useState(null);
   const [slotId, setSlotId] = useState(null);
 
@@ -13,6 +22,7 @@ const ManageSlots = () => {
       const response = await api.post(`/slots`, data);
       console.log(response.data);
       toast.success("Slot added successfully");
+      reset();
       getAllSlots();
     } catch (error) {
       toast.error("Something went wrong");
@@ -40,6 +50,7 @@ const ManageSlots = () => {
   };
 
   const updateSlot = async (data) => {
+    console.log(data);
     try {
       const response = await api.put(`/slots/${slotId}`, data);
       console.log(response.data);
@@ -69,7 +80,7 @@ const ManageSlots = () => {
         data-bs-keyboard="false"
       >
         <div className="modal-dialog modal-dialog-centered">
-          <form onSubmit={handleSubmit(updateSlot)}>
+          <form onSubmit={handleUpdateSubmit(updateSlot)}>
             <div
               className="modal-content border-0"
               style={{ borderRadius: "15px" }}
@@ -101,7 +112,7 @@ const ManageSlots = () => {
                   <input
                     type="date"
                     className="form-control"
-                    {...register("slotDate")}
+                    {...updateRegister("slotDate")}
                   />
                 </div>
 
@@ -112,7 +123,7 @@ const ManageSlots = () => {
                     <input
                       type="time"
                       className="form-control"
-                      {...register("startTime")}
+                      {...updateRegister("startTime")}
                     />
                   </div>
 
@@ -122,7 +133,7 @@ const ManageSlots = () => {
                     <input
                       type="time"
                       className="form-control"
-                      {...register("endTime")}
+                      {...updateRegister("endTime")}
                     />
                   </div>
                 </div>
@@ -257,7 +268,7 @@ const ManageSlots = () => {
                           data-bs-target="#updateSlotModal"
                           onClick={() => {
                             setSlotId(s.slotId);
-                            reset({
+                            updateReset({
                               slotDate: s.slotDate,
                               startTime: s.startTime,
                               endTime: s.endTime,
