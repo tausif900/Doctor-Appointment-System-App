@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../api";
+import { LoginContext } from "../../Context/LoginContext";
 
 const MyAllAppointments = () => {
   const [patientAppointments, setPatientAppointments] = useState(null);
 
-  const { patientId } = useParams();
+  const { user } = useContext(LoginContext);
 
   const getAllAppointmentsOfPatient = async () => {
     try {
-      const response = await api.get(`/appointments/patient/${patientId}`);
+      const response = await api.get(`/appointments/patient/${user?.patient.patientId}`);
       console.log(response.data);
       setPatientAppointments(response.data);
     } catch (error) {

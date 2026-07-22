@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 const BookAppointment = () => {
   const [doctor, setDoctor] = useState({});
+  const [slots, setSlots] = useState(null);
   const { docId, patientId } = useParams();
   const navigate = useNavigate();
   const {
@@ -13,6 +14,20 @@ const BookAppointment = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const formatDate = (slotDate) => {
+    console.log(slotDate);
+    const date = new Date(slotDate);
+    const day = date.toLocaleDateString("en-IN", {
+      weekday: "long",
+    });
+    const formattedDate = date.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    return `${day}, ${formattedDate}`;
+  };
 
   const fetchDoctor = async () => {
     try {
@@ -45,8 +60,14 @@ const BookAppointment = () => {
     }
   };
 
+  const fetchAllSlots = async () => {
+    const response = await api.get(`/slots/doctor/${doctor.docId}`);
+    setSlots(response.data);
+  };
+
   useEffect(() => {
     fetchDoctor();
+    fetchAllSlots();
   }, []);
 
   return (
@@ -148,104 +169,89 @@ const BookAppointment = () => {
 
               {/* Appointment Form */}
 
-              <form
-                className="col-lg-7"
-                action=""
-                onSubmit={handleSubmit(submitHandler)}
-              >
-                <div>
-                  <h4
-                    className="fw-bold mb-4"
-                    style={{
-                      color: "#0f766e",
-                    }}
-                  >
-                    Appointment Details
-                  </h4>
+              <div className="col-lg-7">
+                <h4
+                  className="fw-bold mb-4"
+                  style={{
+                    color: "#0f766e",
+                  }}
+                >
+                  Available Appointment Slots
+                </h4>
 
-                  <div className="mb-4">
-                    <label className="form-label fw-semibold">
-                      Appointment Date
-                    </label>
+                <div
+                  className="p-3 rounded-4 mb-4"
+                  style={{
+                    background: "#f8fafc",
+                    border: "1px solid #dbeafe",
+                    maxHeight: "420px",
+                    overflowY: "auto",
+                  }}
+                >
+                  {/* Map available slots here */}
 
-                    <input
-                      type="date"
-                      className="form-control form-control-lg"
-                      {...register("appointmentDate", {
-                        required: "please select Date",
-                      })}
-                    />
-                  </div>
-                  {errors.appointmentDate && (
-                    <p className="text-danger">
-                      {errors.appointmentDate.message}
-                    </p>
-                  )}
+                  {slots ? (
+                    slots.map((slot) => (
+                      <div
+                        key={slot.slotId}
+                        className="card border-0 shadow-sm mb-3"
+                        style={{
+                          borderRadius: "12px",
+                        }}
+                      >
+                        <div className="card-body">
+                          <div className="row align-items-center">
+                            <div className="col-md-8">
+                              <h6
+                                className="fw-bold mb-2"
+                                style={{
+                                  color: "#0f766e",
+                                }}
+                              >
+                                {formatDate(slot.slotDate)}
+                              </h6>
 
-                  <div className="mb-5">
-                    <label className="form-label fw-semibold">
-                      Appointment Time
-                    </label>
+                              <p className="mb-0 text-muted">
+                                <i className="bi bi-clock me-2"></i>
+                                {slot.startTime} AM - {slot.endTime} AM
+                              </p>
+                            </div>
 
-                    <input
-                      type="time"
-                      className="form-control form-control-lg"
-                      {...register("appointmentTime", {
-                        required: "please select time",
-                      })}
-                    />
-                  </div>
-                  {errors.appointmentTime && (
-                    <p className="text-danger">
-                      {errors.appointmentTime.message}
-                    </p>
-                  )}
-
-                  <div
-                    className="rounded-3 p-4 mb-5"
-                    style={{
-                      background: "#f8fafc",
-                      border: "1px solid #dbeafe",
-                    }}
-                  >
-                    <h5
-                      className="fw-bold mb-3"
-                      style={{
-                        color: "#0f766e",
-                      }}
+                            <div className="col-md-4 text-md-end mt-3 mt-md-0">
+                              <button
+                                className="btn text-white px-4"
+                                style={{
+                                  background: "#0f766e",
+                                }}
+                              >
+                                <i className="bi bi-calendar-check me-2"></i>
+                                Book
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{ minHeight: "300px" }}
                     >
-                      Consultation Summary
-                    </h5>
-
-                    <div className="d-flex justify-content-between mb-2">
-                      <span>Consultation Fee</span>
-                      <strong>₹{doctor.consultationFee}</strong>
+                      <div
+                        className="spinner-border"
+                        role="status"
+                        style={{
+                          width: "4rem",
+                          height: "4rem",
+                          color: "#0f766e",
+                        }}
+                      >
+                        <span className="visually-hidden">Loading...</span>
+                      </div>
                     </div>
-
-                    <div className="d-flex justify-content-between">
-                      <span>Status</span>
-
-                      <span className="badge bg-success">Available</span>
-                    </div>
-                  </div>
-
-                  <div className="d-grid">
-                    <button
-                      type="submit"
-                      className="btn btn-lg text-white fw-semibold"
-                      style={{
-                        background: "#0f766e",
-                      }}
-                      onClick={() =>
-                        navigate(`/patient/my-appointments/${patientId}`)
-                      }
-                    >
-                      <i className="bi bi-calendar2-check-fill me-2"></i>
-                      Confirm Appointment
-                    </button>
-                  </div>
+                  )}
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>

@@ -9,7 +9,6 @@ const DoctorList = () => {
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [isSearched, setIsSearched] = useState(false);
   const navigate = useNavigate();
-  const { patientId } = useParams();
 
   const fetchDoctors = async () => {
     try {
@@ -206,7 +205,7 @@ const DoctorList = () => {
                         }}
                         onClick={() =>
                           navigate(
-                            `/patient/book-appointment/${patientId}/${doctor.docId}`,
+                            `/patient/book-appointment/${doctor.docId}`,
                           )
                         }
                       >

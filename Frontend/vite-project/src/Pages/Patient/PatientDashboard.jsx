@@ -252,7 +252,7 @@ const PatientDashboard = () => {
                 <button
                   className="btn btn-primary px-4"
                   onClick={() =>
-                    navigate(`/patient/my-appointments/${patientId}`)
+                    navigate("/patient/my-appointments")
                   }
                 >
                   <i className="bi bi-eye-fill me-2"></i>

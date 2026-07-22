@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <Registration />,
       },
       {
-        path: "/patient-profile",
+        path: "/patient-profile/:userId",
         element: <PatientProfile />,
       },
       {
@@ -66,11 +66,11 @@ const router = createBrowserRouter([
         element: <DoctorList />,
       },
       {
-        path: "/patient/book-appointment/:patientId/:docId",
+        path: "/patient/book-appointment/:docId",
         element: <BookAppointment />,
       },
       {
-        path: "/patient/my-appointments/:patientId",
+        path: "/patient/my-appointments",
         element: <MyAllAppointments />,
       },
       {
