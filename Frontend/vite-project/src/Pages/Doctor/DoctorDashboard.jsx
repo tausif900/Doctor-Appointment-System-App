@@ -320,7 +320,7 @@ const DoctorDashboard = () => {
                   style={{
                     background: "#4f46e5",
                   }}
-                  onClick={() => navigate(`/doctor/my-appointments/${docId}`)}
+                  onClick={() => navigate(`/doctor/my-appointments`)}
                 >
                   <i className="bi bi-list-check me-2"></i>
                   Manage

@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { api } from "../../api";
 
 const DoctorAllAppointments = () => {
+  const [appointmentRequest, setAppointmentRequest] = useState(null);
+
+  const fetchAppointmentRequest = async () => {
+    try {
+      const response = await api.get("/appointments");
+      console.log(response.data);
+      setAppointmentRequest(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAppointmentRequest();
+  }, []);
+
   return (
     <main
       className="min-vh-100 py-5"
@@ -76,10 +93,6 @@ const DoctorAllAppointments = () => {
 
                         <button className="btn btn-sm btn-danger">
                           Reject
-                        </button>
-
-                        <button className="btn btn-sm btn-primary">
-                          Complete
                         </button>
                       </div>
                     </td>

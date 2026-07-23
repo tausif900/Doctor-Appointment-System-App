@@ -43,6 +43,21 @@ const BookAppointment = () => {
     setSlots(response.data);
   };
 
+  const bookAppointment = async (slotId) => {
+    try {
+      const response = await api.post(
+        `/appointments/book-appointment/${slotId}`,
+        toast.success(
+          "Appointment booked successfully. Waiting for doctor's approval.",
+        ),
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong");
+    }
+  };
+
   useEffect(() => {
     fetchDoctor();
     fetchAllSlots(docId);
@@ -201,6 +216,7 @@ const BookAppointment = () => {
                                 style={{
                                   background: "#0f766e",
                                 }}
+                                onClick={() => bookAppointment(slot.slotId)}
                               >
                                 <i className="bi bi-calendar-check me-2"></i>
                                 Book

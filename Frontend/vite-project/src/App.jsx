@@ -74,7 +74,7 @@ const router = createBrowserRouter([
         element: <MyAllAppointments />,
       },
       {
-        path: "/doctor/my-appointments/:docId",
+        path: "/doctor/my-appointments",
         element: <DoctorAllAppointments />,
       },
       {
@@ -94,11 +94,7 @@ function App() {
     <>
       <LoginProvider>
         <RouterProvider router={router} />
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          theme="colored"
-        />
+        <ToastContainer position="top-center" autoClose={3000} theme="dark" />
       </LoginProvider>
     </>
   );
