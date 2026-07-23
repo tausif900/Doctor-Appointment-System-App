@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const BookAppointment = () => {
   const [doctor, setDoctor] = useState({});
   const [slots, setSlots] = useState(null);
-  const { docId, patientId } = useParams();
+  const { docId } = useParams();
   const navigate = useNavigate();
   const {
     register,
@@ -16,7 +16,6 @@ const BookAppointment = () => {
   } = useForm();
 
   const formatDate = (slotDate) => {
-    console.log(slotDate);
     const date = new Date(slotDate);
     const day = date.toLocaleDateString("en-IN", {
       weekday: "long",
@@ -38,36 +37,15 @@ const BookAppointment = () => {
     }
   };
 
-  const submitHandler = async (data) => {
-    console.log(data);
-
-    const appointmentData = {
-      ...data,
-      patientId,
-      docId,
-    };
-    console.log(appointmentData.patientId);
-    console.log(appointmentData.docId);
-    console.log(appointmentData);
-
-    try {
-      const response = await api.post(`/appointments`, appointmentData);
-      console.log(response);
-      toast.success("Appointment added! 👍");
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong 😓");
-    }
-  };
-
-  const fetchAllSlots = async () => {
-    const response = await api.get(`/slots/doctor/${doctor.docId}`);
+  const fetchAllSlots = async (docId) => {
+    const response = await api.get(`/slots/doctor/${docId}`);
+    console.log(response.data);
     setSlots(response.data);
   };
 
   useEffect(() => {
     fetchDoctor();
-    fetchAllSlots();
+    fetchAllSlots(docId);
   }, []);
 
   return (
