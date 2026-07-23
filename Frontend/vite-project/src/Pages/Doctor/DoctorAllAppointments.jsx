@@ -14,6 +14,23 @@ const DoctorAllAppointments = () => {
     }
   };
 
+  const formDate = (slotDate) => {
+    const date = new Date(slotDate);
+    console.log(date);
+    console.log(date.toDateString());
+    const day = date.toLocaleDateString("en-IN", {
+      weekday: "long",
+    });
+    console.log(day);
+    const formattedDate = date.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    console.log(formattedDate);
+    return `${day}, ${formattedDate}`;
+  };
+
   useEffect(() => {
     fetchAppointmentRequest();
   }, []);
@@ -51,13 +68,13 @@ const DoctorAllAppointments = () => {
               <table className="table table-hover align-middle">
                 <thead>
                   <tr>
-                    <th>Patient</th>
+                    <th className="text-center">Patient</th>
 
-                    <th>Date</th>
+                    <th className="text-center">Date</th>
 
-                    <th>Time</th>
+                    <th className="text-center">Time</th>
 
-                    <th>Status</th>
+                    <th className="text-center">Status</th>
 
                     <th>Action</th>
                   </tr>
@@ -66,37 +83,64 @@ const DoctorAllAppointments = () => {
                 <tbody>
                   {/* map appointments */}
 
-                  <tr>
-                    <td>
-                      <div>
-                        <h6 className="fw-bold mb-1">Rahul Sharma</h6>
+                  {appointmentRequest ? (
+                    appointmentRequest.map((a) => {
+                      return (
+                        <tr key={a.appointmentId}>
+                          <td className="text-center">
+                            <div>
+                              <h6 className="fw-bold mb-1">{a.patientName}</h6>
 
-                        <small className="text-muted">Male • 24 Years</small>
+                              <small className="text-muted">
+                                {a.gender} • {a.age} Years
+                              </small>
+                            </div>
+                          </td>
+
+                          <td className="text-center">
+                            {formDate(a.appointmentDate)}
+                          </td>
+
+                          <td className="text-center">{a.appointmentTime}</td>
+
+                          <td className="text-center">
+                            <span className="badge bg-warning text-dark">
+                              Pending
+                            </span>
+                          </td>
+
+                          <td>
+                            <div className="d-flex gap-2 flex-wrap">
+                              <button className="btn btn-sm btn-success">
+                                Accept
+                              </button>
+
+                              <button className="btn btn-sm btn-danger">
+                                Reject
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{ minHeight: "300px" }}
+                    >
+                      <div
+                        className="spinner-border"
+                        role="status"
+                        style={{
+                          width: "4rem",
+                          height: "4rem",
+                          color: "#0f766e",
+                        }}
+                      >
+                        <span className="visually-hidden">Loading...</span>
                       </div>
-                    </td>
-
-                    <td>15 Jul 2026</td>
-
-                    <td>10:30 AM</td>
-
-                    <td>
-                      <span className="badge bg-warning text-dark">
-                        Pending
-                      </span>
-                    </td>
-
-                    <td>
-                      <div className="d-flex gap-2 flex-wrap">
-                        <button className="btn btn-sm btn-success">
-                          Accept
-                        </button>
-
-                        <button className="btn btn-sm btn-danger">
-                          Reject
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                    </div>
+                  )}
                 </tbody>
               </table>
             </div>
