@@ -279,6 +279,7 @@ const DoctorDashboard = () => {
                   style={{
                     background: "#0f766e",
                   }}
+                  onClick={()=>navigate("/doctor/today's-schedule")}
                 >
                   <i className="bi bi-eye-fill me-2"></i>
                   View Schedule
