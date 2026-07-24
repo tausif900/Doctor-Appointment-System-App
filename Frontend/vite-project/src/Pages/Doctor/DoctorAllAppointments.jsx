@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
+import { toast } from "react-toastify";
 
 const DoctorAllAppointments = () => {
-  const [appointmentRequest, setAppointmentRequest] = useState(null);
-
-  const fetchAppointmentRequest = async () => {
-    try {
-      const response = await api.get("/appointments");
-      console.log(response.data);
-      setAppointmentRequest(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [pendingStatus, setPendingStatus] = useState(null);
 
   const formDate = (slotDate) => {
     const date = new Date(slotDate);
@@ -31,8 +22,29 @@ const DoctorAllAppointments = () => {
     return `${day}, ${formattedDate}`;
   };
 
+  const fetchPendingStatus = async () => {
+    try {
+      const response = await api.get("/appointments/status/pending");
+      setPendingStatus(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const acceptAppointment = async (appointmentId) => {
+    console.log(appointmentId);
+    try {
+      const response = await api.put(`/appointments/accept/${appointmentId}`);
+      toast.success("Appointment accepted");
+      fetchPendingStatus();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
   useEffect(() => {
-    fetchAppointmentRequest();
+    fetchPendingStatus();
   }, []);
 
   return (
@@ -83,8 +95,8 @@ const DoctorAllAppointments = () => {
                 <tbody>
                   {/* map appointments */}
 
-                  {appointmentRequest ? (
-                    appointmentRequest.map((a) => {
+                  {pendingStatus ? (
+                    pendingStatus.map((a) => {
                       return (
                         <tr key={a.appointmentId}>
                           <td className="text-center">
@@ -111,7 +123,12 @@ const DoctorAllAppointments = () => {
 
                           <td>
                             <div className="d-flex gap-2 flex-wrap">
-                              <button className="btn btn-sm btn-success">
+                              <button
+                                className="btn btn-sm btn-success"
+                                onClick={() =>
+                                  acceptAppointment(a.appointmentId)
+                                }
+                              >
                                 Accept
                               </button>
 
