@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
+import { toast } from "react-toastify";
 
 const TodaySchedule = () => {
   const [todaySchedule, setTodaySchedule] = useState(null);
@@ -24,6 +25,17 @@ const TodaySchedule = () => {
       year: "numeric",
     });
     return `${day}, ${formattedDate}`;
+  };
+
+  const completeAppointment = async (appointmentId) => {
+    try {
+      const response = await api.put(`/appointments/complete/${appointmentId}`);
+      console.log(response.data);
+      toast.success("Appointment is Completed");
+      fetchTodaysSchedule();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -82,15 +94,16 @@ const TodaySchedule = () => {
                   </div>
 
                   <div className="col-md-4 text-md-end mt-3 mt-md-0">
-                    <span
-                      className="badge px-3 py-2"
+                    <button
+                      className="btn btn-success px-3 py-2"
                       style={{
                         background: "#198754",
                         fontSize: "14px",
                       }}
+                      onClick={() => completeAppointment(ts.appointmentId)}
                     >
                       COMPLETE
-                    </span>
+                    </button>
                   </div>
                 </div>
               </div>
