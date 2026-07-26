@@ -19,6 +19,7 @@ import { LoginProvider } from "./Context/LoginContext";
 import UpdateDoctor from "./Pages/Doctor/UpdateDoctor";
 import ManageSlots from "./Pages/Doctor/ManageSlots";
 import TodaySchedule from "./Pages/Doctor/TodaySchedule";
+import AppointmentHistory from "./Pages/Doctor/AppointmentHistory";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: "/doctor/today's-schedule",
         element: <TodaySchedule/>
+      },
+      {
+        path: "/appointment-history",
+        element: <AppointmentHistory/>
       },
     ],
   },

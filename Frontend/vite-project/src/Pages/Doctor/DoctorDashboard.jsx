@@ -279,7 +279,7 @@ const DoctorDashboard = () => {
                   style={{
                     background: "#0f766e",
                   }}
-                  onClick={()=>navigate("/doctor/today's-schedule")}
+                  onClick={() => navigate("/doctor/today's-schedule")}
                 >
                   <i className="bi bi-eye-fill me-2"></i>
                   View Schedule
@@ -402,6 +402,7 @@ const DoctorDashboard = () => {
                   style={{
                     background: "#f59e0b",
                   }}
+                  onClick={() => navigate("/appointment-history")}
                 >
                   <i className="bi bi-clock-history me-2"></i>
                   History
