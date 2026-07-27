@@ -25,7 +25,8 @@ const ManageSlots = () => {
       reset();
       getAllSlots();
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Can not add Duplicate Slot");
+      reset();
     }
   };
 
@@ -45,7 +46,7 @@ const ManageSlots = () => {
       toast.success("Slot deleted");
       getAllSlots();
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Booked Slot can not be deleted");
     }
   };
 
@@ -58,6 +59,7 @@ const ManageSlots = () => {
       getAllSlots();
     } catch (error) {
       console.log(error);
+      toast.error("You might be updateing Booked Status");
     }
   };
 
@@ -253,7 +255,9 @@ const ManageSlots = () => {
                       <td className="text-center">{s.startTime}</td>
                       <td className="text-center">{s.endTime}</td>
                       <td className="text-center">
-                        <span className="badge bg-success">Available</span>
+                        <span className="badge bg-success">
+                          {s.slotsStatus}
+                        </span>
                       </td>
                       <td className="text-center">
                         <button
