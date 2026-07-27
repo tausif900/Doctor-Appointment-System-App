@@ -68,35 +68,35 @@ const DoctorAllAppointments = () => {
           </p>
         </div>
 
-        <div className="card border-0 shadow rounded-4">
-          <div className="card-header bg-white border-0 py-4">
-            <h4 className="fw-bold mb-0" style={{ color: "#0f766e" }}>
-              Appointment Requests
-            </h4>
-          </div>
+        {pendingStatus.length > 0 ? (
+          <div className="card border-0 shadow rounded-4">
+            <div className="card-header bg-white border-0 py-4">
+              <h4 className="fw-bold mb-0" style={{ color: "#0f766e" }}>
+                Appointment Requests
+              </h4>
+            </div>
 
-          <div className="card-body">
-            <div className="table-responsive">
-              <table className="table table-hover align-middle">
-                <thead>
-                  <tr>
-                    <th className="text-center">Patient</th>
+            <div className="card-body">
+              <div className="table-responsive">
+                <table className="table table-hover align-middle">
+                  <thead>
+                    <tr>
+                      <th className="text-center">Patient</th>
 
-                    <th className="text-center">Date</th>
+                      <th className="text-center">Date</th>
 
-                    <th className="text-center">Time</th>
+                      <th className="text-center">Time</th>
 
-                    <th className="text-center">Status</th>
+                      <th className="text-center">Status</th>
 
-                    <th>Action</th>
-                  </tr>
-                </thead>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {/* map appointments */}
+                  <tbody>
+                    {/* map appointments */}
 
-                  {pendingStatus ? (
-                    pendingStatus.map((a) => {
+                    {pendingStatus.map((a) => {
                       return (
                         <tr key={a.appointmentId}>
                           <td className="text-center">
@@ -139,30 +139,28 @@ const DoctorAllAppointments = () => {
                           </td>
                         </tr>
                       );
-                    })
-                  ) : (
-                    <div
-                      className="d-flex justify-content-center align-items-center"
-                      style={{ minHeight: "300px" }}
-                    >
-                      <div
-                        className="spinner-border"
-                        role="status"
-                        style={{
-                          width: "4rem",
-                          height: "4rem",
-                          color: "#0f766e",
-                        }}
-                      >
-                        <span className="visually-hidden">Loading...</span>
-                      </div>
-                    </div>
-                  )}
-                </tbody>
-              </table>
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="text-center py-5">
+            <i
+              className="bi bi-inbox"
+              style={{ fontSize: "4rem", color: "#6c757d" }}
+            ></i>
+
+            <h4 className="mt-3 text-muted">No Appointment Requests</h4>
+
+            <p className="text-secondary mb-0">
+              There are no pending appointment requests at the moment.
+              <br />
+              New patient requests will appear here for your review.
+            </p>
+          </div>
+        )}
       </div>
     </main>
   );

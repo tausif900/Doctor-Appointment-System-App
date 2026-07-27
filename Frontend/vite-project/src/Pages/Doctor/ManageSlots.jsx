@@ -14,7 +14,7 @@ const ManageSlots = () => {
     reset: updateReset,
   } = useForm();
 
-  const [slots, setSlots] = useState(null);
+  const [slots, setSlots] = useState([]);
   const [slotId, setSlotId] = useState(null);
 
   const addSlots = async (data) => {
@@ -226,29 +226,29 @@ const ManageSlots = () => {
       </div>
 
       {/* Slot List */}
-      <div className="card shadow border-0" style={{ borderRadius: "15px" }}>
-        <div
-          className="card-header text-white"
-          style={{ backgroundColor: "#0f766e" }}
-        >
-          <h5 className="mb-0">Available Slots</h5>
-        </div>
+      {slots.length > 0 ? (
+        <div className="card shadow border-0" style={{ borderRadius: "15px" }}>
+          <div
+            className="card-header text-white"
+            style={{ backgroundColor: "#0f766e" }}
+          >
+            <h5 className="mb-0">Available Slots</h5>
+          </div>
 
-        <div className="card-body p-0">
-          <table className="table table-hover align-middle mb-0">
-            <thead className="table-light">
-              <tr>
-                <th className="text-center">Date</th>
-                <th className="text-center">Start Time</th>
-                <th className="text-center">End Time</th>
-                <th className="text-center">Status</th>
-                <th className="text-center">Action</th>
-              </tr>
-            </thead>
+          <div className="card-body p-0">
+            <table className="table table-hover align-middle mb-0">
+              <thead className="table-light">
+                <tr>
+                  <th className="text-center">Date</th>
+                  <th className="text-center">Start Time</th>
+                  <th className="text-center">End Time</th>
+                  <th className="text-center">Status</th>
+                  <th className="text-center">Action</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {slots ? (
-                slots.map((s) => {
+              <tbody>
+                {slots.map((s) => {
                   return (
                     <tr>
                       <td className="text-center">{s.slotDate}</td>
@@ -284,33 +284,29 @@ const ManageSlots = () => {
                       </td>
                     </tr>
                   );
-                })
-              ) : (
-                <div
-                  className="d-flex justify-content-center align-items-center"
-                  style={{
-                    minHeight: "70vh",
-                  }}
-                >
-                  <div
-                    className="spinner-border"
-                    role="status"
-                    style={{
-                      width: "4rem",
-                      height: "4rem",
-                      color: "#0f766e",
-                    }}
-                  >
-                    <span className="visually-hidden">Loading...</span>
-                  </div>
-                </div>
-              )}
+                })}
 
-              {/* Map slots here */}
-            </tbody>
-          </table>
+                {/* Map slots here */}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="text-center py-5">
+          <i
+            className="bi bi-calendar-plus"
+            style={{ fontSize: "4rem", color: "#6c757d" }}
+          ></i>
+
+          <h4 className="mt-3 text-muted">No Slots Available</h4>
+
+          <p className="text-secondary mb-0">
+            You haven't added any appointment slots yet.
+            <br />
+            Create a slot to start accepting patient appointments.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

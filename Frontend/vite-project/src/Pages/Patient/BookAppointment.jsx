@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const BookAppointment = () => {
   const [doctor, setDoctor] = useState({});
-  const [slots, setSlots] = useState(null);
+  const [slots, setSlots] = useState([]);
   const { docId } = useParams();
   const navigate = useNavigate();
   const {
@@ -183,7 +183,7 @@ const BookAppointment = () => {
                 >
                   {/* Map available slots here */}
 
-                  {slots ? (
+                  {slots.length > 0 ? (
                     slots.map((slot) => (
                       <div
                         key={slot.slotId}
@@ -227,21 +227,19 @@ const BookAppointment = () => {
                       </div>
                     ))
                   ) : (
-                    <div
-                      className="d-flex justify-content-center align-items-center"
-                      style={{ minHeight: "300px" }}
-                    >
-                      <div
-                        className="spinner-border"
-                        role="status"
-                        style={{
-                          width: "4rem",
-                          height: "4rem",
-                          color: "#0f766e",
-                        }}
-                      >
-                        <span className="visually-hidden">Loading...</span>
-                      </div>
+                    <div className="text-center py-5">
+                      <i
+                        className="bi bi-calendar-x"
+                        style={{ fontSize: "4rem", color: "#6c757d" }}
+                      ></i>
+
+                      <h4 className="mt-3 text-muted">
+                        No Appointment Slots Available
+                      </h4>
+
+                      <p className="text-secondary mb-0">
+                        The doctor hasn't added any appointment slots yet.
+                      </p>
                     </div>
                   )}
                 </div>

@@ -4,13 +4,15 @@ import { api } from "../../api";
 import { LoginContext } from "../../Context/LoginContext";
 
 const MyAllAppointments = () => {
-  const [patientAppointments, setPatientAppointments] = useState(null);
+  const [patientAppointments, setPatientAppointments] = useState([]);
 
   const { user } = useContext(LoginContext);
 
   const getAllAppointmentsOfPatient = async () => {
     try {
-      const response = await api.get(`/appointments/patient/${user?.patient.patientId}`);
+      const response = await api.get(
+        `/appointments/patient/${user?.patient.patientId}`,
+      );
       console.log(response.data);
       setPatientAppointments(response.data);
     } catch (error) {
@@ -48,19 +50,19 @@ const MyAllAppointments = () => {
           </p>
         </div>
 
-        <div className="card border-0 shadow rounded-4">
-          <div className="card-header bg-white border-0 py-4">
-            <h4
-              className="fw-bold mb-0"
-              style={{
-                color: "#0f766e",
-              }}
-            >
-              Appointment History
-            </h4>
-          </div>
+        {patientAppointments.length > 0 ? (
+          <div className="card border-0 shadow rounded-4">
+            <div className="card-header bg-white border-0 py-4">
+              <h4
+                className="fw-bold mb-0"
+                style={{
+                  color: "#0f766e",
+                }}
+              >
+                Appointment History
+              </h4>
+            </div>
 
-          {patientAppointments ? (
             <div className="card-body">
               <div className="table-responsive">
                 <table className="table table-hover align-middle">
@@ -122,27 +124,23 @@ const MyAllAppointments = () => {
                 </table>
               </div>
             </div>
-          ) : (
-            <div
-              className="d-flex justify-content-center align-items-center"
-              style={{
-                minHeight: "70vh",
-              }}
-            >
-              <div
-                className="spinner-border"
-                role="status"
-                style={{
-                  width: "4rem",
-                  height: "4rem",
-                  color: "#0f766e",
-                }}
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="text-center py-5">
+            <i
+              className="bi bi-calendar2-x"
+              style={{ fontSize: "4rem", color: "#6c757d" }}
+            ></i>
+
+            <h4 className="mt-3 text-muted">No Appointments Found</h4>
+
+            <p className="text-secondary mb-0">
+              You haven't booked any appointments yet.
+              <br />
+              Book an appointment to view it here.
+            </p>
+          </div>
+        )}
       </div>
     </main>
   );

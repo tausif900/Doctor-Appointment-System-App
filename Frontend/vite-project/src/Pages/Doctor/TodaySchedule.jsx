@@ -3,7 +3,7 @@ import { api } from "../../api";
 import { toast } from "react-toastify";
 
 const TodaySchedule = () => {
-  const [todaySchedule, setTodaySchedule] = useState(null);
+  const [todaySchedule, setTodaySchedule] = useState([]);
 
   const fetchTodaysSchedule = async () => {
     try {
@@ -53,10 +53,11 @@ const TodaySchedule = () => {
         Today's Schedule
       </h3>
 
-      {todaySchedule ? (
+      {todaySchedule.length > 0 ? (
         todaySchedule.map((ts) => {
           return (
             <div
+              key={ts.appointmentId}
               className="card border-0 shadow-lg mt-2"
               style={{
                 borderRadius: "12px",
@@ -111,7 +112,18 @@ const TodaySchedule = () => {
           );
         })
       ) : (
-        <h2>Loading....</h2>
+        <div className="text-center py-5">
+          <i
+            className="bi bi-calendar-x"
+            style={{ fontSize: "4rem", color: "#6c757d" }}
+          ></i>
+
+          <h4 className="mt-3 text-muted">No Appointments Scheduled Today</h4>
+
+          <p className="text-secondary">
+            Once you accept patient appointments, they will appear here.
+          </p>
+        </div>
       )}
     </div>
   );
