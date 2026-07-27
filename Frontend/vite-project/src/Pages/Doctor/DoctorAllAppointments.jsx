@@ -3,7 +3,7 @@ import { api } from "../../api";
 import { toast } from "react-toastify";
 
 const DoctorAllAppointments = () => {
-  const [pendingStatus, setPendingStatus] = useState(null);
+  const [pendingStatus, setPendingStatus] = useState([]);
 
   const formDate = (slotDate) => {
     const date = new Date(slotDate);
@@ -36,6 +36,18 @@ const DoctorAllAppointments = () => {
     try {
       const response = await api.put(`/appointments/accept/${appointmentId}`);
       toast.success("Appointment accepted");
+      fetchPendingStatus();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
+    const rejectAppointment = async (appointmentId) => {
+    console.log(appointmentId);
+    try {
+      const response = await api.put(`/appointments/reject/${appointmentId}`);
+      toast.success("Appointment Rejected");
       fetchPendingStatus();
     } catch (error) {
       console.log(error);
@@ -132,7 +144,10 @@ const DoctorAllAppointments = () => {
                                 Accept
                               </button>
 
-                              <button className="btn btn-sm btn-danger">
+                              <button className="btn btn-sm btn-danger"
+                              onClick={() =>
+                                  rejectAppointment(a.appointmentId)
+                                }>
                                 Reject
                               </button>
                             </div>

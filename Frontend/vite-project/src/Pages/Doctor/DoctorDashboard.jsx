@@ -116,7 +116,9 @@ const DoctorDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">{dashboard?.todayAppointments}</h3>
+                  <h3 className="fw-bold mb-0">
+                    {dashboard?.todayAppointments}
+                  </h3>
 
                   <small className="text-muted">Today's Appointments</small>
                 </div>
@@ -202,7 +204,9 @@ const DoctorDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">₹ {dashboard?.monthlyEarnings}</h3>
+                  <h3 className="fw-bold mb-0">
+                    ₹ {dashboard?.monthlyEarnings}
+                  </h3>
 
                   <small className="text-muted">Monthly Earnings</small>
                 </div>
@@ -416,6 +420,47 @@ const DoctorDashboard = () => {
                 >
                   <i className="bi bi-clock-history me-2"></i>
                   History
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Rejected Appointment */}
+          <div className="col-lg-3 col-md-6">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body text-center p-4">
+                <div
+                  className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background: "#ffeaea",
+                  }}
+                >
+                  <i
+                    className="bi bi-x-circle"
+                    style={{
+                      fontSize: "2rem",
+                      color: "#dc3545",
+                    }}
+                  ></i>
+                </div>
+
+                <h3 className="fw-bold mb-3">Rejected Appointments</h3>
+
+                <p className="text-muted mb-4">
+                  View all rejected appointment requests and their details.
+                </p>
+
+                <button
+                  className="btn text-white px-4"
+                  style={{
+                    background: "#dc3545",
+                  }}
+                  onClick={() => navigate("/rejected-appointment")}
+                >
+                  <i className="bi bi-x-circle me-2"></i>
+                  Rejected
                 </button>
               </div>
             </div>

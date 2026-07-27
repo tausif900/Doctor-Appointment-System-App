@@ -20,6 +20,7 @@ import UpdateDoctor from "./Pages/Doctor/UpdateDoctor";
 import ManageSlots from "./Pages/Doctor/ManageSlots";
 import TodaySchedule from "./Pages/Doctor/TodaySchedule";
 import AppointmentHistory from "./Pages/Doctor/AppointmentHistory";
+import RejectedAppointment from "./Pages/Doctor/RejectedAppointments";
 
 const router = createBrowserRouter([
   {
@@ -89,11 +90,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/doctor/today's-schedule",
-        element: <TodaySchedule/>
+        element: <TodaySchedule />,
       },
       {
         path: "/appointment-history",
-        element: <AppointmentHistory/>
+        element: <AppointmentHistory />,
+      },
+      {
+        path: "/rejected-appointment",
+        element: <RejectedAppointment/>
       },
     ],
   },
