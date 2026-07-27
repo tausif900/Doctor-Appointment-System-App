@@ -46,7 +46,7 @@ const AppointmentHistory = () => {
           </h4>
 
           <span className="badge bg-success fs-6">
-            Total: {appointmentHistory.length}
+            Total: {appointmentHistory?.length}
           </span>
         </div>
 

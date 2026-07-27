@@ -5,6 +5,7 @@ import { LoginContext } from "../../Context/LoginContext";
 
 const DoctorDashboard = () => {
   const [doctor, setDoctor] = useState({});
+  const [dashboard, setDashboard] = useState(null);
   const navigate = useNavigate();
   const { user } = useContext(LoginContext);
 
@@ -15,8 +16,17 @@ const DoctorDashboard = () => {
     } catch (error) {}
   };
 
+  const fetchDashboardDetails = async () => {
+    try {
+      const response = await api.get("/appointments/doctors/dashboard-cards");
+      console.log(response.data);
+      setDashboard(response.data);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     fetchDoctor();
+    fetchDashboardDetails();
   }, []);
 
   return (
@@ -106,7 +116,7 @@ const DoctorDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">12</h3>
+                  <h3 className="fw-bold mb-0">{dashboard?.todayAppointments}</h3>
 
                   <small className="text-muted">Today's Appointments</small>
                 </div>
@@ -135,7 +145,7 @@ const DoctorDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">156</h3>
+                  <h3 className="fw-bold mb-0">{dashboard?.totalPatients}</h3>
 
                   <small className="text-muted">Total Patients</small>
                 </div>
@@ -163,7 +173,7 @@ const DoctorDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">143</h3>
+                  <h3 className="fw-bold mb-0">{dashboard?.completedVisits}</h3>
 
                   <small className="text-muted">Completed Visits</small>
                 </div>
@@ -192,7 +202,7 @@ const DoctorDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">₹24K</h3>
+                  <h3 className="fw-bold mb-0">₹ {dashboard?.monthlyEarnings}</h3>
 
                   <small className="text-muted">Monthly Earnings</small>
                 </div>
