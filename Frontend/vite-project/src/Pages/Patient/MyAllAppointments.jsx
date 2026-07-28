@@ -113,9 +113,18 @@ const MyAllAppointments = () => {
                           </td>
 
                           <td>
-                            <button className="btn btn-sm btn-outline-danger px-3">
-                              Cancel
-                            </button>
+                            {appointment.status === "Pending" ? (
+                              <button className="btn btn-sm btn-outline-danger px-3">
+                                Cancel
+                              </button>
+                            ) : (
+                              <button
+                                className="btn btn-sm btn-outline-danger px-3"
+                                disabled
+                              >
+                                Cancel
+                              </button>
+                            )}
                           </td>
                         </tr>
                       );

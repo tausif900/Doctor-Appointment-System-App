@@ -7,7 +7,7 @@ import { LoginContext } from "../../Context/LoginContext";
 const PatientDashboard = () => {
   const navigate = useNavigate();
   const [patientName, setPatientName] = useState();
-  const {user}=useContext(LoginContext);
+  const { user } = useContext(LoginContext);
 
   const fetchPatientName = async () => {
     const response = await api.get(`/patient/${user?.data.userDto.id}`);
@@ -251,9 +251,7 @@ const PatientDashboard = () => {
 
                 <button
                   className="btn btn-primary px-4"
-                  onClick={() =>
-                    navigate("/patient/my-appointments")
-                  }
+                  onClick={() => navigate("/patient/my-appointments")}
                 >
                   <i className="bi bi-eye-fill me-2"></i>
                   View
@@ -287,7 +285,10 @@ const PatientDashboard = () => {
                   Update your personal details and manage your account.
                 </p>
 
-                <button className="btn btn-warning text-white px-4">
+                <button
+                  className="btn btn-warning text-white px-4"
+                  onClick={() => navigate("/patient/update-profile")}
+                >
                   <i className="bi bi-pencil-square me-2"></i>
                   Edit Profile
                 </button>
