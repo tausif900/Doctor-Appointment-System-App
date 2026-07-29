@@ -6,16 +6,29 @@ import { LoginContext } from "../../Context/LoginContext";
 
 const PatientDashboard = () => {
   const navigate = useNavigate();
-  const [patientName, setPatientName] = useState();
+  // const [patientName, setPatientName] = useState();
+
+  const [dashboard, setDashboard] = useState({});
   const { user } = useContext(LoginContext);
 
-  const fetchPatientName = async () => {
-    const response = await api.get(`/patient/${user?.data.userDto.id}`);
-    setPatientName(response.data.patientName);
+  // const fetchPatientName = async () => {
+  //   const response = await api.get(`/patient/${user?.data.userDto.id}`);
+  //   setPatientName(response.data.patientName);
+  // };
+
+  const fetchDashboardDetails = async () => {
+    try {
+      const response = await api.get("/appointments/patient/dashboard-cards");
+      console.log(response.data);
+      setDashboard(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    fetchPatientName();
+    // fetchPatientName();
+    fetchDashboardDetails();
   }, []);
 
   return (
@@ -84,7 +97,9 @@ const PatientDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">12</h3>
+                  <h3 className="fw-bold mb-0">
+                    {dashboard?.totalAppointments}
+                  </h3>
 
                   <small className="text-muted">Total Appointments</small>
                 </div>
@@ -113,7 +128,9 @@ const PatientDashboard = () => {
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">8</h3>
+                  <h3 className="fw-bold mb-0">
+                    {dashboard?.doctorsConsulted}
+                  </h3>
 
                   <small className="text-muted">Doctors Consulted</small>
                 </div>
