@@ -35,7 +35,7 @@ const TodaySchedule = () => {
       console.log(response.data);
       toast.success("Appointment is Completed");
       fetchTodaysSchedule();
-      navigate("/write-medical-report");
+      navigate("/doctor-dashboard")
     } catch (error) {
       console.log(error);
     }
@@ -97,9 +97,9 @@ const TodaySchedule = () => {
                     </p>
                   </div>
 
-                  <div className="col-md-4 text-md-end mt-3 mt-md-0">
+                  <div className="col-md-4 text-md-end mt-3 mt-md-0 d-flex  flex-column">
                     <button
-                      className="btn btn-success px-3 py-2"
+                      className="btn btn-success px-3 py-2 w-50"
                       style={{
                         background: "#198754",
                         fontSize: "14px",
@@ -107,6 +107,16 @@ const TodaySchedule = () => {
                       onClick={() => completeAppointment(ts.appointmentId)}
                     >
                       COMPLETE
+                    </button>
+                    <button
+                      className="btn btn-success px-3 py-2 w-50 mt-2"
+                      style={{
+                        background: "#198754",
+                        fontSize: "14px",
+                      }}
+                      onClick={() => navigate(`/write-medical-report/${ts.patientId}`)}
+                    >
+                      Create Medical Report
                     </button>
                   </div>
                 </div>
