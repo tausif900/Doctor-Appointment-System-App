@@ -23,6 +23,7 @@ import AppointmentHistory from "./Pages/Doctor/AppointmentHistory";
 import RejectedAppointment from "./Pages/Doctor/RejectedAppointments";
 import UpdatePatientProfile from "./Pages/Patient/UpdatePatientProfile";
 import WriteMedicalReport from "./Pages/Doctor/WriteMedicalReport";
+import DistinctPatientCards from "./Pages/Doctor/DistinctPatientCards";
 
 const router = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
       {
         path: "/write-medical-report",
         element: <WriteMedicalReport />,
+      },
+      {
+        path: "/doctor/medical-records-of-distinct-patinet",
+        element: <DistinctPatientCards />,
       },
     ],
   },

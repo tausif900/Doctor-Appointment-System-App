@@ -292,6 +292,7 @@ const DoctorDashboard = () => {
                   className="btn text-white px-4"
                   style={{
                     background: "#0f766e",
+                    
                   }}
                   onClick={() => navigate("/doctor/today's-schedule")}
                 >
@@ -461,6 +462,52 @@ const DoctorDashboard = () => {
                 >
                   <i className="bi bi-x-circle me-2"></i>
                   Rejected
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* View Records */}
+          <div className="col-lg-3 col-md-6">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body text-center p-4">
+                <div
+                  className="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background: "#e6fffa",
+                  }}
+                >
+                  <i
+                    className="bi bi-file-earmark-medical-fill"
+                    style={{
+                      fontSize: "38px",
+                      color: "#0f766e",
+                    }}
+                  ></i>
+                </div>
+
+                <h3 className="fw-bold mb-3">Medical Records</h3>
+
+                <p className="text-muted mb-4">
+                  View and manage medical records of all patients whose
+                  appointments have been completed.
+                </p>
+
+                <button
+                  className="btn text-white px-4"
+                  style={{
+                    background: "#0f766e",
+                    borderRadius: "10px",
+                    fontWeight: "600",
+                  }}
+                  onClick={() =>
+                    navigate("/doctor/medical-records-of-distinct-patinet")
+                  }
+                >
+                  <i className="bi bi-eye-fill me-2"></i>
+                  View Medical Records
                 </button>
               </div>
             </div>
