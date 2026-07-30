@@ -22,6 +22,7 @@ import TodaySchedule from "./Pages/Doctor/TodaySchedule";
 import AppointmentHistory from "./Pages/Doctor/AppointmentHistory";
 import RejectedAppointment from "./Pages/Doctor/RejectedAppointments";
 import UpdatePatientProfile from "./Pages/Patient/UpdatePatientProfile";
+import WriteMedicalReport from "./Pages/Doctor/WriteMedicalReport";
 
 const router = createBrowserRouter([
   {
@@ -99,11 +100,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/rejected-appointment",
-        element: <RejectedAppointment/>
+        element: <RejectedAppointment />,
       },
-       {
+      {
         path: "/patient/update-profile",
-        element: <UpdatePatientProfile/>
+        element: <UpdatePatientProfile />,
+      },
+      {
+        path: "/write-medical-report",
+        element: <WriteMedicalReport />,
       },
     ],
   },

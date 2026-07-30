@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const TodaySchedule = () => {
   const [todaySchedule, setTodaySchedule] = useState([]);
+  const navigate = useNavigate();
 
   const fetchTodaysSchedule = async () => {
     try {
@@ -33,6 +35,7 @@ const TodaySchedule = () => {
       console.log(response.data);
       toast.success("Appointment is Completed");
       fetchTodaysSchedule();
+      navigate("/write-medical-report");
     } catch (error) {
       console.log(error);
     }
