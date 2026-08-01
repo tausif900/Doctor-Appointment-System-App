@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DistinctPatientCards = () => {
   const [patientDetails, setPatientDetails] = useState([]);
+  const navigate = useNavigate();
 
   const fetchDistinctPatient = async () => {
     try {
@@ -11,6 +14,24 @@ const DistinctPatientCards = () => {
       setPatientDetails(response.data);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const checkMedicalRecord = async (patientId, patientName) => {
+    try {
+      const response = await api.get(`medical-record/exists/${patientId}`);
+      console.log(response.data);
+      if (!response.data) {
+        toast.info(
+          `No medical record found for ${patientName}. Please create one.`,
+        );
+        navigate(`/write-medical-report/${patientId}`);
+      } else {
+        navigate(`/update-medical-record/${patientId}`);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
   };
 
@@ -104,9 +125,15 @@ const DistinctPatientCards = () => {
                           background: "#0f766e",
                           borderRadius: "10px",
                         }}
+                        onClick={() =>
+                          checkMedicalRecord(
+                            patientDetail.patientId,
+                            patientDetail.patientName,
+                          )
+                        }
                       >
                         <i className="bi bi-file-earmark-medical me-2"></i>
-                        View Medical Record
+                        View Or Update Medical Record
                       </button>
                     </div>
                   </div>

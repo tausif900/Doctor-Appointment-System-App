@@ -38,9 +38,13 @@ const BookAppointment = () => {
   };
 
   const fetchAllSlots = async (docId) => {
-    const response = await api.get(`/slots/doctor/${docId}`);
-    console.log(response.data);
-    setSlots(response.data);
+    try {
+      const response = await api.get(`/slots/doctor/${docId}`);
+      console.log(response.data);
+      setSlots(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const bookAppointment = async (slotId) => {

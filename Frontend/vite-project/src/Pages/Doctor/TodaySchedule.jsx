@@ -35,9 +35,25 @@ const TodaySchedule = () => {
       console.log(response.data);
       toast.success("Appointment is Completed");
       fetchTodaysSchedule();
-      navigate("/doctor-dashboard")
+      navigate("/doctor-dashboard");
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const checkMedicalRecord = async (patientId, patientName) => {
+    try {
+      const response = await api.get(`medical-record/exists/${patientId}`);
+      console.log(response.data);
+      if (!response.data) {
+        navigate(`/write-medical-report/${patientId}`);
+      } else {
+        toast.success(`Record already exist Of ${patientName}`);
+        navigate(`/doctor/medical-records-of-distinct-patinet`);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
   };
 
@@ -114,7 +130,9 @@ const TodaySchedule = () => {
                         background: "#198754",
                         fontSize: "14px",
                       }}
-                      onClick={() => navigate(`/write-medical-report/${ts.patientId}`)}
+                      onClick={() =>
+                        checkMedicalRecord(ts.patientId, ts.patientName)
+                      }
                     >
                       Create Medical Report
                     </button>

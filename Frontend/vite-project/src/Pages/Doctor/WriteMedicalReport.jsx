@@ -111,6 +111,17 @@ const WriteMedicalReport = () => {
               )}
 
               <div className="mb-4">
+                <label className="form-label fw-semibold">Medical Tests</label>
+
+                <textarea
+                  rows="3"
+                  className="form-control"
+                  placeholder="Medical Test..."
+                  {...register("medicalTest")}
+                ></textarea>
+              </div>
+
+              <div className="mb-4">
                 <label className="form-label fw-semibold">Advice</label>
 
                 <textarea
