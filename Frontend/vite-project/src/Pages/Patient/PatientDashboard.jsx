@@ -6,15 +6,40 @@ import { LoginContext } from "../../Context/LoginContext";
 
 const PatientDashboard = () => {
   const navigate = useNavigate();
-  // const [patientName, setPatientName] = useState();
+
+  const [nextAppointment, setNextAppointment] = useState();
 
   const [dashboard, setDashboard] = useState({});
+
   const { user } = useContext(LoginContext);
 
-  // const fetchPatientName = async () => {
-  //   const response = await api.get(`/patient/${user?.data.userDto.id}`);
-  //   setPatientName(response.data.patientName);
-  // };
+  const fetchNextAppointment = async () => {
+    try {
+      const response = await api.get(`appointments/patient-next-appointment`);
+      console.log(response.data);
+      if (!response.data || response.data.appointmentDate == null) {
+        setNextAppointment(null);
+      } else {
+        setNextAppointment(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+      setNextAppointment(null);
+    }
+  };
+
+  const formatDate = (nextAppointmentDate) => {
+    const date = new Date(nextAppointmentDate);
+    const day = date.toLocaleDateString("en-IN", {
+      weekday: "long",
+    });
+    const formattedDate = date.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    return `${day}, ${formattedDate}`;
+  };
 
   const fetchDashboardDetails = async () => {
     try {
@@ -27,7 +52,7 @@ const PatientDashboard = () => {
   };
 
   useEffect(() => {
-    // fetchPatientName();
+    fetchNextAppointment();
     fetchDashboardDetails();
   }, []);
 
@@ -137,59 +162,68 @@ const PatientDashboard = () => {
               </div>
             </div>
           </div>
+
           <div className="col-lg-3 col-md-6">
             <div className="card border-0 shadow h-100 rounded-4">
-              <div className="card-body d-flex align-items-center">
+              <div className="card-body  d-flex align-items-center">
                 <div
                   className="rounded-circle d-flex align-items-center justify-content-center me-3"
                   style={{
                     width: "70px",
                     height: "70px",
-                    background: "#ecfdf5",
+                    background: "#e9f8ef",
                   }}
                 >
                   <i
-                    className="bi bi-file-earmark-medical-fill"
-                    style={{
-                      color: "#16a34a",
-                      fontSize: "30px",
-                    }}
+                    className="bi bi-calendar-event-fill"
+                    style={{ fontSize: "30px", color: "#16a34a" }}
                   ></i>
                 </div>
 
-                <div>
-                  <h3 className="fw-bold mb-0">5</h3>
-
-                  <small className="text-muted">Medical Reports</small>
-                </div>
+                {nextAppointment ? (
+                  <div className="d-flex flex-column">
+                    <small className="text-muted">
+                      Your Upcoming Appointment is on
+                    </small>
+                    <h1 className="fs-4 mb-1">
+                      {formatDate(nextAppointment.appointmentDate)}
+                    </h1>
+                  </div>
+                ) : (
+                  <div className="d-flex flex-column">
+                    <h4 className="fs-semi-bold text-danger">
+                      No Upcoming Appointment
+                    </h4>
+                    <small className="text-muted">
+                      Book an appointment to see it here.
+                    </small>
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
           <div className="col-lg-3 col-md-6">
             <div className="card border-0 shadow h-100 rounded-4">
-              <div className="card-body d-flex align-items-center">
+              <div className="card-body  d-flex align-items-center">
                 <div
                   className="rounded-circle d-flex align-items-center justify-content-center me-3"
                   style={{
                     width: "70px",
                     height: "70px",
-                    background: "#fff7ed",
+                    background: "#e9f8ef",
                   }}
                 >
                   <i
-                    className="bi bi-capsule-pill"
-                    style={{
-                      color: "#ea580c",
-                      fontSize: "30px",
-                    }}
+                    className="bi bi-calendar-event-fill"
+                    style={{ fontSize: "30px", color: "#16a34a" }}
                   ></i>
                 </div>
 
                 <div>
-                  <h3 className="fw-bold mb-0">3</h3>
+                  <h3 className="fw-bold mb-0">31 Jul</h3>
 
-                  <small className="text-muted">Prescriptions</small>
+                  <small className="text-muted">Last Consultation</small>
                 </div>
               </div>
             </div>
