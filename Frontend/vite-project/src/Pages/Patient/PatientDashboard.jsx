@@ -9,6 +9,8 @@ const PatientDashboard = () => {
 
   const [nextAppointment, setNextAppointment] = useState();
 
+  const [lastConsultationDate, setLastConsultationDate] = useState();
+
   const [dashboard, setDashboard] = useState({});
 
   const { user } = useContext(LoginContext);
@@ -28,8 +30,23 @@ const PatientDashboard = () => {
     }
   };
 
-  const formatDate = (nextAppointmentDate) => {
-    const date = new Date(nextAppointmentDate);
+  const fetchLastConsultationDate = async () => {
+    try {
+      const response = await api.get(`appointments/last-consultation-date`);
+      console.log(response.data);
+      if (!response.data || response.data == null) {
+        setLastConsultationDate(null);
+      } else {
+        setLastConsultationDate(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+      setLastConsultationDate(null);
+    }
+  };
+
+  const formatDate = (d) => {
+    const date = new Date(d);
     const day = date.toLocaleDateString("en-IN", {
       weekday: "long",
     });
@@ -54,6 +71,7 @@ const PatientDashboard = () => {
   useEffect(() => {
     fetchNextAppointment();
     fetchDashboardDetails();
+    fetchLastConsultationDate();
   }, []);
 
   return (
@@ -191,12 +209,12 @@ const PatientDashboard = () => {
                   </div>
                 ) : (
                   <div className="d-flex flex-column">
-                    <h4 className="fs-semi-bold text-danger">
-                      No Upcoming Appointment
-                    </h4>
                     <small className="text-muted">
                       Book an appointment to see it here.
                     </small>
+                    <h4 className="fs-semi-bold text-danger">
+                      No Upcoming Appointment
+                    </h4>
                   </div>
                 )}
               </div>
@@ -220,10 +238,26 @@ const PatientDashboard = () => {
                   ></i>
                 </div>
 
-                <div>
-                  <h3 className="fw-bold mb-0">31 Jul</h3>
-
-                  <small className="text-muted">Last Consultation</small>
+                <div className="ms-4">
+                  {lastConsultationDate ? (
+                    <>
+                      <h6 className="mb-0 text-secondary mt-2">
+                        Last Consultation was on
+                      </h6>
+                      <h4 className="fw-bold mb-1">
+                        {formatDate(lastConsultationDate.appointmentDate)}
+                      </h4>
+                    </>
+                  ) : (
+                    <>
+                      <small className="text-muted">
+                        Complete your first appointment to see it here.
+                      </small>
+                      <h5 className="fw-bold mb-1" style={{ color: "#dc3545" }}>
+                        No Consultation Yet
+                      </h5>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
