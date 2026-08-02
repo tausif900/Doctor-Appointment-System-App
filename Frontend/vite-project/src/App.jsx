@@ -25,6 +25,7 @@ import UpdatePatientProfile from "./Pages/Patient/UpdatePatientProfile";
 import WriteMedicalReport from "./Pages/Doctor/WriteMedicalReport";
 import DistinctPatientCards from "./Pages/Doctor/DistinctPatientCards";
 import UpdateMedicalRecord from "./Pages/Doctor/UpdateMedicalRecord";
+import ViewMedicalRecord from "./Pages/Patient/ViewMedicalRecord";
 
 const router = createBrowserRouter([
   {
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
       {
         path: "/update-medical-record/:patientId",
         element: <UpdateMedicalRecord />,
+      },
+      {
+        path: "/view-medical-report",
+        element: <ViewMedicalRecord/>
       },
     ],
   },

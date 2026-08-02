@@ -270,7 +270,7 @@ const PatientDashboard = () => {
         {/* Quick Actions */}
 
         <div className="row g-4 mb-4">
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-body text-center p-4">
                 <div
@@ -311,7 +311,7 @@ const PatientDashboard = () => {
             </div>
           </div>
 
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-body text-center p-4">
                 <div
@@ -347,7 +347,8 @@ const PatientDashboard = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-4">
+
+          <div className="col-lg-3">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-body text-center p-4">
                 <div
@@ -383,10 +384,47 @@ const PatientDashboard = () => {
               </div>
             </div>
           </div>
+
+          <div className="col-lg-3">
+            <div className="card border-0 shadow rounded-4 h-100">
+              <div className="card-body text-center p-4">
+                <div
+                  className="rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                    background: "#17b958",
+                  }}
+                >
+                  <i
+                    className="bi bi-file-earmark-medical-fill"
+                    style={{
+                      fontSize: "40px",
+                      color: "#2d610f",
+                    }}
+                  ></i>
+                </div>
+
+                <h4 className="fw-bold">Medical Record</h4>
+
+                <p className="text-muted">
+                  View your diagnosis, medicines, medical tests and doctor's
+                  advice.
+                </p>
+
+                <button
+                  className="btn btn-success text-white px-4"
+                  onClick={() => navigate("/view-medical-report")}
+                >
+                  <i className="bi bi-eye-fill me-2"></i>
+                  View Record
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Upcoming Appointment & Health Tips */}
-
         <div className="row g-4 mb-4">
           {/* Upcoming Appointment */}
 
@@ -470,50 +508,6 @@ const PatientDashboard = () => {
                     Sleep 7–8 hours to stay healthy.
                   </li>
                 </ul>
-              </div>
-            </div>
-          </div>
-          {/* Today's Health Summary */}
-
-          <div className="col-lg-3">
-            <div className="card border-0 shadow rounded-4 h-100">
-              <div className="card-header bg-white border-0 py-3">
-                <h4 className="fw-bold mb-0">
-                  <i className="bi bi-clipboard2-pulse-fill text-success me-2"></i>
-                  Today's Summary
-                </h4>
-              </div>
-
-              <div className="card-body">
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                  <span>Appointments</span>
-                  <span className="badge bg-primary">1 Today</span>
-                </div>
-
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                  <span>Pending Reports</span>
-                  <span className="badge bg-warning text-dark">2</span>
-                </div>
-
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                  <span>Medicines</span>
-                  <span className="badge bg-success">Active</span>
-                </div>
-
-                <div className="d-flex justify-content-between align-items-center mb-4">
-                  <span>Health Status</span>
-                  <span className="badge bg-info">Good</span>
-                </div>
-
-                <button
-                  className="btn w-100 text-white"
-                  style={{
-                    background: "#0f766e",
-                  }}
-                >
-                  <i className="bi bi-file-earmark-medical-fill me-2"></i>
-                  View Medical Records
-                </button>
               </div>
             </div>
           </div>
