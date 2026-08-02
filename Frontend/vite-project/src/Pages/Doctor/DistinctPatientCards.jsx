@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 
 const DistinctPatientCards = () => {
   const [patientDetails, setPatientDetails] = useState([]);
+  const [search, setSearch] = useState("");
+  const [filteredPatient, setFilteredPatient] = useState([]);
   const navigate = useNavigate();
 
   const fetchDistinctPatient = async () => {
@@ -12,6 +14,7 @@ const DistinctPatientCards = () => {
       const response = await api.get("/appointments/doctor/distinct-patients");
       console.log(response.data);
       setPatientDetails(response.data);
+      setFilteredPatient(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +38,14 @@ const DistinctPatientCards = () => {
     }
   };
 
+  const searchPatient = (name) => {
+    const searchedPatient = patientDetails.filter((pd) =>
+      pd.patientName.toLowerCase().includes(name.toLowerCase()),
+    );
+    console.log(searchedPatient);
+    setFilteredPatient(searchedPatient);
+  };
+
   useEffect(() => {
     fetchDistinctPatient();
   }, []);
@@ -55,7 +66,7 @@ const DistinctPatientCards = () => {
       </div>
 
       {/* Search */}
-      {patientDetails.length > 0 ? (
+      {filteredPatient.length > 0 ? (
         <div>
           <div className="card border-0 shadow-sm mb-4">
             <div className="card-body">
@@ -79,6 +90,11 @@ const DistinctPatientCards = () => {
                     border: "1px solid #0f766e",
                     boxShadow: "none",
                   }}
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    searchPatient(e.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -88,7 +104,7 @@ const DistinctPatientCards = () => {
           <div className="row g-4">
             {/* Single Card */}
 
-            {patientDetails.map((patientDetail) => {
+            {filteredPatient.map((patientDetail) => {
               return (
                 <div className="col-lg-3 col-md-6">
                   <div

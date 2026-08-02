@@ -189,7 +189,7 @@ const PatientDashboard = () => {
                   style={{
                     width: "70px",
                     height: "70px",
-                    background: "#e9f8ef",
+                    background: "#eef2ff",
                   }}
                 >
                   <i
@@ -250,12 +250,15 @@ const PatientDashboard = () => {
                     </>
                   ) : (
                     <>
+                      <h5
+                        className="fs-bold mb-1 fs-4"
+                        style={{ color: "#dc3545" }}
+                      >
+                        No Consultation Yet
+                      </h5>
                       <small className="text-muted">
                         Complete your first appointment to see it here.
                       </small>
-                      <h5 className="fw-bold mb-1" style={{ color: "#dc3545" }}>
-                        No Consultation Yet
-                      </h5>
                     </>
                   )}
                 </div>
@@ -387,7 +390,7 @@ const PatientDashboard = () => {
         <div className="row g-4 mb-4">
           {/* Upcoming Appointment */}
 
-          <div className="col-lg-8">
+          <div className="col-lg-6">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-header bg-white border-0 py-3">
                 <h4 className="fw-bold mb-0">
@@ -436,7 +439,7 @@ const PatientDashboard = () => {
 
           {/* Health Tips */}
 
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-header bg-white border-0 py-3">
                 <h4 className="fw-bold mb-0">
@@ -470,81 +473,9 @@ const PatientDashboard = () => {
               </div>
             </div>
           </div>
-        </div>
-        {/* Bottom Section */}
-
-        <div className="row g-4">
-          {/* Recent Activity */}
-
-          <div className="col-lg-8">
-            <div className="card border-0 shadow rounded-4">
-              <div className="card-header bg-white border-0 py-3">
-                <h4 className="fw-bold mb-0">
-                  <i className="bi bi-clock-history me-2 text-primary"></i>
-                  Recent Activity
-                </h4>
-              </div>
-
-              <div className="card-body">
-                <div className="table-responsive">
-                  <table className="table table-hover align-middle">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Doctor</th>
-                        <th>Department</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      <tr>
-                        <td>02 Jul 2026</td>
-
-                        <td>Dr. John Doe</td>
-
-                        <td>Cardiology</td>
-
-                        <td>
-                          <span className="badge bg-success">Completed</span>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>12 Jul 2026</td>
-
-                        <td>Dr. Smith</td>
-
-                        <td>Neurology</td>
-
-                        <td>
-                          <span className="badge bg-warning text-dark">
-                            Upcoming
-                          </span>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>18 Jul 2026</td>
-
-                        <td>Dr. Robert</td>
-
-                        <td>Orthopedic</td>
-
-                        <td>
-                          <span className="badge bg-info">Scheduled</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Today's Health Summary */}
 
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <div className="card border-0 shadow rounded-4 h-100">
               <div className="card-header bg-white border-0 py-3">
                 <h4 className="fw-bold mb-0">
