@@ -1,30 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
-  // const [doctors, setDoctors] = useState(null);
-  // const [patients, setPatients] = useState(null);
+  const [doctors, setDoctors] = useState(null);
+  const [patients, setPatients] = useState(null);
+  const [pendingStatusCount, setPendingStatusCount] = useState(null);
 
-  // const totalDoctors = async () => {
-  //   try {
-  //     const response = await api.get("/doctors");
-  //     console.log(response.data);
-  //     setDoctors(response.data);
-  //   } catch (error) {}
-  // };
+  const navigate = useNavigate();
 
-  // const totalPatients = async () => {
-  //   try {
-  //     const response = await api.get("/patient");
-  //     console.log(response.data);
-  //     setPatients(response.data);
-  //   } catch (error) {}
-  // };
+  const totalDoctors = async () => {
+    try {
+      const response = await api.get("/doctors");
+      console.log(response.data);
+      setDoctors(response.data);
+    } catch (error) {}
+  };
 
-  // useEffect(() => {
-  //   totalDoctors();
-  //   totalPatients();
-  // }, []);
+  const totalPatients = async () => {
+    try {
+      const response = await api.get("/patient/all-patients");
+      console.log(response.data);
+      setPatients(response.data);
+    } catch (error) {}
+  };
+
+  const fetchCountOfPendingStatus = async () => {
+    try {
+      const response = await api.get("/appointments/count-of-pending-status");
+      console.log(response.data);
+      setPendingStatusCount(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    totalDoctors();
+    totalPatients();
+    fetchCountOfPendingStatus();
+  }, []);
 
   return (
     <div className="container-fluid my-2">
@@ -96,9 +111,7 @@ const AdminDashboard = () => {
                     Total Doctors
                   </small>
 
-                  <h1 className="fw-bold mt-2">
-                    
-                  </h1>
+                  <h1 className="fw-bold mt-2">{doctors?.length}</h1>
                 </div>
 
                 <div
@@ -133,9 +146,7 @@ const AdminDashboard = () => {
                     Total Patients
                   </small>
 
-                  <h1 className="fw-bold mt-2">
-                  
-                  </h1>
+                  <h1 className="fw-bold mt-2">{patients?.length}</h1>
                 </div>
 
                 <div
@@ -166,11 +177,13 @@ const AdminDashboard = () => {
             <div className="card-body p-4">
               <div className="d-flex justify-content-between">
                 <div>
-                  <small className="text-muted fw-semibold">Appointments</small>
+                  <small className="text-muted fw-semibold">
+                    Pending Appointments
+                  </small>
 
-                  <h1 className="fw-bold mt-2">--</h1>
+                  <h1 className="fw-bold mt-2">{pendingStatusCount}</h1>
 
-                  <small className="text-muted">Coming Soon</small>
+                  <small className="text-muted">Awaiting Doctor Action</small>
                 </div>
 
                 <div
@@ -248,7 +261,7 @@ const AdminDashboard = () => {
                 cursor: "pointer",
                 transition: ".3s",
               }}
-              onClick={() => navigate("/admin/doctors")}
+              onClick={() => navigate("/admin/doctor-approval")}
             >
               <div className="card-body text-center p-4">
                 <div

@@ -26,6 +26,7 @@ import WriteMedicalReport from "./Pages/Doctor/WriteMedicalReport";
 import DistinctPatientCards from "./Pages/Doctor/DistinctPatientCards";
 import UpdateMedicalRecord from "./Pages/Doctor/UpdateMedicalRecord";
 import ViewMedicalRecord from "./Pages/Patient/ViewMedicalRecord";
+import Approval from "./Pages/Admin/Approval";
 
 const router = createBrowserRouter([
   {
@@ -123,7 +124,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/view-medical-report",
-        element: <ViewMedicalRecord/>
+        element: <ViewMedicalRecord />,
+      },
+      {
+        path: "/admin/doctor-approval",
+        element: <Approval />,
       },
     ],
   },
