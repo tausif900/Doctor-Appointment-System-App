@@ -18,6 +18,8 @@ const Login = () => {
         navigate(`/patient-dashboard`);
       } else if (role == "ROLE_Doctor") {
         navigate(`/doctor-dashboard`);
+      }else if (role=="ROLE_Admin") {
+        navigate("/admin-dashboard")
       }
       login(response.data.token, response.data.userDto);
     } catch (error) {
