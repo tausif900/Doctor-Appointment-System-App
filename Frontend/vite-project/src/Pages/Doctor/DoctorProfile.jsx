@@ -38,8 +38,10 @@ const DoctorProfile = () => {
       );
       console.log(responseImage);
 
-      toast.success("Congrates!, Your Profile is completed.");
-      navigate(`/doctor-dashboard`);
+      toast.success(
+        "Your profile has been submitted successfully .It is now awaiting Admin approval.You will receive an email notification once your account has been verified and approved.",
+      );
+      navigate(`/`);
     } catch (error) {
       console.log(userId);
       toast.error("Oops!, Something went wrong");

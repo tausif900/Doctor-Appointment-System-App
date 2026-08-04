@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../Context/LoginContext";
 import { api } from "../../api";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
@@ -14,13 +15,23 @@ const Login = () => {
       const response = await api.post("/auth/login", data);
       console.log(response);
       const role = response.data.userDto.role;
-      if (role == "ROLE_Patient") {
+      const status = response.data.userDto.doctor.status;
+      console.log(response.data.userDto.role);
+      console.log(response.data.userDto.doctor?.status);
+
+      if (role === "ROLE_Patient") {
         navigate(`/patient-dashboard`);
-      } else if (role == "ROLE_Doctor") {
-        navigate(`/doctor-dashboard`);
-      }else if (role=="ROLE_Admin") {
-        navigate("/admin-dashboard")
+      } else if (role === "ROLE_Admin") {
+        navigate("/admin-dashboard");
       }
+
+      if (role === "ROLE_Doctor" && status === "Approved") {
+        navigate("/doctor-dashboard");
+      } else {
+        toast.error("Your profile is awaiting admin approval.");
+        navigate("/");
+      }
+
       login(response.data.token, response.data.userDto);
     } catch (error) {
       console.log(error);
