@@ -15,7 +15,7 @@ const Login = () => {
       const response = await api.post("/auth/login", data);
       console.log(response);
       const role = response.data.userDto.role;
-      const status = response.data.userDto.doctor.status;
+      const status = response.data.userDto.doctor?.status;
       console.log(response.data.userDto.role);
       console.log(response.data.userDto.doctor?.status);
 
@@ -23,9 +23,7 @@ const Login = () => {
         navigate(`/patient-dashboard`);
       } else if (role === "ROLE_Admin") {
         navigate("/admin-dashboard");
-      }
-
-      if (role === "ROLE_Doctor" && status === "Approved") {
+      } else if (role === "ROLE_Doctor" && status === "Approved") {
         navigate("/doctor-dashboard");
       } else {
         toast.error("Your profile is awaiting admin approval.");
