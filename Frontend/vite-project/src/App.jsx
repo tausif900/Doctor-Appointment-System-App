@@ -111,7 +111,7 @@ const router = createBrowserRouter([
         element: <UpdatePatientProfile />,
       },
       {
-        path: "/write-medical-report/:patientId",
+        path: "/write-medical-report/:appointmentId",
         element: <WriteMedicalReport />,
       },
       {
@@ -119,7 +119,7 @@ const router = createBrowserRouter([
         element: <DistinctPatientCards />,
       },
       {
-        path: "/update-medical-record/:patientId",
+        path: "/update-medical-record/:appointmentId",
         element: <UpdateMedicalRecord />,
       },
       {

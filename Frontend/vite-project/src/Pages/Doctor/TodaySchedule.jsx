@@ -41,22 +41,6 @@ const TodaySchedule = () => {
     }
   };
 
-  const checkMedicalRecord = async (patientId, patientName) => {
-    try {
-      const response = await api.get(`medical-record/exists/${patientId}`);
-      console.log(response.data);
-      if (!response.data) {
-        navigate(`/write-medical-report/${patientId}`);
-      } else {
-        toast.success(`Record already exist Of ${patientName}`);
-        navigate(`/doctor/medical-records-of-distinct-patinet`);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
-    }
-  };
-
   useEffect(() => {
     fetchTodaysSchedule();
   }, []);
@@ -131,10 +115,10 @@ const TodaySchedule = () => {
                         fontSize: "14px",
                       }}
                       onClick={() =>
-                        checkMedicalRecord(ts.patientId, ts.patientName)
+                        navigate(`/write-medical-report/${ts.appointmentId}`)
                       }
                     >
-                      Create Medical Report
+                      Write Medical Report
                     </button>
                   </div>
                 </div>

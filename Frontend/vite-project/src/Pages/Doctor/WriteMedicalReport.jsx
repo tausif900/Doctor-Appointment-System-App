@@ -5,7 +5,8 @@ import { api } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 
 const WriteMedicalReport = () => {
-  const { patientId } = useParams();
+  const { appointmentId } = useParams();
+  
   const navigate = useNavigate();
   const {
     register,
@@ -15,12 +16,14 @@ const WriteMedicalReport = () => {
 
   const submitHandler = async (data) => {
     try {
-      const response = await api.post(`/medical-record/${patientId}`, data);
+      const response = await api.post(`/medical-record/add-record/${appointmentId}`, data);
       console.log(response.data);
-      toast.success("Record Updated");
+      toast.success("Medical Record Added Successfully!!!");
       navigate("/doctor/today's-schedule");
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error);
+      
     }
   };
 

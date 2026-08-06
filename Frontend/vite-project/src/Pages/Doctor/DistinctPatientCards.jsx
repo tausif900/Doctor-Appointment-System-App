@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const DistinctPatientCards = () => {
@@ -8,6 +8,7 @@ const DistinctPatientCards = () => {
   const [search, setSearch] = useState("");
   const [filteredPatient, setFilteredPatient] = useState([]);
   const navigate = useNavigate();
+  const { appointmentId } = useParams();
 
   const fetchDistinctPatient = async () => {
     try {
@@ -20,17 +21,15 @@ const DistinctPatientCards = () => {
     }
   };
 
-  const checkMedicalRecord = async (patientId, patientName) => {
+  const checkMedicalRecord = async () => {
     try {
-      const response = await api.get(`medical-record/exists/${patientId}`);
+      const response = await api.get(`medical-record/exists/${appointmentId}`);
       console.log(response.data);
       if (!response.data) {
-        toast.info(
-          `No medical record found for ${patientName}. Please create one.`,
-        );
-        navigate(`/write-medical-report/${patientId}`);
+        toast.info(`No medical record found. Please create one.`);
+        navigate(`/write-medical-report/${appointmentId}`);
       } else {
-        navigate(`/update-medical-record/${patientId}`);
+        navigate(`/update-medical-record/${appointmentId}`);
       }
     } catch (error) {
       console.log(error);
@@ -142,14 +141,11 @@ const DistinctPatientCards = () => {
                           borderRadius: "10px",
                         }}
                         onClick={() =>
-                          checkMedicalRecord(
-                            patientDetail.patientId,
-                            patientDetail.patientName,
-                          )
+                          checkMedicalRecord()
                         }
                       >
                         <i className="bi bi-file-earmark-medical me-2"></i>
-                        View Or Update Medical Record
+                        View Medical History
                       </button>
                     </div>
                   </div>

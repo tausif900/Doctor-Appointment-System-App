@@ -8,14 +8,14 @@ const UpdateMedicalRecord = () => {
   const [patientRecord, setPatientRecord] = useState({});
   const [patient, setPatient] = useState({});
 
-  const { patientId } = useParams();
+  const { appointmentId } = useParams();
 
   const { register, handleSubmit, reset } = useForm();
 
   const fetchPatientRecord = async () => {
     try {
       const response = await api.get(
-        `/medical-record/doctor/patient-record/${patientId}`,
+        `/medical-record/doctor/patient-record/${appointmentId}`,
       );
       console.log(response.data);
       setPatientRecord(response.data);
@@ -48,7 +48,7 @@ const UpdateMedicalRecord = () => {
   const updateMedicalRecord = async (data) => {
     try {
       const response = await api.put(
-        `/medical-record/update-record/${patientId}`,
+        `/medical-record/update-record/${appointmentId}`,
         data,
       );
       console.log(response.data);

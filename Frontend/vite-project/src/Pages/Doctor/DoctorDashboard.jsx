@@ -506,7 +506,7 @@ const DoctorDashboard = () => {
                   }
                 >
                   <i className="bi bi-eye-fill me-2"></i>
-                  View Medical Records
+                  View Medical Records History
                 </button>
               </div>
             </div>
