@@ -21,22 +21,6 @@ const DistinctPatientCards = () => {
     }
   };
 
-  const checkMedicalRecord = async () => {
-    try {
-      const response = await api.get(`medical-record/exists/${appointmentId}`);
-      console.log(response.data);
-      if (!response.data) {
-        toast.info(`No medical record found. Please create one.`);
-        navigate(`/write-medical-report/${appointmentId}`);
-      } else {
-        navigate(`/update-medical-record/${appointmentId}`);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
-    }
-  };
-
   const searchPatient = (name) => {
     const searchedPatient = patientDetails.filter((pd) =>
       pd.patientName.toLowerCase().includes(name.toLowerCase()),
@@ -141,7 +125,9 @@ const DistinctPatientCards = () => {
                           borderRadius: "10px",
                         }}
                         onClick={() =>
-                          checkMedicalRecord()
+                          navigate(
+                            `/all-medical-records/${patientDetail.patientId}`,
+                          )
                         }
                       >
                         <i className="bi bi-file-earmark-medical me-2"></i>
