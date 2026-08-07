@@ -35,6 +35,16 @@ const Approval = () => {
     }
   };
 
+  const rejectDoctor = async (docId) => {
+    try {
+      const response = await api.put(`/admin/reject-doctor/${docId}`);
+      console.log(response);
+      fetchPendingStatusDoctor();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchPendingStatusDoctor();
   }, []);
@@ -284,7 +294,10 @@ const Approval = () => {
                 {/* Footer */}
 
                 <div className="modal-footer border-0 justify-content-center justify-content-md-end">
-                  <button className="btn btn-danger rounded-pill px-4 mb-2 mb-md-0">
+                  <button
+                    className="btn btn-danger rounded-pill px-4 mb-2 mb-md-0"
+                    onClick={() => rejectDoctor(pendingDoctorDetails.docId)}
+                  >
                     <i className="bi bi-x-circle-fill me-2"></i>
                     Reject
                   </button>
