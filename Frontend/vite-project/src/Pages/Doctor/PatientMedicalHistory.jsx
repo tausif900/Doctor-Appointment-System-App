@@ -121,7 +121,7 @@ const PatientMedicalHistory = () => {
         data-bs-backdrop="static"
         data-bs-keyboard="false"
       >
-        <div className="modal-dialog modal-xl modal-dialog-scrollable">
+        <div className="modal-dialog modal-lg modal-dialog-scrollable">
           <div
             className="modal-content border-0"
             style={{ borderRadius: "15px" }}

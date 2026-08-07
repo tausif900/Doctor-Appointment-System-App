@@ -24,7 +24,6 @@ import RejectedAppointment from "./Pages/Doctor/RejectedAppointments";
 import UpdatePatientProfile from "./Pages/Patient/UpdatePatientProfile";
 import WriteMedicalReport from "./Pages/Doctor/WriteMedicalReport";
 import DistinctPatientCards from "./Pages/Doctor/DistinctPatientCards";
-import UpdateMedicalRecord from "./Pages/Doctor/UpdateMedicalRecord";
 import ViewMedicalRecord from "./Pages/Patient/ViewMedicalRecord";
 import Approval from "./Pages/Admin/Approval";
 import PatientMedicalHistory from "./Pages/Doctor/PatientMedicalHistory";
@@ -118,10 +117,6 @@ const router = createBrowserRouter([
       {
         path: "/doctor/medical-records-of-distinct-patinet",
         element: <DistinctPatientCards />,
-      },
-      {
-        path: "/update-medical-record/:appointmentId",
-        element: <UpdateMedicalRecord />,
       },
       {
         path: "/view-medical-report",
