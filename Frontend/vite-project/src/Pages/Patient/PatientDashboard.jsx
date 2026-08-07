@@ -13,7 +13,7 @@ const PatientDashboard = () => {
 
   const [dashboard, setDashboard] = useState({});
 
-  const { user } = useContext(LoginContext);
+  const { user, logout } = useContext(LoginContext);
 
   const fetchNextAppointment = async () => {
     try {
@@ -111,6 +111,17 @@ const PatientDashboard = () => {
               >
                 <i className="bi bi-calendar2-plus-fill me-2"></i>
                 Book Appointment
+              </button>
+
+              <button
+                className="btn btn-light fw-semibold px-4 mx-5"
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              >
+                <i className="bi bi-box-arrow-right me-2"></i>
+                Logout
               </button>
             </div>
           </div>

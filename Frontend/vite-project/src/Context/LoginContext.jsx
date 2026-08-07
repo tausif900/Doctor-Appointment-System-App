@@ -31,6 +31,7 @@ export const LoginProvider = ({ children }) => {
     setUser(null);
     setToken(null);
     setIsAuthenticated(false);
+    
   };
 
   return (

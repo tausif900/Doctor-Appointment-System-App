@@ -37,7 +37,7 @@ const Navbar = () => {
           />
 
           <div className="d-none d-sm-block">
-            <h5 className="fw-bold mb-0 text-dark">Doctor Appointment</h5>
+            <h5 className="fw-bold mb-0 text-dark">Docto</h5>
 
             <small className="text-secondary">
               Fast and trusted care booking

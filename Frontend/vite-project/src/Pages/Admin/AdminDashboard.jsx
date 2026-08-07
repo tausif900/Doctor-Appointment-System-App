@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { api } from "../../api";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../Context/LoginContext";
 
 const AdminDashboard = () => {
   const [doctors, setDoctors] = useState(null);
   const [patients, setPatients] = useState(null);
   const [pendingStatusCount, setPendingStatusCount] = useState(null);
+  const { user, logout } = useContext(LoginContext);
 
   const navigate = useNavigate();
 
@@ -77,6 +79,17 @@ const AdminDashboard = () => {
               <button className="btn btn-light rounded-pill px-4 fw-semibold">
                 <i className="bi bi-speedometer2 me-2"></i>
                 Dashboard Overview
+              </button>
+
+              <button
+                className="btn btn-light fw-semibold px-4 mx-5"
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              >
+                <i className="bi bi-box-arrow-right me-2"></i>
+                Logout
               </button>
             </div>
           </div>

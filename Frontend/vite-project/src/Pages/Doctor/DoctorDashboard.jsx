@@ -7,7 +7,7 @@ const DoctorDashboard = () => {
   const [doctor, setDoctor] = useState({});
   const [dashboard, setDashboard] = useState(null);
   const navigate = useNavigate();
-  const { user } = useContext(LoginContext);
+  const { user, logout } = useContext(LoginContext);
 
   const fetchDoctor = async () => {
     try {
@@ -61,6 +61,17 @@ const DoctorDashboard = () => {
               <button className="btn btn-light fw-semibold px-4">
                 <i className="bi bi-calendar2-check-fill me-2"></i>
                 Today's Schedule
+              </button>
+
+              <button
+                className="btn btn-light fw-semibold px-4 mx-5"
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              >
+                <i className="bi bi-box-arrow-right me-2"></i>
+                Logout
               </button>
             </div>
 
