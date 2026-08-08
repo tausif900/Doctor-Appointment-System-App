@@ -331,7 +331,7 @@ const AdminDashboard = () => {
                   ></i>
                 </div>
 
-                <h5 className="fw-bold">Manage Patients</h5>
+                <h5 className="fw-bold">Registered Patients</h5>
 
                 <small className="text-muted">View Registered Patients</small>
               </div>
@@ -346,7 +346,7 @@ const AdminDashboard = () => {
               style={{
                 cursor: "pointer",
               }}
-              onClick={() => navigate("/admin/appointments")}
+              onClick={() => navigate("/admin/monitor-appointments")}
             >
               <div className="card-body text-center p-4">
                 <div

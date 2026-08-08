@@ -29,6 +29,7 @@ import Approval from "./Pages/Admin/ManageDoctors";
 import PatientMedicalHistory from "./Pages/Doctor/PatientMedicalHistory";
 import ManageDoctors from "./Pages/Admin/ManageDoctors";
 import ManagePatients from "./Pages/Admin/ManagePatients";
+import MonitorAppointments from "./Pages/Admin/MonitorAppointments";
 
 const router = createBrowserRouter([
   {
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/manage-patients",
         element: <ManagePatients />,
+      },
+      {
+        path: "/admin/monitor-appointments",
+        element: <MonitorAppointments />,
       },
     ],
   },
