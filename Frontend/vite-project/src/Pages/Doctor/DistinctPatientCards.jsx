@@ -49,39 +49,41 @@ const DistinctPatientCards = () => {
       </div>
 
       {/* Search */}
+      <div className="card border-0 shadow-sm mb-4">
+        <div className="card-body">
+          <div className="input-group">
+            <span
+              className="input-group-text"
+              style={{
+                background: "#0f766e",
+                color: "white",
+                border: "none",
+              }}
+            >
+              <i className="bi bi-search"></i>
+            </span>
+
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search Patient..."
+              style={{
+                border: "1px solid #0f766e",
+                boxShadow: "none",
+              }}
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                searchPatient(e.target.value);
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      
       {filteredPatient.length > 0 ? (
         <div>
-          <div className="card border-0 shadow-sm mb-4">
-            <div className="card-body">
-              <div className="input-group">
-                <span
-                  className="input-group-text"
-                  style={{
-                    background: "#0f766e",
-                    color: "white",
-                    border: "none",
-                  }}
-                >
-                  <i className="bi bi-search"></i>
-                </span>
-
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search Patient..."
-                  style={{
-                    border: "1px solid #0f766e",
-                    boxShadow: "none",
-                  }}
-                  value={search}
-                  onChange={(e) => {
-                    setSearch(e.target.value);
-                    searchPatient(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
           {/* Patient Cards */}
 
           <div className="row g-4">

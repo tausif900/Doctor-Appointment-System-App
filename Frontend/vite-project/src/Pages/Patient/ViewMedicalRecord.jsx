@@ -6,6 +6,8 @@ import { LoginContext } from "../../Context/LoginContext";
 const ViewMedicalRecord = () => {
   const [medicalRecord, setMedicalRecord] = useState([]);
   const [patientRecord, setPatientRecord] = useState({});
+  const [searchDoctor, setSearchDoctor] = useState("");
+  const [filteredDoctor, setFilteredDoctor] = useState([]);
 
   const navigate = useNavigate();
 
@@ -18,6 +20,7 @@ const ViewMedicalRecord = () => {
       );
       console.log(response.data);
       setMedicalRecord(response.data);
+      setFilteredDoctor(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -48,16 +51,24 @@ const ViewMedicalRecord = () => {
     return `${day}, ${formattedDate}`;
   };
 
+  const searchedDoctor = (doctorName) => {
+    const filteredRecord = medicalRecord.filter((record) =>
+      record.doctorName.toLowerCase().includes(doctorName.toLowerCase()),
+    );
+    setFilteredDoctor(filteredRecord);
+  };
+
   useEffect(() => {
     fetchMedicalRecord();
-    fetchPatientRecord();
   }, []);
 
   return (
     <div className="container-fluid py-4">
       {/* Heading */}
       <div className="text-center mb-4">
-        <h2 className="fw-bold" style={{ color: "#0f766e" }}>My Medical Records</h2>
+        <h2 className="fw-bold" style={{ color: "#0f766e" }}>
+          My Medical Records
+        </h2>
         <p className="text-muted">View all your previous medical reports.</p>
       </div>
 
@@ -68,6 +79,11 @@ const ViewMedicalRecord = () => {
             type="text"
             className="form-control shadow-sm"
             placeholder="Search By Doctor..."
+            value={searchDoctor}
+            onChange={(e) => {
+              setSearchDoctor(e.target.value);
+              searchedDoctor(e.target.value);
+            }}
           />
         </div>
       </div>
@@ -75,7 +91,7 @@ const ViewMedicalRecord = () => {
       {/* Records */}
 
       <div className="row g-4">
-        {medicalRecord.map((r) => (
+        {filteredDoctor.map((r) => (
           <div className="col-lg-3 col-md-6" key={r.reportId}>
             <div
               className="card border-0 shadow h-100"
