@@ -25,8 +25,10 @@ import UpdatePatientProfile from "./Pages/Patient/UpdatePatientProfile";
 import WriteMedicalReport from "./Pages/Doctor/WriteMedicalReport";
 import DistinctPatientCards from "./Pages/Doctor/DistinctPatientCards";
 import ViewMedicalRecord from "./Pages/Patient/ViewMedicalRecord";
-import Approval from "./Pages/Admin/Approval";
+import Approval from "./Pages/Admin/ManageDoctors";
 import PatientMedicalHistory from "./Pages/Doctor/PatientMedicalHistory";
+import ManageDoctors from "./Pages/Admin/ManageDoctors";
+import ManagePatients from "./Pages/Admin/ManagePatients";
 
 const router = createBrowserRouter([
   {
@@ -123,13 +125,17 @@ const router = createBrowserRouter([
         element: <ViewMedicalRecord />,
       },
       {
-        path: "/admin/doctor-approval",
-        element: <Approval />,
+        path: "/admin/manage-doctors",
+        element: <ManageDoctors />,
       },
       {
-        path:"/all-medical-records/:patientId",
-        element:<PatientMedicalHistory/>
-      }
+        path: "/all-medical-records/:patientId",
+        element: <PatientMedicalHistory />,
+      },
+      {
+        path: "/admin/manage-patients",
+        element: <ManagePatients />,
+      },
     ],
   },
 ]);

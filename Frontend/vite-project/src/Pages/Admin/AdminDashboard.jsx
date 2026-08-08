@@ -274,7 +274,7 @@ const AdminDashboard = () => {
                 cursor: "pointer",
                 transition: ".3s",
               }}
-              onClick={() => navigate("/admin/doctor-approval")}
+              onClick={() => navigate("/admin/manage-doctors")}
             >
               <div className="card-body text-center p-4">
                 <div
@@ -311,7 +311,7 @@ const AdminDashboard = () => {
               style={{
                 cursor: "pointer",
               }}
-              onClick={() => navigate("/admin/patients")}
+              onClick={() => navigate("/admin/manage-patients")}
             >
               <div className="card-body text-center p-4">
                 <div

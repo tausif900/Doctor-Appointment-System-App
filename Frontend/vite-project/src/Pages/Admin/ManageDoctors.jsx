@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../api";
 
-const Approval = () => {
+const ManageDoctors = () => {
   const [pendingDoctor, setPendingDoctor] = useState([]);
   const [pendingDoctorDetails, setPendingDoctorDetails] = useState({});
 
@@ -358,4 +358,4 @@ const Approval = () => {
   );
 };
 
-export default Approval;
+export default ManageDoctors;
